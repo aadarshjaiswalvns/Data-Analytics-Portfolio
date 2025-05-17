@@ -40,12 +40,6 @@ Libraries: Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn
 
 Tools: Power BI, Excel, Jupyter Notebook, GitHub
 
-📄 Resume
-
-You can download my latest resume from the portfolio site or from this repository:
-
-Download Resume (PDF)
-
 🙋 About Me
 
 I’m Aadarsh Jaiswal, an aspiring data analyst with a background in operations and a strong interest in building actionable business insights from data. I enjoy working with diverse datasets and am continuously upskilling through hands-on projects.
