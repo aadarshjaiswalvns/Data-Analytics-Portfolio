@@ -215,32 +215,6 @@
     .card img:hover {
       transform: scale(1.05);
     }
-    /* Contact Form */
-    .contact-form {
-      max-width: 600px;
-      margin: 20px auto;
-    }
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid var(--card-border);
-      border-radius: 5px;
-      font-family: 'Inter', Arial, sans-serif;
-    }
-    .contact-form button {
-      background: var(--btn-bg);
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .contact-form button:hover {
-      background: var(--btn-hover-bg);
-      color: var(--btn-hover-text);
-    }
     /* Back to Top Button */
     .back-to-top {
       position: fixed;
@@ -319,7 +293,7 @@
       <div class="card">
         <h3 class="card-title">Business Development Associate – Apollo 24x7</h3>
         <p class="card-text"><em>Remote | March 2022 – August 2022</em></p>
-        <p class="card-text">Resolved 95% of client issues within 24 hours, improving satisfaction by 20%. Managed 15+ client relationships, enhancing retention by 10%.</p>
+        <pмою class="card-text">Resolved 95% of client issues within 24 hours, improving satisfaction by 20%. Managed 15+ client relationships, enhancing retention by 10%.</p>
       </div>
     </section>
 
@@ -354,10 +328,21 @@
         <details>
           <summary>View Key Code Snippet</summary>
           <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;">
-from sklearn.linear_model import LogisticRegression
-model = LogisticRegression(max_iter=1000)
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+
+model = RandomForestClassifier()
 model.fit(X_train, y_train)
-print(f"Model Accuracy: {model.score(X_test, y_test):.2f}")
+y_pred = model.predict(X_test)
+
+print(classification_report(y_test, y_pred))
+
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+cm = confusion_matrix(y_test, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+disp.plot()
+plt.show()
           </pre>
         </details>
         <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction" class="btn" target="_blank">View Project</a>
@@ -464,16 +449,6 @@ print(f"Model Accuracy: {model.score(X_test, y_test):.2f}")
         <i class="fa-brands fa-linkedin" aria-hidden="true"></i> <a href="https://www.linkedin.com/in/aadarsh-jaiswal-45a520211" target="_blank">LinkedIn</a> · 
         <i class="fa-brands fa-github" aria-hidden="true"></i> <a href="https://github.com/aadarshjaiswalvns" target="_blank">GitHub</a>
       </p>
-      <!-- Contact Form -->
-      <div class="contact-form">
-        <h3>Get in Touch</h3>
-        <form action="https://formspree.io/f/your-form-id" method="POST">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
       <div style="margin-top:12px; font-size:0.95rem; color:var(--secondary);">
         Driving Business Success Through Data Insights
       </div>
