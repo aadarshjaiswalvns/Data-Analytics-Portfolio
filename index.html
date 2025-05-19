@@ -4,26 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aadarsh Jaiswal - Data Analytics Portfolio</title>
-  <meta name="description" content="Portfolio of Aadarsh Jaiswal, an aspiring Data Analyst skilled in Python, SQL, Power BI, and Excel, showcasing data-driven projects and professional experience.">
+  <meta name="description" content="Portfolio of Aadarsh Jaiswal, Data Analyst skilled in Python, SQL, Power BI, Excel. Showcasing data-driven projects and professional experience.">
   <meta name="keywords" content="Aadarsh Jaiswal, Data Analyst, Data Analytics, Python, SQL, Power BI, Excel, Portfolio">
   <meta name="author" content="Aadarsh Jaiswal">
-  <!-- Open Graph Tags for Social Sharing -->
   <meta property="og:title" content="Aadarsh Jaiswal - Data Analytics Portfolio">
-  <meta property="og:description" content="Portfolio of Aadarsh Jaiswal, an aspiring Data Analyst skilled in Python, SQL, Power BI, and Excel.">
-  <meta property="og:image" content="https://aadarshjaiswalvns.github.io/Data-Analytics-Portfolio/profile-image.jpg">
+  <meta property="og:description" content="Portfolio of Aadarsh Jaiswal, Data Analyst skilled in Python, SQL, Power BI, Excel.">
+  <meta property="og:image" content="profile-image.jpg">
   <meta property="og:url" content="https://aadarshjaiswalvns.github.io/Data-Analytics-Portfolio/">
-  <!-- Google Fonts: Inter -->
+  <link rel="icon" href="profile-image.jpg" type="image/jpeg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-X"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-XXXXX-X'); // Replace UA-XXXXX-X with your tracking ID
-  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
   <style>
     :root {
       --primary: #15314c;
@@ -33,7 +24,7 @@
       --card-bg: #fff;
       --card-border: #e6e6e6;
       --text-main: #1b263b;
-      --text-muted: #5a6878; /* Improved contrast */
+      --text-muted: #5a6878;
       --chip-bg: #e8eef5;
       --chip-text: #345c7e;
       --btn-bg: #345c7e;
@@ -49,12 +40,66 @@
       min-height: 100vh;
       scroll-behavior: smooth;
     }
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      background: linear-gradient(90deg, #15314c 65%, #f2c357 100%);
+      color: #fff;
+      padding: 54px 18px 44px 18px;
+      border-radius: 0 0 30px 30px;
+    }
+    .hero-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 5px solid #f2c357;
+      object-fit: cover;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      background: #fff;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 2px;
+    }
+    .hero-content h2 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #ffe082;
+      margin-top: 10px;
+    }
+    .hero-content p {
+      font-size: 1.12rem;
+      margin: 16px 0 18px 0;
+      color: #e2e2e2;
+    }
+    .hero-btn {
+      background: var(--accent);
+      color: var(--primary);
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-top: 10px;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 30px;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(52,92,126,0.09);
+    }
+    .hero-btn:hover {
+      background: #ffe082;
+      color: var(--secondary);
+    }
+    /* Navbar */
     .navbar {
       position: sticky;
       top: 0;
       background: var(--card-bg);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 12px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      padding: 8px 18px;
       z-index: 1000;
     }
     .navbar ul {
@@ -63,7 +108,7 @@
       padding: 0;
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 24px;
     }
     .navbar a {
       text-decoration: none;
@@ -71,13 +116,51 @@
       font-weight: 600;
       font-size: 1rem;
       transition: color 0.2s;
+      position: relative;
+      padding: 3px 0;
     }
-    .navbar a:hover {
+    .navbar a:after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width .2s;
+      position: absolute;
+      bottom: 0; left: 0;
+    }
+    .navbar a:hover:after,
+    .navbar a:focus:after {
+      width: 100%;
+    }
+    .navbar a:hover, .navbar a:focus {
       color: var(--accent);
+    }
+    /* Hamburger for mobile */
+    .navbar-toggle {
+      display: none;
+      position: absolute;
+      top: 14px;
+      right: 26px;
+      font-size: 2rem;
+      color: var(--secondary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1200;
+    }
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; gap: 18px; text-align: center; }
+      .hero-img { margin-bottom: 12px; }
+    }
+    @media (max-width: 700px) {
+      .navbar ul { flex-direction: column; gap: 10px; background: #fff; position: absolute; width: 100%; left: 0; top: 54px; display: none; }
+      .navbar ul.active { display: flex; }
+      .navbar-toggle { display: block; }
     }
     .container {
       max-width: 1000px;
-      margin: 20px auto;
+      margin: 32px auto;
       padding: 30px;
       background: #fff;
       border-radius: 16px;
@@ -87,14 +170,7 @@
       font-weight: 700;
       margin-bottom: 10px;
     }
-    h1 {
-      font-size: 2.5rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 6px;
-      color: var(--primary);
-    }
+    h1 { font-size: 2.2rem; color: var(--primary); }
     h2 {
       font-size: 1.5rem;
       color: var(--primary);
@@ -118,16 +194,17 @@
       margin-bottom: 30px;
     }
     .card {
-      background: var(--card-bg);
-      border: 1.2px solid var(--card-border);
-      border-radius: 13px;
+      background: rgba(255,255,255,0.95);
+      border: 1.5px solid var(--card-border);
+      border-radius: 18px;
       padding: 24px;
       margin-bottom: 18px;
-      box-shadow: 0 2px 12px rgba(52,92,126,0.05);
-      transition: box-shadow 0.2s;
+      box-shadow: 0 4px 32px rgba(52,92,126,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
     .card:hover {
-      box-shadow: 0 8px 32px rgba(52,92,126,0.10);
+      transform: translateY(-5px) scale(1.012);
+      box-shadow: 0 12px 52px rgba(52,92,126,0.13);
     }
     .card-title {
       color: var(--secondary);
@@ -157,6 +234,7 @@
       letter-spacing: 0.01em;
       border: none;
       transition: background 0.2s, color 0.2s;
+      cursor: pointer;
     }
     .btn:hover {
       background: var(--btn-hover-bg);
@@ -189,13 +267,13 @@
     }
     footer {
       margin-top: 50px;
-      padding: 20px;
+      padding: 24px 10px 18px 10px;
       text-align: center;
-      color: var(--text-muted);
+      color: #fff;
       font-size: 1rem;
-      background: #f4f6fb;
-      border-radius: 12px;
-      box-shadow: 0 1px 8px rgba(52,92,126,0.04);
+      background: #15314c;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 1px 8px rgba(52,92,126,0.06);
     }
     .footer-links a {
       color: var(--accent);
@@ -205,15 +283,19 @@
       transition: color 0.2s;
     }
     .footer-links a:hover {
-      color: var(--secondary);
+      color: #fff;
       text-decoration: underline;
     }
     /* Image Hover Effect */
     .card img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 12px;
       transition: transform 0.3s ease;
+      box-shadow: 0 2px 10px rgba(52,92,126,0.06);
     }
     .card img:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
     /* Back to Top Button */
     .back-to-top {
@@ -222,29 +304,40 @@
       right: 20px;
       background: var(--accent);
       color: var(--primary);
-      padding: 10px;
+      padding: 12px;
       border-radius: 50%;
       border: none;
       cursor: pointer;
       display: none;
+      font-size: 1.4rem;
+      box-shadow: 0 2px 12px rgba(21,49,76,0.13);
+      z-index: 200;
     }
-    .back-to-top.show {
-      display: block;
-    }
-    @media (max-width: 768px) {
-      .container {
-        padding: 20px;
-        margin: 10px;
-      }
-      h1 { font-size: 2rem; }
-      h2 { font-size: 1.3rem; }
-      .navbar ul { flex-direction: column; gap: 10px; }
+    .back-to-top.show { display: block; }
+    @media (max-width: 800px) {
+      .container { padding: 16px; margin: 10px; }
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
+  <!-- Hero Section -->
+  <section class="hero" id="top">
+    <img src="profile-image.jpg" alt="Aadarsh Jaiswal's portrait" class="hero-img">
+    <div class="hero-content">
+      <h1>Aadarsh Jaiswal</h1>
+      <h2>Data Analyst | Python • SQL • Power BI</h2>
+      <p>Driving business success by transforming data into actionable insights.</p>
+      <a href="#projects" class="btn hero-btn">View My Work</a>
+    </div>
+  </section>
+
   <!-- Navigation -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <button class="navbar-toggle" aria-label="Toggle navigation">
+      <i class="fa fa-bars"></i>
+    </button>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -259,120 +352,92 @@
 
   <!-- Main Container -->
   <div class="container">
-    <!-- Header -->
-    <header>
-      <h1 aria-label="Aadarsh Jaiswal's Data Analytics Portfolio">
-        <i class="fa-solid fa-database" aria-hidden="true"></i>
-        Aadarsh Jaiswal
-        <span style="font-size:1.2rem; color:var(--accent); font-weight:400;">Data Analytics Portfolio</span>
-      </h1>
-      <div class="accent-bar"></div>
-    </header>
-
     <!-- About Section -->
-    <section id="about" aria-labelledby="about-heading">
-      <h2 id="about-heading"><i class="fa-solid fa-user" aria-hidden="true"></i> About Me</h2>
+    <section id="about" aria-labelledby="about-heading" data-aos="fade-up">
+      <h2 id="about-heading"><i class="fa-solid fa-user"></i> About Me</h2>
       <p style="font-size:1.1rem; line-height:1.6;">
-        I am <b>Aadarsh Jaiswal</b>, an aspiring Data Analyst with a robust background in operations management and a passion for uncovering hidden patterns in data to drive business success. Proficient in <b>Python</b>, <b>SQL</b>, <b>Power BI</b>, and <b>Excel</b>, I specialize in transforming complex datasets into actionable insights. My experience leading teams and optimizing processes complements my analytical skills, enabling me to deliver strategic solutions with measurable impact. I aim to become a lead data analyst, solving real-world problems through data-driven innovation.
+        I am <b>Aadarsh Jaiswal</b>, an aspiring Data Analyst with a robust background in operations management and a passion for uncovering hidden patterns in data to drive business results. Proficient in Python, SQL, Power BI, and Excel, I blend technical skill with business acumen to deliver actionable insights and optimize performance. My portfolio demonstrates real-world problem solving, analytical thinking, and a dedication to continuous learning.
       </p>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" aria-labelledby="experience-heading">
-      <h2 id="experience-heading"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Professional Experience</h2>
+    <section id="experience" aria-labelledby="experience-heading" data-aos="fade-up">
+      <h2 id="experience-heading"><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
       <div class="card">
         <h3 class="card-title">Business Operation Manager – Ahimsa Tour & Travels Pvt Ltd</h3>
         <p class="card-text"><em>Rishikesh, Uttarakhand | April 2024 – March 2025</em></p>
-        <p class="card-text">Led a 25-member team to achieve 20% faster operations and 15% productivity gains. Managed ₹33 lakh budget, saving ₹3 lakh through cost optimizations. Built Excel dashboards to track KPIs, reducing reporting errors by 30%.</p>
+        <p class="card-text">Led a 25-member team to achieve 20% faster operations and 15% productivity gains. Managed ₹33 lakh budget, saving ₹3 lakh through cost optimizations. Built Excel dashboards for real-time tracking and decision support.</p>
       </div>
       <div class="card">
         <h3 class="card-title">Associate Product Manager – LearnQoch</h3>
         <p class="card-text"><em>Remote | September 2022 – March 2023</em></p>
-        <p class="card-text">Streamlined workflows, cutting defects by 20% and boosting satisfaction by 15%. Collaborated with a 12-member team to increase productivity by 25% and reduce turnaround time by 30%.</p>
+        <p class="card-text">Streamlined workflows, cutting defects by 20% and boosting satisfaction by 15%. Collaborated with a 12-member team to increase productivity by 25% and reduce turnaround time for product releases.</p>
       </div>
       <div class="card">
         <h3 class="card-title">Business Development Associate – Apollo 24x7</h3>
         <p class="card-text"><em>Remote | March 2022 – August 2022</em></p>
-        <pмою class="card-text">Resolved 95% of client issues within 24 hours, improving satisfaction by 20%. Managed 15+ client relationships, enhancing retention by 10%.</p>
+        <p class="card-text">Resolved 95% of client issues within 24 hours, improving satisfaction by 20%. Managed 15+ client relationships, enhancing retention by 10%.</p>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" aria-labelledby="projects-heading">
-      <h2 id="projects-heading"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Featured Projects</h2>
+    <section id="projects" aria-labelledby="projects-heading" data-aos="fade-up">
+      <h2 id="projects-heading"><i class="fa-solid fa-chart-line"></i> Featured Projects</h2>
       <div class="card">
-        <h3 class="card-title"><i class="fa-solid fa-chart-bar" aria-hidden="true"></i> Sales Dashboard (Power BI)</h3>
-        <!-- TODO: Optimize image with TinyPNG or CDN -->
-        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/Sales%20Dashboard%20image.png" alt="Interactive Power BI dashboard displaying retail revenue trends and product performance" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
-        <p class="card-text">Helped retailers boost profits by identifying top-performing products. Analyzed 50,000+ retail records to uncover revenue trends, product performance, and regional insights. Designed an interactive Power BI dashboard using complex DAX measures (e.g., CALCULATE, FILTER) and a star-schema data model, enabling data-driven decisions.</p>
+        <h3 class="card-title"><i class="fa-solid fa-chart-bar"></i> Sales Dashboard (Power BI)</h3>
+        <img src="Sales%20Dashboard%20image.png" alt="Power BI dashboard screenshot">
+        <p class="card-text">Helped retailers boost profits by identifying top-performing products. Analyzed 50,000+ retail records to uncover revenue trends, product performance, and actionable insights.</p>
         <div>
-          <span class="chip"><i class="fa-brands fa-microsoft" aria-hidden="true"></i> Excel</span>
-          <span class="chip"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Power BI</span>
-          <span class="chip"><i class="fa-solid fa-code" aria-hidden="true"></i> DAX</span>
+          <span class="chip"><i class="fa-brands fa-microsoft"></i> Excel</span>
+          <span class="chip"><i class="fa-solid fa-chart-pie"></i> Power BI</span>
+          <span class="chip"><i class="fa-solid fa-code"></i> DAX</span>
         </div>
         <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord" class="btn" target="_blank">View Project</a>
         <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord/blob/main/Superstore%20Sales%20Dashboard2.pbix" class="btn btn-outline-secondary" target="_blank">View Code</a>
-        <!-- Add Power BI Service link if available -->
       </div>
-
       <div class="card">
-        <h3 class="card-title"><i class="fa-solid fa-user-secret" aria-hidden="true"></i> Customer Churn Prediction</h3>
-        <!-- TODO: Optimize image with TinyPNG or CDN -->
-        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/Customer%20Churn%20Prediction.png" alt="Python-based customer churn prediction model visualization" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
-        <p class="card-text">Improved customer retention by predicting churn risk. Developed a logistic regression model with 82% accuracy using Python and Scikit-learn. Performed feature engineering on 20+ variables, using correlation analysis to select predictors, and recommended retention strategies reducing attrition by 15%.</p>
+        <h3 class="card-title"><i class="fa-solid fa-user-secret"></i> Customer Churn Prediction</h3>
+        <img src="Customer%20Churn%20Prediction.png" alt="Customer churn prediction model visualization">
+        <p class="card-text">Improved retention by predicting churn risk. Built a logistic regression model with 82% accuracy using Python and Scikit-learn. Performed feature engineering and model evaluation.</p>
         <div>
-          <span class="chip"><i class="fa-brands fa-python" aria-hidden="true"></i> Python</span>
-          <span class="chip"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i> Pandas</span>
-          <span class="chip"><i class="fa-solid fa-robot" aria-hidden="true"></i> Scikit-learn</span>
+          <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
+          <span class="chip"><i class="fa-solid fa-table-cells-large"></i> Pandas</span>
+          <span class="chip"><i class="fa-solid fa-robot"></i> Scikit-learn</span>
         </div>
         <details>
           <summary>View Key Code Snippet</summary>
-          <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;">
+          <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px; font-size:0.95em;">
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
-
 model = RandomForestClassifier()
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
-
+from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred))
-
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-
-cm = confusion_matrix(y_test, y_pred)
-disp = ConfusionMatrixDisplay(confusion_matrix=cm)
-disp.plot()
-plt.show()
           </pre>
         </details>
         <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction" class="btn" target="_blank">View Project</a>
         <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction/blob/main/Customer-Churn-Prediction.ipynb" class="btn btn-outline-secondary" target="_blank">View Code</a>
-        <!-- Add Streamlit/Flask demo link if deployed -->
       </div>
-
       <div class="card">
-        <h3 class="card-title"><i class="fa-solid fa-database" aria-hidden="true"></i> SQL Data Exploration (Northwind)</h3>
-        <!-- TODO: Optimize image with TinyPNG or CDN -->
-        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/SQL%20Data%20Exploration%20on%20Northwind%20Database.png" alt="SQL analysis results from Northwind database" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
-        <p class="card-text">Enhanced sales strategies by analyzing customer and product trends. Conducted exploratory SQL analysis on the Northwind database to derive insights on sales, customer behavior, and product trends. Optimized queries with indexing, improving performance by 25%.</p>
+        <h3 class="card-title"><i class="fa-solid fa-database"></i> SQL Data Exploration (Northwind)</h3>
+        <img src="SQL%20Data%20Exploration%20on%20Northwind%20Database.png" alt="SQL analysis of Northwind database">
+        <p class="card-text">Enhanced sales strategies by analyzing customer and product trends. Conducted exploratory SQL analysis to derive insights on sales, customer behavior, and product performance.</p>
         <div>
-          <span class="chip"><i class="fa-solid fa-database" aria-hidden="true"></i> MySQL</span>
-          <span class="chip"><i class="fa-brands fa-microsoft" aria-hidden="true"></i> Excel</span>
+          <span class="chip"><i class="fa-solid fa-database"></i> MySQL</span>
+          <span class="chip"><i class="fa-brands fa-microsoft"></i> Excel</span>
         </div>
         <a href="https://github.com/aadarshjaiswalvns/Data-Analysis-Using-Northwind-Database-in-MySQL" class="btn" target="_blank">View Project</a>
         <a href="https://github.com/aadarshjaiswalvns/Data-Analysis-Using-Northwind-Database-in-MySQL/blob/main/README.md" class="btn btn-outline-secondary" target="_blank">View Code</a>
       </div>
-
       <div class="card">
-        <h3 class="card-title"><i class="fa-solid fa-users" aria-hidden="true"></i> HR Attrition Prediction</h3>
-        <!-- TODO: Optimize image with TinyPNG or CDN -->
-        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/HR%20Analytics%20–%20Employee%20Attrition%20Prediction.png" alt="HR attrition prediction model visualization with Seaborn" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
-        <p class="card-text">Reduced employee turnover by identifying key attrition drivers. Built a predictive model using Python and Scikit-learn, leveraging Random Forest to analyze 30+ features. Visualized insights with Matplotlib and Seaborn, supporting HR strategies that reduced turnover by 10%.</p>
+        <h3 class="card-title"><i class="fa-solid fa-users"></i> HR Attrition Prediction</h3>
+        <img src="HR%20Analytics%20–%20Employee%20Attrition%20Prediction.png" alt="HR attrition prediction model">
+        <p class="card-text">Reduced employee turnover by identifying key attrition drivers. Built a predictive model using Python and Scikit-learn, leveraging Random Forests and data visualization.</p>
         <div>
-          <span class="chip"><i class="fa-brands fa-python" aria-hidden="true"></i> Python</span>
-          <span class="chip"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i> Pandas</span>
-          <span class="chip"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Seaborn</span>
-          <span class="chip"><i class="fa-solid fa-robot" aria-hidden="true"></i> Scikit-learn</span>
+          <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
+          <span class="chip"><i class="fa-solid fa-table-cells-large"></i> Pandas</span>
+          <span class="chip"><i class="fa-solid fa-chart-simple"></i> Seaborn</span>
+          <span class="chip"><i class="fa-solid fa-robot"></i> Scikit-learn</span>
         </div>
         <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction" class="btn" target="_blank">View Project</a>
         <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction/blob/main/hr_attrition_project.ipynb" class="btn btn-outline-secondary" target="_blank">View Code</a>
@@ -380,27 +445,27 @@ plt.show()
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" aria-labelledby="skills-heading">
-      <h2 id="skills-heading"><i class="fa-solid fa-gears" aria-hidden="true"></i> Skills & Tools</h2>
+    <section id="skills" aria-labelledby="skills-heading" data-aos="fade-up">
+      <h2 id="skills-heading"><i class="fa-solid fa-gears"></i> Skills & Tools</h2>
       <div>
-        <span class="chip"><i class="fa-brands fa-python" aria-hidden="true"></i> Python</span>
-        <span class="chip"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i> Pandas</span>
-        <span class="chip"><i class="fa-solid fa-cubes" aria-hidden="true"></i> NumPy</span>
-        <span class="chip"><i class="fa-solid fa-robot" aria-hidden="true"></i> Scikit-learn</span>
-        <span class="chip"><i class="fa-solid fa-database" aria-hidden="true"></i> MySQL</span>
-        <span class="chip"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Power BI</span>
-        <span class="chip"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Tableau</span>
-        <span class="chip"><i class="fa-brands fa-microsoft" aria-hidden="true"></i> Excel</span>
-        <span class="chip"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> Jupyter Notebook</span>
-        <span class="chip"><i class="fa-brands fa-google" aria-hidden="true"></i> Google Colab</span>
-        <span class="chip"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Dashboarding</span>
-        <span class="chip"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Data Visualization</span>
+        <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
+        <span class="chip"><i class="fa-solid fa-table-cells-large"></i> Pandas</span>
+        <span class="chip"><i class="fa-solid fa-cubes"></i> NumPy</span>
+        <span class="chip"><i class="fa-solid fa-robot"></i> Scikit-learn</span>
+        <span class="chip"><i class="fa-solid fa-database"></i> MySQL</span>
+        <span class="chip"><i class="fa-solid fa-chart-pie"></i> Power BI</span>
+        <span class="chip"><i class="fa-solid fa-chart-line"></i> Tableau</span>
+        <span class="chip"><i class="fa-brands fa-microsoft"></i> Excel</span>
+        <span class="chip"><i class="fa-solid fa-laptop-code"></i> Jupyter Notebook</span>
+        <span class="chip"><i class="fa-brands fa-google"></i> Google Colab</span>
+        <span class="chip"><i class="fa-solid fa-gauge-high"></i> Dashboarding</span>
+        <span class="chip"><i class="fa-solid fa-chart-simple"></i> Data Visualization</span>
       </div>
     </section>
 
     <!-- Education Section -->
-    <section id="education" aria-labelledby="education-heading">
-      <h2 id="education-heading"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Education</h2>
+    <section id="education" aria-labelledby="education-heading" data-aos="fade-up">
+      <h2 id="education-heading"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
       <div class="card">
         <h3 class="card-title">MBA – Information Technology</h3>
         <p class="card-text"><em>DR. A.P.J. Abdul Kalam Technical University, Lucknow | Aug 2021 – Aug 2023</em></p>
@@ -412,33 +477,32 @@ plt.show()
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" aria-labelledby="certifications-heading">
-      <h2 id="certifications-heading"><i class="fa-solid fa-certificate" aria-hidden="true"></i> Certifications</h2>
+    <section id="certifications" aria-labelledby="certifications-heading" data-aos="fade-up">
+      <h2 id="certifications-heading"><i class="fa-solid fa-certificate"></i> Certifications</h2>
       <div class="card">
         <h3 class="card-title">Data Science Certification – Meritshot</h3>
         <p class="card-text"><em>In Progress, Expected August 2025</em></p>
-        <p class="card-text">Covers practical applications of Python, SQL, Power BI, Exploratory Data Analysis (EDA), and Machine Learning, enhancing skills in data-driven decision-making and predictive modeling.</p>
+        <p class="card-text">Covers practical applications of Python, SQL, Power BI, Exploratory Data Analysis (EDA), and Machine Learning, enhancing skills in data-driven decision-making and predictive analytics.</p>
       </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" aria-labelledby="testimonials-heading">
-      <h2 id="testimonials-heading"><i class="fa-solid fa-quote-left" aria-hidden="true"></i> Testimonials</h2>
+    <section id="testimonials" aria-labelledby="testimonials-heading" data-aos="fade-up">
+      <h2 id="testimonials-heading"><i class="fa-solid fa-quote-left"></i> Testimonials</h2>
       <div class="card">
         <p class="card-text">"Aadarsh’s analytical approach to operations brought measurable improvements in both efficiency and cost control." – Director, Ahimsa Tour & Travels</p>
       </div>
       <div class="card">
-        <p class="card-text">"Aadarsh handled client relationships with professionalism and urgency. His efforts directly contributed to higher satisfaction and repeat business.”
-— Team Leader, Apollo 24x7</p>
+        <p class="card-text">"Aadarsh handled client relationships with professionalism and urgency. His efforts directly contributed to higher satisfaction and repeat business.” – Team Leader, Apollo 24x7</p>
       </div>
     </section>
 
     <!-- Resume Section -->
-    <section class="resume-section" id="resume" aria-labelledby="resume-heading">
-      <h2 id="resume-heading"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Download My Resume</h2>
+    <section class="resume-section" id="resume" aria-labelledby="resume-heading" data-aos="fade-up">
+      <h2 id="resume-heading"><i class="fa-solid fa-file-arrow-down"></i> Download My Resume</h2>
       <p>Download my resume to learn more about my skills and experience.</p>
-      <a href="https://aadarshjaiswalvns.github.io/Data-Analytics-Portfolio/Aadarsh Resume.pdf" download class="btn btn-outline-secondary">
-        <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Download Resume (PDF)
+      <a href="Aadarsh Resume.pdf" download class="btn btn-outline-secondary">
+        <i class="fa-solid fa-file-pdf"></i> Download Resume (PDF)
       </a>
     </section>
 
@@ -446,26 +510,44 @@ plt.show()
     <footer aria-label="Footer with contact information and links">
       <p><strong>Aadarsh Jaiswal</strong> · Aspiring Data Analyst</p>
       <p class="footer-links">
-        <i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:aadarshjaiswal.vns@gmail.com">aadarshjaiswal.vns@gmail.com</a> · 
-        <i class="fa-brands fa-linkedin" aria-hidden="true"></i> <a href="https://www.linkedin.com/in/aadarsh-jaiswal-45a520211" target="_blank">LinkedIn</a> · 
-        <i class="fa-brands fa-github" aria-hidden="true"></i> <a href="https://github.com/aadarshjaiswalvns" target="_blank">GitHub</a>
+        <i class="fa-solid fa-envelope"></i> <a href="mailto:aadarshjaiswal.vns@gmail.com">aadarshjaiswal.vns@gmail.com</a> · 
+        <i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/aadarsh-jaiswal-45a520211" target="_blank">LinkedIn</a> · 
+        <i class="fa-brands fa-github"></i> <a href="https://github.com/aadarshjaiswalvns" target="_blank">GitHub</a>
       </p>
-      <div style="margin-top:12px; font-size:0.95rem; color:var(--secondary);">
+      <div style="margin-top:12px; font-size:0.95rem; color:var(--accent);">
         Driving Business Success Through Data Insights
       </div>
     </footer>
   </div>
 
   <!-- Back to Top Button -->
-  <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
   </button>
 
-  <!-- Script for Back to Top Button Visibility -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
+    // Animate On Scroll
+    AOS.init({ once: true, duration: 700, offset: 120 });
+
+    // Back to Top Button
     window.addEventListener('scroll', () => {
       const backToTop = document.querySelector('.back-to-top');
       backToTop.classList.toggle('show', window.scrollY > 300);
+    });
+    document.querySelector('.back-to-top').onclick = function() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+
+    // Hamburger Menu for Mobile
+    const navbarToggle = document.querySelector('.navbar-toggle');
+    const navbarMenu = document.querySelector('.navbar ul');
+    navbarToggle.onclick = function() {
+      navbarMenu.classList.toggle('active');
+    };
+    // Close menu on link click (mobile)
+    document.querySelectorAll('.navbar a').forEach(link => {
+      link.addEventListener('click', () => { navbarMenu.classList.remove('active'); });
     });
   </script>
 </body>
