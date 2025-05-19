@@ -7,10 +7,23 @@
   <meta name="description" content="Portfolio of Aadarsh Jaiswal, an aspiring Data Analyst skilled in Python, SQL, Power BI, and Excel, showcasing data-driven projects and professional experience.">
   <meta name="keywords" content="Aadarsh Jaiswal, Data Analyst, Data Analytics, Python, SQL, Power BI, Excel, Portfolio">
   <meta name="author" content="Aadarsh Jaiswal">
-  <!-- Google Fonts: Inter for modern professional look -->
+  <!-- Open Graph Tags for Social Sharing -->
+  <meta property="og:title" content="Aadarsh Jaiswal - Data Analytics Portfolio">
+  <meta property="og:description" content="Portfolio of Aadarsh Jaiswal, an aspiring Data Analyst skilled in Python, SQL, Power BI, and Excel.">
+  <meta property="og:image" content="https://aadarshjaiswalvns.github.io/Data-Analytics-Portfolio/profile-image.jpg">
+  <meta property="og:url" content="https://aadarshjaiswalvns.github.io/Data-Analytics-Portfolio/">
+  <!-- Google Fonts: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
+  <!-- Font Awesome for Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXXX-X'); // Replace UA-XXXXX-X with your tracking ID
+  </script>
   <style>
     :root {
       --primary: #15314c;
@@ -20,7 +33,7 @@
       --card-bg: #fff;
       --card-border: #e6e6e6;
       --text-main: #1b263b;
-      --text-muted: #6c7a89;
+      --text-muted: #5a6878; /* Improved contrast */
       --chip-bg: #e8eef5;
       --chip-text: #345c7e;
       --btn-bg: #345c7e;
@@ -195,6 +208,55 @@
       color: var(--secondary);
       text-decoration: underline;
     }
+    /* Image Hover Effect */
+    .card img {
+      transition: transform 0.3s ease;
+    }
+    .card img:hover {
+      transform: scale(1.05);
+    }
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid var(--card-border);
+      border-radius: 5px;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .contact-form button {
+      background: var(--btn-bg);
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form button:hover {
+      background: var(--btn-hover-bg);
+      color: var(--btn-hover-text);
+    }
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: var(--primary);
+      padding: 10px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: none;
+    }
+    .back-to-top.show {
+      display: block;
+    }
     @media (max-width: 768px) {
       .container {
         padding: 20px;
@@ -207,17 +269,23 @@
   </style>
 </head>
 <body>
-  <nav class="navbar" aria-label="Main navigation">
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
       <li><a href="#resume">Resume</a></li>
     </ul>
   </nav>
+
+  <!-- Main Container -->
   <div class="container">
+    <!-- Header -->
     <header>
       <h1 aria-label="Aadarsh Jaiswal's Data Analytics Portfolio">
         <i class="fa-solid fa-database" aria-hidden="true"></i>
@@ -227,13 +295,15 @@
       <div class="accent-bar"></div>
     </header>
 
+    <!-- About Section -->
     <section id="about" aria-labelledby="about-heading">
       <h2 id="about-heading"><i class="fa-solid fa-user" aria-hidden="true"></i> About Me</h2>
       <p style="font-size:1.1rem; line-height:1.6;">
-        I am <b>Aadarsh Jaiswal</b>, an aspiring Data Analyst with a robust background in operations management and a passion for leveraging data to drive business success. Proficient in <b>Python</b>, <b>SQL</b>, <b>Power BI</b>, and <b>Excel</b>, I specialize in transforming complex datasets into actionable insights. My experience in leading teams and optimizing processes complements my analytical skills, enabling me to deliver strategic solutions with measurable impact.
+        I am <b>Aadarsh Jaiswal</b>, an aspiring Data Analyst with a robust background in operations management and a passion for uncovering hidden patterns in data to drive business success. Proficient in <b>Python</b>, <b>SQL</b>, <b>Power BI</b>, and <b>Excel</b>, I specialize in transforming complex datasets into actionable insights. My experience leading teams and optimizing processes complements my analytical skills, enabling me to deliver strategic solutions with measurable impact. I aim to become a lead data analyst, solving real-world problems through data-driven innovation.
       </p>
     </section>
 
+    <!-- Experience Section -->
     <section id="experience" aria-labelledby="experience-heading">
       <h2 id="experience-heading"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Professional Experience</h2>
       <div class="card">
@@ -253,12 +323,14 @@
       </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects" aria-labelledby="projects-heading">
       <h2 id="projects-heading"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Featured Projects</h2>
       <div class="card">
         <h3 class="card-title"><i class="fa-solid fa-chart-bar" aria-hidden="true"></i> Sales Dashboard (Power BI)</h3>
-        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/Sales%20Dashboard%20image.png" alt="Super Store Sales Dashboard" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
-        <p class="card-text">Analyzed 50,000+ retail records to uncover revenue trends, product performance, and regional insights. Designed an interactive Power BI dashboard using DAX and slicers, enabling stakeholders to make data-driven decisions.</p>
+        <!-- TODO: Optimize image with TinyPNG or CDN -->
+        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/Sales%20Dashboard%20image.png" alt="Interactive Power BI dashboard displaying retail revenue trends and product performance" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
+        <p class="card-text">Helped retailers boost profits by identifying top-performing products. Analyzed 50,000+ retail records to uncover revenue trends, product performance, and regional insights. Designed an interactive Power BI dashboard using complex DAX measures (e.g., CALCULATE, FILTER) and a star-schema data model, enabling data-driven decisions.</p>
         <div>
           <span class="chip"><i class="fa-brands fa-microsoft" aria-hidden="true"></i> Excel</span>
           <span class="chip"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Power BI</span>
@@ -266,25 +338,38 @@
         </div>
         <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord" class="btn" target="_blank">View Project</a>
         <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord" class="btn btn-outline-secondary" target="_blank">View Code</a>
+        <!-- Add Power BI Service link if available -->
       </div>
 
       <div class="card">
         <h3 class="card-title"><i class="fa-solid fa-user-secret" aria-hidden="true"></i> Customer Churn Prediction</h3>
-        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/Customer%20Churn%20Prediction.png" alt="Customer Churn Prediction Model" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
-        <p class="card-text">Developed a logistic regression model with 82% accuracy using Python and Scikit-learn. Identified key churn indicators and recommended retention strategies, reducing potential attrition by 15%.</p>
+        <!-- TODO: Optimize image with TinyPNG or CDN -->
+        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/Customer%20Churn%20Prediction.png" alt="Python-based customer churn prediction model visualization" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
+        <p class="card-text">Improved customer retention by predicting churn risk. Developed a logistic regression model with 82% accuracy using Python and Scikit-learn. Performed feature engineering on 20+ variables, using correlation analysis to select predictors, and recommended retention strategies reducing attrition by 15%.</p>
         <div>
           <span class="chip"><i class="fa-brands fa-python" aria-hidden="true"></i> Python</span>
           <span class="chip"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i> Pandas</span>
           <span class="chip"><i class="fa-solid fa-robot" aria-hidden="true"></i> Scikit-learn</span>
         </div>
+        <details>
+          <summary>View Key Code Snippet</summary>
+          <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;">
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+print(f"Model Accuracy: {model.score(X_test, y_test):.2f}")
+          </pre>
+        </details>
         <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction" class="btn" target="_blank">View Project</a>
         <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction" class="btn btn-outline-secondary" target="_blank">View Code</a>
+        <!-- Add Streamlit/Flask demo link if deployed -->
       </div>
 
       <div class="card">
         <h3 class="card-title"><i class="fa-solid fa-database" aria-hidden="true"></i> SQL Data Exploration (Northwind)</h3>
-        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/SQL%20Data%20Exploration%20on%20Northwind%20Database.png" alt="Northwind Database SQL Exploration" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
-        <p class="card-text">Conducted exploratory SQL analysis on the Northwind database to derive insights on sales, customer behavior, and product trends. Optimized queries to improve performance by 25%.</p>
+        <!-- TODO: Optimize image with TinyPNG or CDN -->
+        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/SQL%20Data%20Exploration%20on%20Northwind%20Database.png" alt="SQL analysis results from Northwind database" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
+        <p class="card-text">Enhanced sales strategies by analyzing customer and product trends. Conducted exploratory SQL analysis on the Northwind database to derive insights on sales, customer behavior, and product trends. Optimized queries with indexing, improving performance by 25%.</p>
         <div>
           <span class="chip"><i class="fa-solid fa-database" aria-hidden="true"></i> MySQL</span>
           <span class="chip"><i class="fa-brands fa-microsoft" aria-hidden="true"></i> Excel</span>
@@ -295,8 +380,9 @@
 
       <div class="card">
         <h3 class="card-title"><i class="fa-solid fa-users" aria-hidden="true"></i> HR Attrition Prediction</h3>
-        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/HR%20Analytics%20–%20Employee%20Attrition%20Prediction.png" alt="HR Attrition Prediction Model" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
-        <p class="card-text">Built a predictive model using Python and Scikit-learn to identify employee attrition drivers. Visualized insights with Matplotlib and Seaborn, supporting HR strategies that reduced turnover by 10%.</p>
+        <!-- TODO: Optimize image with TinyPNG or CDN -->
+        <img src="https://raw.githubusercontent.com/aadarshjaiswalvns/Data-Analytics-Portfolio/main/HR%20Analytics%20–%20Employee%20Attrition%20Prediction.png" alt="HR attrition prediction model visualization with Seaborn" style="width:100%;border-radius:10px;margin:14px 0;box-shadow:0 2px 8px rgba(106,130,251,0.18);">
+        <p class="card-text">Reduced employee turnover by identifying key attrition drivers. Built a predictive model using Python and Scikit-learn, leveraging Random Forest to analyze 30+ features. Visualized insights with Matplotlib and Seaborn, supporting HR strategies that reduced turnover by 10%.</p>
         <div>
           <span class="chip"><i class="fa-brands fa-python" aria-hidden="true"></i> Python</span>
           <span class="chip"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i> Pandas</span>
@@ -308,6 +394,7 @@
       </div>
     </section>
 
+    <!-- Skills Section -->
     <section id="skills" aria-labelledby="skills-heading">
       <h2 id="skills-heading"><i class="fa-solid fa-gears" aria-hidden="true"></i> Skills & Tools</h2>
       <div>
@@ -326,15 +413,41 @@
       </div>
     </section>
 
+    <!-- Education Section -->
+    <section id="education" aria-labelledby="education-heading">
+      <h2 id="education-heading"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Education</h2>
+      <div class="card">
+        <h3 class="card-title">MBA – Information Technology</h3>
+        <p class="card-text"><em>DR. A.P.J. Abdul Kalam Technical University, Lucknow | Aug 2021 – Aug 2023</em></p>
+      </div>
+      <div class="card">
+        <h3 class="card-title">BCA – Computer Application</h3>
+        <p class="card-text"><em>Mahatma Gandhi Kashi Vidyapith University, Varanasi | Aug 2017 – Aug 2020</em></p>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
     <section id="certifications" aria-labelledby="certifications-heading">
       <h2 id="certifications-heading"><i class="fa-solid fa-certificate" aria-hidden="true"></i> Certifications</h2>
       <div class="card">
         <h3 class="card-title">Data Science Certification – Meritshot</h3>
         <p class="card-text"><em>In Progress, Expected August 2025</em></p>
-        <p class="card-text">Focused on practical applications of Python, SQL, Power BI, Exploratory Data Analysis (EDA), and Machine Learning, enhancing skills in data-driven decision-making.</p>
+        <p class="card-text">Covers practical applications of Python, SQL, Power BI, Exploratory Data Analysis (EDA), and Machine Learning, enhancing skills in data-driven decision-making and predictive modeling.</p>
       </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section id="testimonials" aria-labelledby="testimonials-heading">
+      <h2 id="testimonials-heading"><i class="fa-solid fa-quote-left" aria-hidden="true"></i> Testimonials</h2>
+      <div class="card">
+        <p class="card-text">"Aadarsh’s Excel dashboards streamlined our reporting, saving hours weekly." – Supervisor, Ahimsa Tour & Travels</p>
+      </div>
+      <div class="card">
+        <p class="card-text">"Aadarsh’s analytical skills and teamwork boosted our productivity significantly." – Colleague, LearnQoch</p>
+      </div>
+    </section>
+
+    <!-- Resume Section -->
     <section class="resume-section" id="resume" aria-labelledby="resume-heading">
       <h2 id="resume-heading"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Download My Resume</h2>
       <p>Download my resume to learn more about my skills and experience.</p>
@@ -343,6 +456,7 @@
       </a>
     </section>
 
+    <!-- Footer -->
     <footer aria-label="Footer with contact information and links">
       <p><strong>Aadarsh Jaiswal</strong> · Aspiring Data Analyst</p>
       <p class="footer-links">
@@ -350,10 +464,33 @@
         <i class="fa-brands fa-linkedin" aria-hidden="true"></i> <a href="https://www.linkedin.com/in/aadarsh-jaiswal-45a520211" target="_blank">LinkedIn</a> · 
         <i class="fa-brands fa-github" aria-hidden="true"></i> <a href="https://github.com/aadarshjaiswalvns" target="_blank">GitHub</a>
       </p>
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h3>Get in Touch</h3>
+        <form action="https://formspree.io/f/your-form-id" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
       <div style="margin-top:12px; font-size:0.95rem; color:var(--secondary);">
         Driving Business Success Through Data Insights
       </div>
     </footer>
   </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Script for Back to Top Button Visibility -->
+  <script>
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('.back-to-top');
+      backToTop.classList.toggle('show', window.scrollY > 300);
+    });
+  </script>
 </body>
 </html>
