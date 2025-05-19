@@ -52,4 +52,4 @@ LinkedIn: linkedin.com/in/aadarsh-jaiswal-45a520211
 
 GitHub: github.com/aadarshjaiswalvns
 
-Built and maintained by Aadarsh Jaiswal · All content is intended for educational and portfolio use.
+Built and maintained by Aadarsh Jaiswal .
