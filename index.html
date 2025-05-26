@@ -572,8 +572,8 @@ plt.show()
       navbarMenu.classList.toggle('active');
     };
 
-    // Smooth Scroll for Navigation Links
-    document.querySelectorAll('.navbar a').forEach(link => {
+    // Smooth Scroll for Navigation Links and View My Work Button
+    document.querySelectorAll('.navbar a, .hero-btn').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault(); // Prevent default anchor behavior
         const targetId = link.getAttribute('href').substring(1); // Get the ID without '#'
