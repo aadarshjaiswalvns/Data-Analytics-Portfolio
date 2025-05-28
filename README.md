@@ -48,8 +48,8 @@ I’m Aadarsh Jaiswal, an aspiring data analyst with a background in operations 
 
 Email: aadarshjaiswal.vns@gmail.com
 
-LinkedIn: linkedin.com/in/aadarsh-jaiswal-45a520211
+LinkedIn: linkedin.com/in/aadarsh-jaiswal
 
 GitHub: github.com/aadarshjaiswalvns
 
-Built and maintained by Aadarsh Jaiswal .
+Built and maintained by Aadarsh Jaiswal.
