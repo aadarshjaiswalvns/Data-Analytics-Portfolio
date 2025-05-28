@@ -20,13 +20,13 @@
       --primary: #333333; /* Dark Gray for text */
       --accent: #0D47A1; /* Dark Blue */
       --secondary-accent: #34C759; /* Soft Green */
-      --hover-accent: #FFD700; /* Gold for hover */
+      --hover-accent: #0288D1; /* Bright Blue for hover */
       --bg: #F9F9F9; /* Light Gray background */
       --card-bg: #FFFFFF; /* White card background */
       --card-border: #E0E0E0; /* Light Gray border */
       --btn-bg: linear-gradient(90deg, #0D47A1 0%, #34C759 100%); /* Dark Blue to Soft Green */
-      --btn-hover-bg: #FFD700; /* Gold on hover */
-      --btn-hover-text: #333333; /* Dark Gray text on hover */
+      --btn-hover-bg: #0288D1; /* Bright Blue on hover */
+      --btn-hover-text: #FFFFFF; /* White text on hover */
       --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
       --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
@@ -103,7 +103,7 @@
     .hero-content h2 {
       font-size: 1.5rem; /* Larger for headers */
       font-weight: 600;
-      color: var(--hover-accent);
+      color: #FFFFFF; /* Changed to white */
       margin-top: 9px;
       margin-bottom: 8px;
       letter-spacing: 1px;
@@ -135,7 +135,7 @@
     .hero-btn:hover {
       background: var(--btn-hover-bg);
       color: var(--btn-hover-text);
-      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 6px 20px rgba(2, 136, 209, 0.3);
       transform: translateY(-3px);
     }
     .navbar {
@@ -282,7 +282,7 @@
     }
     .card:hover {
       transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 12px 40px rgba(13, 71, 161, 0.2);
+      box-shadow: 0 12px 40px rgba(2, 136, 209, 0.2);
       border-color: var(--hover-accent);
     }
     .card-title {
@@ -315,7 +315,7 @@
     }
     .card img:hover {
       transform: scale(1.05) translateY(-4px);
-      box-shadow: 0 8px 28px rgba(13, 71, 161, 0.15);
+      box-shadow: 0 8px 28px rgba(2, 136, 209, 0.15);
     }
     .btn {
       display: inline-block;
@@ -339,7 +339,7 @@
     .btn:hover {
       background: var(--btn-hover-bg);
       color: var(--btn-hover-text);
-      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 6px 20px rgba(2, 136, 209, 0.3);
       transform: translateY(-3px);
     }
     .btn-outline-secondary {
@@ -370,7 +370,7 @@
       background: var(--hover-accent);
       color: var(--primary);
       transform: scale(1.1);
-      box-shadow: 0 4px 18px rgba(13, 71, 161, 0.2);
+      box-shadow: 0 4px 18px rgba(2, 136, 209, 0.2);
       cursor: pointer;
     }
     details[open] summary:before {
@@ -432,14 +432,14 @@
       z-index: 2;
     }
     .footer-links a {
-      color: var(--hover-accent);
+      color: #FFFFFF; /* Changed to white */
       text-decoration: none;
       margin: 0 12px;
       font-weight: 600;
       transition: color 0.3s, transform 0.3s;
     }
     .footer-links a:hover {
-      color: #fff;
+      color: #E0E0E0; /* Light grayish-white for hover */
       text-decoration: underline;
       transform: translateY(-2px);
     }
@@ -644,7 +644,7 @@ plt.show()
       </div>
     </section>
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#FFD700" fill-opacity="0.07" d="M0,12L80,16C160,20,320,40,480,36C640,32,800,8,960,8C1120,8,1280,32,1360,36L1440,40V40H0Z"></path>
+      <path fill="#0288D1" fill-opacity="0.07" d="M0,12L80,16C160,20,320,40,480,36C640,32,800,8,960,8C1120,8,1280,32,1360,36L1440,40V40H0Z"></path>
     </svg>
     <!-- Skills Section -->
     <section id="skills" aria-labelledby="skills-heading" data-aos="fade-up">
@@ -701,7 +701,7 @@ plt.show()
       </div>
     </section>
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#FFD700" fill-opacity="0.08" d="M0,14L80,16C160,18,320,28,480,30C640,32,800,18,960,12C1120,6,1280,20,1360,28L1440,36V40H0Z"></path>
+      <path fill="#0288D1" fill-opacity="0.08" d="M0,14L80,16C160,18,320,28,480,30C640,32,800,18,960,12C1120,6,1280,20,1360,28L1440,36V40H0Z"></path>
     </svg>
     <!-- Testimonials Section -->
     <section id="testimonials" aria-labelledby="testimonials-heading" data-aos="fade-up">
@@ -729,7 +729,7 @@ plt.show()
       <i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/aadarsh-jaiswal" target="_blank">LinkedIn</a> · 
       <i class="fa-brands fa-github"></i> <a href="https://github.com/aadarshjaiswalvns" target="_blank">GitHub</a>
     </p>
-    <div style="margin-top:12px; font-size:0.98rem; color:var(--hover-accent);">
+    <div style="margin-top:12px; font-size:0.98rem; color:#FFFFFF;">
       Driving Business Success Through Data Insights
     </div>
   </footer>
