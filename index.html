@@ -17,22 +17,18 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
     :root {
-      --primary: #15314c;
-      --secondary: #345c7e;
-      --accent: #ffb347;
-      --accent2: #ffd700;
-      --bg: #f3f6fb;
-      --card-bg: #fff;
-      --card-border: #e6e6e6;
-      --text-main: #182336;
-      --text-muted: #5a6878;
-      --chip-bg: #e8eef5;
-      --chip-text: #345c7e;
-      --btn-bg: linear-gradient(90deg, #345c7e 80%, #f2c357 100%);
-      --btn-hover-bg: #ffd700;
-      --btn-hover-text: #15314c;
-      --shadow: 0 6px 32px rgba(52,92,126,0.10);
-      --shadow-lg: 0 14px 44px rgba(21,49,76,0.18);
+      --primary: #333333; /* Dark Gray for text */
+      --accent: #0D47A1; /* Dark Blue */
+      --secondary-accent: #34C759; /* Soft Green */
+      --hover-accent: #FFD700; /* Gold for hover */
+      --bg: #F9F9F9; /* Light Gray background */
+      --card-bg: #FFFFFF; /* White card background */
+      --card-border: #E0E0E0; /* Light Gray border */
+      --btn-bg: linear-gradient(90deg, #0D47A1 0%, #34C759 100%); /* Dark Blue to Soft Green */
+      --btn-hover-bg: #FFD700; /* Gold on hover */
+      --btn-hover-text: #333333; /* Dark Gray text on hover */
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
     html {
       scroll-padding-top: 90px;
@@ -41,9 +37,9 @@
       margin: 0;
       padding: 0;
       background: var(--bg);
-      color: var(--text-main);
+      color: var(--primary);
       font-family: 'Inter', Arial, sans-serif;
-      font-size: 1.08rem;
+      font-size: 1.1rem; /* Medium body text */
       min-height: 100vh;
       scroll-behavior: smooth;
     }
@@ -52,7 +48,7 @@
     }
     .divider {
       width: 100vw;
-      height: 42px;
+      height: 40px;
       margin: 0 -10vw;
       background: none;
       border: none;
@@ -65,7 +61,7 @@
       align-items: center;
       justify-content: center;
       gap: 50px;
-      background: linear-gradient(120deg, #15314c 60%, #ffb347 100%);
+      background: linear-gradient(120deg, var(--accent) 60%, var(--secondary-accent) 100%);
       color: #fff;
       padding: 70px 24px 54px 24px;
       border-radius: 0 0 48px 48px;
@@ -80,17 +76,17 @@
       top: -90px;
       width: 300px;
       height: 300px;
-      background: radial-gradient(circle, #ffd70044 0%, transparent 70%);
+      background: radial-gradient(circle, var(--hover-accent) 0%, transparent 70%);
       z-index: 1;
     }
     .hero-img {
       width: 155px;
       height: 155px;
       border-radius: 50%;
-      border: 7px solid #ffd700;
+      border: 7px solid var(--hover-accent);
       object-fit: cover;
-      box-shadow: 0 4px 34px rgba(0,0,0,0.16);
-      background: #fff;
+      box-shadow: 0 4px 34px rgba(0, 0, 0, 0.16);
+      background: var(--card-bg);
       z-index: 2;
     }
     .hero-content {
@@ -105,15 +101,15 @@
       font-weight: 800;
     }
     .hero-content h2 {
-      font-size: 1.35rem;
+      font-size: 1.5rem; /* Larger for headers */
       font-weight: 600;
-      color: #ffe082;
+      color: var(--hover-accent);
       margin-top: 9px;
       margin-bottom: 8px;
       letter-spacing: 1px;
     }
     .hero-content p {
-      font-size: 1.16rem;
+      font-size: 1.1rem;
       margin: 14px 0 18px 0;
       color: #e2e2e2;
       line-height: 1.5;
@@ -127,10 +123,10 @@
       border: none;
       padding: 12px 35px;
       border-radius: 35px;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
       text-decoration: none;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(52,92,126,0.15);
+      box-shadow: var(--shadow);
       letter-spacing: 0.5px;
       display: inline-block;
       position: relative;
@@ -139,31 +135,33 @@
     .hero-btn:hover {
       background: var(--btn-hover-bg);
       color: var(--btn-hover-text);
-      box-shadow: 0 4px 18px rgba(255,179,71,0.20);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      transform: translateY(-3px);
     }
     .navbar {
       position: sticky;
       top: 0;
       background: var(--card-bg);
-      box-shadow: 0 2px 9px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
       padding: 10px 18px;
       z-index: 1000;
       min-height: 56px;
-      border-bottom: 1.5px solid #e9e9e9;
+      border-bottom: 1.5px solid var(--card-border);
     }
     .navbar ul {
       list-style: none;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       gap: 28px;
     }
     .navbar a {
       text-decoration: none;
-      color: var(--secondary);
+      color: var(--primary);
       font-weight: 700;
       font-size: 1.08rem;
-      transition: color 0.2s;
+      transition: color 0.3s, transform 0.3s;
       position: relative;
       padding: 5px 0;
       letter-spacing: 0.2px;
@@ -174,50 +172,85 @@
       width: 0;
       height: 2.5px;
       background: var(--accent);
-      transition: width .2s;
+      transition: width 0.3s;
       position: absolute;
-      bottom: 0; left: 0;
+      bottom: 0;
+      left: 0;
       border-radius: 2px;
     }
-    .navbar a:hover:after, .navbar a:focus:after { width: 100%; }
-    .navbar a:hover, .navbar a:focus { color: var(--accent); }
+    .navbar a:hover:after, .navbar a:focus:after {
+      width: 100%;
+    }
+    .navbar a:hover, .navbar a:focus {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
     .navbar-toggle {
       display: none;
       position: absolute;
       top: 15px;
       right: 30px;
       font-size: 2.1rem;
-      color: var(--secondary);
+      color: var(--primary);
       background: none;
       border: none;
       cursor: pointer;
       z-index: 1200;
     }
     @media (max-width: 900px) {
-      .hero { flex-direction: column; gap: 20px; text-align: center; }
-      .hero-img { margin-bottom: 16px; }
+      .hero {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+      .hero-img {
+        margin-bottom: 16px;
+      }
     }
     @media (max-width: 700px) {
-      .navbar ul { flex-direction: column; gap: 10px; background: #fff; position: absolute; width: 100%; left: 0; top: 54px; display: none; }
-      .navbar ul.active { display: flex; }
-      .navbar-toggle { display: block; }
-      html { scroll-padding-top: 120px; }
-      section { scroll-margin-top: 120px; }
+      .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+        background: var(--card-bg);
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 54px;
+        display: none;
+      }
+      .navbar ul.active {
+        display: flex;
+      }
+      .navbar-toggle {
+        display: block;
+      }
+      html {
+        scroll-padding-top: 120px;
+      }
+      section {
+        scroll-margin-top: 120px;
+      }
     }
     .container {
-      max-width: 1050px;
+      max-width: 1100px;
       margin: 42px auto;
       padding: 32px 28px;
-      background: #fff;
+      background: var(--card-bg);
       border-radius: 18px;
       box-shadow: var(--shadow);
       position: relative;
       z-index: 2;
     }
-    h1, h2, h3 { font-weight: 800; margin-bottom: 10px;}
-    h1 { font-size: 2.3rem; color: var(--primary);}
+    h1, h2, h3 {
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 2.5rem; /* Larger for section headers */
+      color: var(--primary);
+    }
     h2 {
-      font-size: 1.5rem;
+      font-size: 2rem; /* Slightly smaller than h1 */
       color: var(--primary);
       border-left: 5px solid var(--accent);
       padding-left: 15px;
@@ -226,8 +259,8 @@
       font-family: 'Montserrat', 'Inter', Arial, sans-serif;
     }
     h3 {
-      font-size: 1.18rem;
-      color: var(--secondary);
+      font-size: 1.3rem; /* Medium for card titles */
+      color: var(--primary);
       margin-bottom: 6px;
       font-weight: 700;
     }
@@ -239,23 +272,22 @@
       margin-bottom: 30px;
     }
     .card {
-      background: rgba(255,255,255,0.98);
+      background: var(--card-bg);
       border: 1.5px solid var(--card-border);
       border-radius: 20px;
       padding: 26px 22px;
       margin-bottom: 22px;
-      box-shadow: 0 4px 32px rgba(52,92,126,0.093);
-      transition: transform 0.22s, box-shadow 0.2s;
-      position: relative;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     }
     .card:hover {
-      transform: translateY(-7px) scale(1.019);
-      box-shadow: 0 12px 52px rgba(255,179,71,0.14);
-      border-color: var(--accent2);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(13, 71, 161, 0.2);
+      border-color: var(--hover-accent);
     }
     .card-title {
-      color: var(--secondary);
-      font-size: 1.13rem;
+      color: var(--primary);
+      font-size: 1.3rem;
       margin-bottom: 5px;
       font-weight: 700;
       display: flex;
@@ -264,22 +296,26 @@
       letter-spacing: 0.5px;
     }
     .card-text {
-      color: var(--text-muted);
-      font-size: 1.03rem;
+      color: var(--primary);
+      font-size: 1.1rem; /* Medium body text */
       margin-bottom: 12px;
       line-height: 1.65;
+    }
+    .card-text em {
+      font-size: 0.9rem; /* Smaller for captions */
+      color: #666666;
     }
     .card img {
       max-width: 100%;
       border-radius: 10px;
       margin-bottom: 13px;
-      transition: transform 0.33s cubic-bezier(.4,0,.2,1), box-shadow 0.33s;
-      box-shadow: 0 2px 12px rgba(52,92,126,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       display: block;
     }
     .card img:hover {
-      transform: scale(1.04) translateY(-3px);
-      box-shadow: 0 8px 28px rgba(255,179,71,0.10);
+      transform: scale(1.05) translateY(-4px);
+      box-shadow: 0 8px 28px rgba(13, 71, 161, 0.15);
     }
     .btn {
       display: inline-block;
@@ -293,49 +329,48 @@
       margin: 5px 10px 5px 0;
       letter-spacing: 0.03em;
       border: none;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(52,92,126,0.09);
-      position: relative;
+      box-shadow: var(--shadow);
     }
-    .btn i { margin-right: 7px; }
+    .btn i {
+      margin-right: 7px;
+    }
     .btn:hover {
       background: var(--btn-hover-bg);
       color: var(--btn-hover-text);
-      box-shadow: 0 4px 14px rgba(255,179,71,0.13);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      transform: translateY(-3px);
     }
     .btn-outline-secondary {
       background: none;
       border: 2px solid var(--accent);
       color: var(--accent);
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
     }
     .btn-outline-secondary:hover {
       background: var(--accent);
-      color: var(--primary);
+      color: var(--card-bg);
+      transform: translateY(-3px);
     }
     .chip {
       display: inline-block;
-      background: var(--chip-bg);
-      color: var(--chip-text);
+      background: var(--card-border);
+      color: var(--primary);
       border-radius: 13px;
       padding: 6px 15px;
-      font-size: 1.01rem;
+      font-size: 0.95rem; /* Smaller for chips */
       font-weight: 600;
       margin: 4px 9px 4px 0;
       vertical-align: middle;
-      transition: 
-        background 0.26s cubic-bezier(.4,0,.2,1), 
-        color 0.26s cubic-bezier(.4,0,.2,1), 
-        transform 0.23s cubic-bezier(.4,0,.2,1),
-        box-shadow 0.23s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 2px 7px rgba(52,92,126,0.06);
+      transition: background 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: var(--shadow);
     }
     .chip:hover, .chip:focus {
-      background: var(--accent2);
+      background: var(--hover-accent);
       color: var(--primary);
-      transform: scale(1.09);
-      box-shadow: 0 4px 18px rgba(52,92,126,0.11);
+      transform: scale(1.1);
+      box-shadow: 0 4px 18px rgba(13, 71, 161, 0.2);
       cursor: pointer;
     }
     details[open] summary:before {
@@ -348,7 +383,7 @@
     }
     details summary {
       font-weight: 700;
-      color: var(--secondary);
+      color: var(--primary);
       cursor: pointer;
       outline: none;
       margin-bottom: 8px;
@@ -358,6 +393,18 @@
       margin-top: 10px;
       margin-bottom: 10px;
     }
+    /* Projects Grid Layout */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 900px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
     /* Resume Section Centered */
     .resume-section {
       text-align: center;
@@ -366,9 +413,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: #f6fafd;
+      background: var(--card-bg);
       border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(52,92,126,0.07);
+      box-shadow: var(--shadow);
       max-width: 440px;
       padding: 32px 24px 28px 24px;
     }
@@ -378,28 +425,29 @@
       text-align: center;
       color: #fff;
       font-size: 1.08rem;
-      background: linear-gradient(90deg, #15314c 80%, #ffb347 100%);
+      background: linear-gradient(90deg, var(--accent) 0%, var(--secondary-accent) 100%);
       border-radius: 0 0 20px 20px;
-      box-shadow: 0 1px 8px rgba(52,92,126,0.07);
+      box-shadow: var(--shadow);
       position: relative;
       z-index: 2;
     }
     .footer-links a {
-      color: var(--accent2);
+      color: var(--hover-accent);
       text-decoration: none;
       margin: 0 12px;
       font-weight: 600;
-      transition: color 0.2s;
+      transition: color 0.3s, transform 0.3s;
     }
     .footer-links a:hover {
       color: #fff;
       text-decoration: underline;
+      transform: translateY(-2px);
     }
     .back-to-top {
       position: fixed;
       bottom: 25px;
       right: 25px;
-      background: var(--accent2);
+      background: var(--hover-accent);
       color: var(--primary);
       padding: 14px;
       border-radius: 50%;
@@ -407,23 +455,47 @@
       cursor: pointer;
       display: none;
       font-size: 1.45rem;
-      box-shadow: 0 2px 16px rgba(21,49,76,0.15);
+      box-shadow: var(--shadow);
       z-index: 200;
       opacity: 0;
-      transition: opacity 0.32s;
+      transition: opacity 0.3s, transform 0.3s;
     }
-    .back-to-top.show { display: block; opacity: 1;}
+    .back-to-top.show {
+      display: block;
+      opacity: 1;
+    }
+    .back-to-top:hover {
+      transform: scale(1.1);
+    }
     @media (max-width: 800px) {
-      .container { padding: 12px; margin: 7px;}
-      h1 { font-size: 1.7rem; }
-      h2 { font-size: 1.15rem; }
-      .hero-content h1 { font-size: 2.1rem;}
-      .resume-section { max-width: 98vw; }
+      .container {
+        padding: 12px;
+        margin: 7px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .resume-section {
+        max-width: 98vw;
+      }
     }
     @media (max-width: 500px) {
-      .container { padding: 4px;}
-      .hero-img { width: 110px; height: 110px;}
-      .resume-section { padding: 18px 4vw; }
+      .container {
+        padding: 4px;
+      }
+      .hero-img {
+        width: 110px;
+        height: 110px;
+      }
+      .resume-section {
+        padding: 18px 4vw;
+      }
     }
   </style>
 </head>
@@ -460,13 +532,12 @@
     <!-- About Section -->
     <section id="about" aria-labelledby="about-heading" data-aos="fade-up">
       <h2 id="about-heading"><i class="fa-solid fa-user"></i> About Me</h2>
-      <p style="font-size:1.12rem; line-height:1.67;">
+      <p style="font-size:1.1rem; line-height:1.67;">
         I'm <b>Aadarsh Jaiswal</b>, a results-driven Data Analyst skilled in <b>Python, SQL, Power BI,</b> and <b>Excel</b>, transforming complex data into actionable business solutions. With a background in operations and product management, I thrive on solving business challenges with data and delivering measurable impact. I'm passionate about continuous learning, hands-on problem-solving, and collaborating with diverse teams.
       </p>
     </section>
-    <!-- Decorative Divider -->
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#ffb347" fill-opacity="0.12" d="M0,24L80,20C160,16,320,8,480,12C640,16,800,32,960,36C1120,40,1280,28,1360,24L1440,20V40H0Z"></path>
+      <path fill="#0D47A1" fill-opacity="0.12" d="M0,24L80,20C160,16,320,8,480,12C640,16,800,32,960,36C1120,40,1280,28,1360,24L1440,20V40H0Z"></path>
     </svg>
     <!-- Experience Section -->
     <section id="experience" aria-labelledby="experience-heading" data-aos="fade-up">
@@ -496,35 +567,36 @@
       </div>
     </section>
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#345c7e" fill-opacity="0.10" d="M0,24L80,30C160,36,320,30,480,22C640,14,800,16,960,24C1120,32,1280,36,1360,32L1440,28V40H0Z"></path>
+      <path fill="#34C759" fill-opacity="0.10" d="M0,24L80,30C160,36,320,30,480,22C640,14,800,16,960,24C1120,32,1280,36,1360,32L1440,28V40H0Z"></path>
     </svg>
     <!-- Projects Section -->
     <section id="projects" aria-labelledby="projects-heading" data-aos="fade-up">
       <h2 id="projects-heading"><i class="fa-solid fa-chart-line"></i> Featured Projects</h2>
-      <div class="card" data-aos="fade-up">
-        <h3 class="card-title"><i class="fa-solid fa-chart-bar"></i> Sales Dashboard (Power BI)</h3>
-        <img src="Sales_Dashboard_image.png" alt="Power BI dashboard showing retail sales trends" loading="lazy">
-        <p class="card-text">Helped retailers boost profits by identifying top-performing products. Analyzed 50,000+ retail records to uncover revenue trends, product performance, and actionable insights.</p>
-        <div>
-          <span class="chip"><i class="fa-brands fa-microsoft"></i> Excel</span>
-          <span class="chip"><i class="fa-solid fa-chart-pie"></i> Power BI</span>
-          <span class="chip"><i class="fa-solid fa-code"></i> DAX</span>
+      <div class="projects-grid">
+        <div class="card" data-aos="fade-up">
+          <h3 class="card-title"><i class="fa-solid fa-chart-bar"></i> Sales Dashboard (Power BI)</h3>
+          <img src="Sales_Dashboard_image.png" alt="Power BI dashboard showing retail sales trends" loading="lazy">
+          <p class="card-text">Helped retailers boost profits by identifying top-performing products. Analyzed 50,000+ retail records to uncover revenue trends, product performance, and actionable insights.</p>
+          <div>
+            <span class="chip"><i class="fa-brands fa-microsoft"></i> Excel</span>
+            <span class="chip"><i class="fa-solid fa-chart-pie"></i> Power BI</span>
+            <span class="chip"><i class="fa-solid fa-code"></i> DAX</span>
+          </div>
+          <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord" class="btn" target="_blank"><i class="fa-solid fa-eye"></i>View Project</a>
+          <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord/blob/main/Superstore%20Sales%20Dashboard2.pbix" class="btn btn-outline-secondary" target="_blank"><i class="fa-solid fa-code"></i>View Code</a>
         </div>
-        <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord" class="btn" target="_blank"><i class="fa-solid fa-eye"></i>View Project</a>
-        <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord/blob/main/Superstore%20Sales%20Dashboard2.pbix" class="btn btn-outline-secondary" target="_blank"><i class="fa-solid fa-code"></i>View Code</a>
-      </div>
-      <div class="card" data-aos="fade-up">
-        <h3 class="card-title"><i class="fa-solid fa-user-secret"></i> Customer Churn Prediction</h3>
-        <img src="Customer_Churn_Prediction.png" alt="Visualization of customer churn prediction model" loading="lazy">
-        <p class="card-text">Improved retention by predicting churn risk. Built a logistic regression model with 82% accuracy using Python and Scikit-learn. Performed feature engineering and model evaluation.</p>
-        <div>
-          <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
-          <span class="chip"><i class="fa-solid fa-table-cells-large"></i> Pandas</span>
-          <span class="chip"><i class="fa-solid fa-robot"></i> Scikit-learn</span>
-        </div>
-        <details aria-label="View key code snippet for Customer Churn Prediction">
-          <summary>View Key Code Snippet</summary>
-          <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px; font-size:0.95em;">
+        <div class="card" data-aos="fade-up">
+          <h3 class="card-title"><i class="fa-solid fa-user-secret"></i> Customer Churn Prediction</h3>
+          <img src="Customer_Churn_Prediction.png" alt="Visualization of customer churn prediction model" loading="lazy">
+          <p class="card-text">Improved retention by predicting churn risk. Built a logistic regression model with 82% accuracy using Python and Scikit-learn. Performed feature engineering and model evaluation.</p>
+          <div>
+            <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
+            <span class="chip"><i class="fa-solid fa-table-cells-large"></i> Pandas</span>
+            <span class="chip"><i class="fa-solid fa-robot"></i> Scikit-learn</span>
+          </div>
+          <details aria-label="View key code snippet for Customer Churn Prediction">
+            <summary>View Key Code Snippet</summary>
+            <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px; font-size:0.9rem;">
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 
@@ -540,38 +612,39 @@ cm = confusion_matrix(y_test, y_pred)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
 plt.show()
-          </pre>
-        </details>
-        <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction" class="btn" target="_blank"><i class="fa-solid fa-eye"></i>View Project</a>
-        <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction/blob/main/Customer-Churn-Prediction.ipynb" class="btn btn-outline-secondary" target="_blank"><i class="fa-solid fa-code"></i>View Code</a>
-      </div>
-      <div class="card" data-aos="fade-up">
-        <h3 class="card-title"><i class="fa-solid fa-database"></i> SQL Data Exploration (Northwind)</h3>
-        <img src="SQL_Data_Exploration_on_Northwind_Database.png" alt="SQL analysis results of Northwind database" loading="lazy">
-        <p class="card-text">Enhanced sales strategies by analyzing customer and product trends. Conducted exploratory SQL analysis to derive insights on sales, customer behavior, and product performance.</p>
-        <div>
-          <span class="chip"><i class="fa-solid fa-database"></i> MySQL</span>
-          <span class="chip"><i class="fa-brands fa-microsoft"></i> Excel</span>
+            </pre>
+          </details>
+          <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction" class="btn" target="_blank"><i class="fa-solid fa-eye"></i>View Project</a>
+          <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction/blob/main/Customer-Churn-Prediction.ipynb" class="btn btn-outline-secondary" target="_blank"><i class="fa-solid fa-code"></i>View Code</a>
         </div>
-        <a href="https://github.com/aadarshjaiswalvns/Data-Analysis-Using-Northwind-Database-in-MySQL" class="btn" target="_blank"><i class="fa-solid fa-eye"></i>View Project</a>
-        <a href="https://github.com/aadarshjaiswalvns/Data-Analysis-Using-Northwind-Database-in-MySQL/blob/main/README.md" class="btn btn-outline-secondary" target="_blank"><i class="fa-solid fa-code"></i>View Code</a>
-      </div>
-      <div class="card" data-aos="fade-up">
-        <h3 class="card-title"><i class="fa-solid fa-users"></i> HR Attrition Prediction</h3>
-        <img src="HR_Analytics _Employee_Attrition_Prediction.png" alt="HR attrition prediction model visualization" loading="lazy">
-        <p class="card-text">Reduced employee turnover by identifying key attrition drivers. Built a predictive model using Python and Scikit-learn, leveraging Random Forests and data visualization.</p>
-        <div>
-          <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
-          <span class="chip"><i class="fa-solid fa-table-cells-large"></i> Pandas</span>
-          <span class="chip"><i class="fa-solid fa-chart-simple"></i> Seaborn</span>
-          <span class="chip"><i class="fa-solid fa-robot"></i> Scikit-learn</span>
+        <div class="card" data-aos="fade-up">
+          <h3 class="card-title"><i class="fa-solid fa-database"></i> SQL Data Exploration (Northwind)</h3>
+          <img src="SQL_Data_Exploration_on_Northwind_Database.png" alt="SQL analysis results of Northwind database" loading="lazy">
+          <p class="card-text">Enhanced sales strategies by analyzing customer and product trends. Conducted exploratory SQL analysis to derive insights on sales, customer behavior, and product performance.</p>
+          <div>
+            <span class="chip"><i class="fa-solid fa-database"></i> MySQL</span>
+            <span class="chip"><i class="fa-brands fa-microsoft"></i> Excel</span>
+          </div>
+          <a href="https://github.com/aadarshjaiswalvns/Data-Analysis-Using-Northwind-Database-in-MySQL" class="btn" target="_blank"><i class="fa-solid fa-eye"></i>View Project</a>
+          <a href="https://github.com/aadarshjaiswalvns/Data-Analysis-Using-Northwind-Database-in-MySQL/blob/main/README.md" class="btn btn-outline-secondary" target="_blank"><i class="fa-solid fa-code"></i>View Code</a>
         </div>
-        <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction" class="btn" target="_blank"><i class="fa-solid fa-eye"></i>View Project</a>
-        <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction/blob/main/hr_attrition_project.ipynb" class="btn btn-outline-secondary" target="_blank"><i class="fa-solid fa-code"></i>View Code</a>
+        <div class="card" data-aos="fade-up">
+          <h3 class="card-title"><i class="fa-solid fa-users"></i> HR Attrition Prediction</h3>
+          <img src="HR_Analytics _Employee_Attrition_Prediction.png" alt="HR attrition prediction model visualization" loading="lazy">
+          <p class="card-text">Reduced employee turnover by identifying key attrition drivers. Built a predictive model using Python and Scikit-learn, leveraging Random Forests and data visualization.</p>
+          <div>
+            <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
+            <span class="chip"><i class="fa-solid fa-table-cells-large"></i> Pandas</span>
+            <span class="chip"><i class="fa-solid fa-chart-simple"></i> Seaborn</span>
+            <span class="chip"><i class="fa-solid fa-robot"></i> Scikit-learn</span>
+          </div>
+          <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction" class="btn" target="_blank"><i class="fa-solid fa-eye"></i>View Project</a>
+          <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction/blob/main/hr_attrition_project.ipynb" class="btn btn-outline-secondary" target="_blank"><i class="fa-solid fa-code"></i>View Code</a>
+        </div>
       </div>
     </section>
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#ffd700" fill-opacity="0.07" d="M0,12L80,16C160,20,320,40,480,36C640,32,800,8,960,8C1120,8,1280,32,1360,36L1440,40V40H0Z"></path>
+      <path fill="#FFD700" fill-opacity="0.07" d="M0,12L80,16C160,20,320,40,480,36C640,32,800,8,960,8C1120,8,1280,32,1360,36L1440,40V40H0Z"></path>
     </svg>
     <!-- Skills Section -->
     <section id="skills" aria-labelledby="skills-heading" data-aos="fade-up">
@@ -592,7 +665,7 @@ plt.show()
       </div>
     </section>
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#345c7e" fill-opacity="0.08" d="M0,26L80,32C160,38,320,34,480,28C640,22,800,24,960,32C1120,40,1280,38,1360,34L1440,32V40H0Z"></path>
+      <path fill="#0D47A1" fill-opacity="0.08" d="M0,26L80,32C160,38,320,34,480,28C640,22,800,24,960,32C1120,40,1280,38,1360,34L1440,32V40H0Z"></path>
     </svg>
     <!-- Education Section -->
     <section id="education" aria-labelledby="education-heading" data-aos="fade-up">
@@ -607,7 +680,7 @@ plt.show()
       </div>
     </section>
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#ffb347" fill-opacity="0.10" d="M0,20L80,18C160,16,320,24,480,22C640,20,800,8,960,14C1120,20,1280,36,1360,38L1440,40V40H0Z"></path>
+      <path fill="#34C759" fill-opacity="0.10" d="M0,20L80,18C160,16,320,24,480,22C640,20,800,8,960,14C1120,20,1280,36,1360,38L1440,40V40H0Z"></path>
     </svg>
     <!-- Certifications Section -->
     <section id="certifications" aria-labelledby="certifications-heading" data-aos="fade-up">
@@ -628,16 +701,16 @@ plt.show()
       </div>
     </section>
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#ffd700" fill-opacity="0.08" d="M0,14L80,16C160,18,320,28,480,30C640,32,800,18,960,12C1120,6,1280,20,1360,28L1440,36V40H0Z"></path>
+      <path fill="#FFD700" fill-opacity="0.08" d="M0,14L80,16C160,18,320,28,480,30C640,32,800,18,960,12C1120,6,1280,20,1360,28L1440,36V40H0Z"></path>
     </svg>
     <!-- Testimonials Section -->
     <section id="testimonials" aria-labelledby="testimonials-heading" data-aos="fade-up">
       <h2 id="testimonials-heading"><i class="fa-solid fa-quote-left"></i> Testimonials</h2>
       <div class="card">
-        <p class="card-text">"Aadarsh's analytical approach to operations brought measurable improvements in both efficiency and cost control."<br><span style="color:var(--accent2);font-weight:600;">– Director, Ahimsa Tour & Travels</span></p>
+        <p class="card-text">"Aadarsh's analytical approach to operations brought measurable improvements in both efficiency and cost control."<br><span style="color:var(--hover-accent);font-weight:600;">– Director, Ahimsa Tour & Travels</span></p>
       </div>
       <div class="card">
-        <p class="card-text">"Aadarsh handled client relationships with professionalism and urgency. His efforts directly contributed to higher satisfaction and repeat business."<br><span style="color:var(--accent2);font-weight:600;">– Team Leader, Apollo 24x7</span></p>
+        <p class="card-text">"Aadarsh handled client relationships with professionalism and urgency. His efforts directly contributed to higher satisfaction and repeat business."<br><span style="color:var(--hover-accent);font-weight:600;">– Team Leader, Apollo 24x7</span></p>
       </div>
     </section>
     <!-- Resume Section (Centered) -->
@@ -656,7 +729,7 @@ plt.show()
       <i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/aadarsh-jaiswal" target="_blank">LinkedIn</a> · 
       <i class="fa-brands fa-github"></i> <a href="https://github.com/aadarshjaiswalvns" target="_blank">GitHub</a>
     </p>
-    <div style="margin-top:12px; font-size:0.98rem; color:var(--accent2);">
+    <div style="margin-top:12px; font-size:0.98rem; color:var(--hover-accent);">
       Driving Business Success Through Data Insights
     </div>
   </footer>
