@@ -50,7 +50,6 @@
     section {
       scroll-margin-top: 90px;
     }
-    /* Decorative SVG Divider */
     .divider {
       width: 100vw;
       height: 42px;
@@ -61,7 +60,6 @@
       position: relative;
       z-index: 2;
     }
-    /* HERO */
     .hero {
       display: flex;
       align-items: center;
@@ -143,7 +141,6 @@
       color: var(--btn-hover-text);
       box-shadow: 0 4px 18px rgba(255,179,71,0.20);
     }
-    /* NAVBAR */
     .navbar {
       position: sticky;
       top: 0;
@@ -207,7 +204,6 @@
       html { scroll-padding-top: 120px; }
       section { scroll-margin-top: 120px; }
     }
-    /* CONTAINER */
     .container {
       max-width: 1050px;
       margin: 42px auto;
@@ -235,7 +231,6 @@
       margin-bottom: 6px;
       font-weight: 700;
     }
-    /* ACCENT BAR */
     .accent-bar {
       height: 5px;
       width: 70px;
@@ -243,7 +238,6 @@
       border-radius: 4px;
       margin-bottom: 30px;
     }
-    /* CARD */
     .card {
       background: rgba(255,255,255,0.98);
       border: 1.5px solid var(--card-border);
@@ -275,7 +269,6 @@
       margin-bottom: 12px;
       line-height: 1.65;
     }
-    /* PROJECT IMAGES */
     .card img {
       max-width: 100%;
       border-radius: 10px;
@@ -288,7 +281,6 @@
       transform: scale(1.04) translateY(-3px);
       box-shadow: 0 8px 28px rgba(255,179,71,0.10);
     }
-    /* BUTTONS */
     .btn {
       display: inline-block;
       background: var(--btn-bg);
@@ -322,7 +314,6 @@
       background: var(--accent);
       color: var(--primary);
     }
-    /* CHIPS */
     .chip {
       display: inline-block;
       background: var(--chip-bg);
@@ -347,7 +338,6 @@
       box-shadow: 0 4px 18px rgba(52,92,126,0.11);
       cursor: pointer;
     }
-    /* DETAILS TAGS */
     details[open] summary:before {
       content: "▼ ";
       color: var(--accent);
@@ -368,7 +358,20 @@
       margin-top: 10px;
       margin-bottom: 10px;
     }
-    /* FOOTER */
+    /* Resume Section Centered */
+    .resume-section {
+      text-align: center;
+      margin: 60px auto 60px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f6fafd;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(52,92,126,0.07);
+      max-width: 440px;
+      padding: 32px 24px 28px 24px;
+    }
     footer {
       margin-top: 54px;
       padding: 24px 10px 18px 10px;
@@ -392,7 +395,6 @@
       color: #fff;
       text-decoration: underline;
     }
-    /* BACK TO TOP */
     .back-to-top {
       position: fixed;
       bottom: 25px;
@@ -411,16 +413,17 @@
       transition: opacity 0.32s;
     }
     .back-to-top.show { display: block; opacity: 1;}
-    /* RESPONSIVE */
     @media (max-width: 800px) {
       .container { padding: 12px; margin: 7px;}
       h1 { font-size: 1.7rem; }
       h2 { font-size: 1.15rem; }
       .hero-content h1 { font-size: 2.1rem;}
+      .resume-section { max-width: 98vw; }
     }
     @media (max-width: 500px) {
       .container { padding: 4px;}
       .hero-img { width: 110px; height: 110px;}
+      .resume-section { padding: 18px 4vw; }
     }
   </style>
 </head>
@@ -435,12 +438,9 @@
       <a href="#projects" class="btn hero-btn"><i class="fa-solid fa-rocket"></i>View My Work</a>
     </div>
   </section>
-  <!-- Decorative SVG Divider -->
   <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fill="#fff" fill-opacity="1" d="M0,32L80,26.7C160,21,320,11,480,16C640,21,800,43,960,45.3C1120,48,1280,32,1360,24L1440,16V40H0Z"></path>
   </svg>
-
-  <!-- Navigation -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <button class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <i class="fa fa-bars"></i>
@@ -456,8 +456,6 @@
       <li><a href="#resume">Resume</a></li>
     </ul>
   </nav>
-
-  <!-- Main Container -->
   <div class="container">
     <!-- About Section -->
     <section id="about" aria-labelledby="about-heading" data-aos="fade-up">
@@ -470,7 +468,6 @@
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill="#ffb347" fill-opacity="0.12" d="M0,24L80,20C160,16,320,8,480,12C640,16,800,32,960,36C1120,40,1280,28,1360,24L1440,20V40H0Z"></path>
     </svg>
-
     <!-- Experience Section -->
     <section id="experience" aria-labelledby="experience-heading" data-aos="fade-up">
       <h2 id="experience-heading"><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
@@ -501,7 +498,6 @@
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill="#345c7e" fill-opacity="0.10" d="M0,24L80,30C160,36,320,30,480,22C640,14,800,16,960,24C1120,32,1280,36,1360,32L1440,28V40H0Z"></path>
     </svg>
-
     <!-- Projects Section -->
     <section id="projects" aria-labelledby="projects-heading" data-aos="fade-up">
       <h2 id="projects-heading"><i class="fa-solid fa-chart-line"></i> Featured Projects</h2>
@@ -595,7 +591,6 @@ plt.show()
         <span class="chip"><i class="fa-solid fa-chart-simple"></i> Data Visualization</span>
       </div>
     </section>
-    <!-- Decorative Divider -->
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill="#345c7e" fill-opacity="0.08" d="M0,26L80,32C160,38,320,34,480,28C640,22,800,24,960,32C1120,40,1280,38,1360,34L1440,32V40H0Z"></path>
     </svg>
@@ -611,7 +606,6 @@ plt.show()
         <p class="card-text"><em>Mahatma Gandhi Kashi Vidyapith University, Varanasi | Aug 2017 – Aug 2020</em></p>
       </div>
     </section>
-    <!-- Decorative Divider -->
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill="#ffb347" fill-opacity="0.10" d="M0,20L80,18C160,16,320,24,480,22C640,20,800,8,960,14C1120,20,1280,36,1360,38L1440,40V40H0Z"></path>
     </svg>
@@ -633,7 +627,6 @@ plt.show()
         <p class="card-text">Gained hands-on experience using AI tools to enhance productivity. The workshop focused on creating presentations in under 5 minutes, analyzing data in under 30 minutes, and automating repetitive tasks.</p>
       </div>
     </section>
-    <!-- Decorative Divider -->
     <svg class="divider" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill="#ffd700" fill-opacity="0.08" d="M0,14L80,16C160,18,320,28,480,30C640,32,800,18,960,12C1120,6,1280,20,1360,28L1440,36V40H0Z"></path>
     </svg>
@@ -647,7 +640,7 @@ plt.show()
         <p class="card-text">"Aadarsh handled client relationships with professionalism and urgency. His efforts directly contributed to higher satisfaction and repeat business."<br><span style="color:var(--accent2);font-weight:600;">– Team Leader, Apollo 24x7</span></p>
       </div>
     </section>
-    <!-- Resume Section -->
+    <!-- Resume Section (Centered) -->
     <section class="resume-section" id="resume" aria-labelledby="resume-heading" data-aos="fade-up">
       <h2 id="resume-heading"><i class="fa-solid fa-file-arrow-down"></i> Download My Resume</h2>
       <p>Download my resume to learn more about my skills and experience.</p>
@@ -656,7 +649,6 @@ plt.show()
       </a>
     </section>
   </div>
-  <!-- Footer -->
   <footer aria-label="Footer with contact information and links">
     <p><strong>Aadarsh Jaiswal</strong> · Aspiring Data Analyst</p>
     <p class="footer-links">
@@ -668,11 +660,9 @@ plt.show()
       Driving Business Success Through Data Insights
     </div>
   </footer>
-  <!-- Back to Top Button -->
   <button class="back-to-top" aria-label="Back to top">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     // Initialize AOS
