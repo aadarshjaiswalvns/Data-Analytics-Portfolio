@@ -20,9 +20,9 @@ Created a machine learning model to predict churn based on customer data.
 
 Tools: Python, Pandas, Scikit-learn, Matplotlib
 
-3. SQL Data Exploration (Northwind)
+3. Reliant Retail Ltd. – MySQL Analytics Project
 
-Performed SQL-based analysis to extract business insights from a normalized relational database.
+Performed SQL-based retail analytics on a multi-table orders database to drive customer segmentation, product inventory evaluation, logistics efficiency, and pricing strategies using conditional logic, joins, and subqueries.
 
 Tools: MySQL, Northwind Sample Database
 
@@ -42,7 +42,7 @@ Tools: Power BI, Excel, Jupyter Notebook, GitHub
 
 🙋 About Me
 
-I’m Aadarsh Jaiswal, an aspiring data analyst with a background in operations and a strong interest in building actionable business insights from data. I enjoy working with diverse datasets and am continuously upskilling through hands-on projects.
+I’m Aadarsh Jaiswal, an aspiring data analyst with a background in operations and a strong interest in building actionable business insights from data. I enjoy working with diverse datasets and continually upskill through hands-on projects.
 
 📬 Contact
 
