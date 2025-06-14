@@ -319,9 +319,10 @@
       flex-direction: column;
       justify-content: center;
     }
-
-    .metric-card:hover {
-      transform: translateY(-3px);
+    .metric-card:hover,
+    .metric-card:active,
+    .metric-card:focus {
+      background: #e0f2fe !important;  /* Light blue */
       box-shadow: var(--shadow);
     }
 
