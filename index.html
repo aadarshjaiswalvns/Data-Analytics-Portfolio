@@ -1590,26 +1590,25 @@
   data: {
     labels: ['Data Analysis', 'Visualization', 'Machine Learning', 'Database', 'Business Intelligence', 'Statistics'],
     datasets: [{
-      label: 'Skill Level',
-      data: [90, 85, 75, 88, 82, 80],
-      backgroundColor: 'rgba(100, 180, 255, 0.3)', // translucent light blue fill
-      borderColor: 'rgba(79, 70, 229, 1)',
-      // Each point: 3rd point is light blue, rest are default
-      pointBackgroundColor: [
-        'rgba(79, 70, 229, 1)', // 1st
-        'rgba(79, 70, 229, 1)', // 2nd
-        'rgba(100, 180, 255, 0.7)', // 3rd: translucent light blue
-        'rgba(79, 70, 229, 1)', // 4th
-        'rgba(79, 70, 229, 1)', // 5th
-        'rgba(79, 70, 229, 1)'  // 6th
-      ],
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(79, 70, 229, 1)',
-      pointRadius: 4,
-      pointHoverRadius: 8,
-      pointHoverBorderWidth: 2,
-    }]
+  label: 'Skill Level',
+  data: [90, 85, 75, 88, 82, 80],
+  backgroundColor: 'rgba(100, 180, 255, 0.3)', // translucent light blue fill
+  borderColor: 'rgba(79, 70, 229, 1)',
+  pointBackgroundColor: [
+    'rgba(100, 180, 255, 0.7)',
+    'rgba(100, 180, 255, 0.7)',
+    'rgba(100, 180, 255, 0.7)',
+    'rgba(100, 180, 255, 0.7)',
+    'rgba(100, 180, 255, 0.7)',
+    'rgba(100, 180, 255, 0.7)'
+  ],
+  pointBorderColor: '#fff',
+  pointHoverBackgroundColor: '#fff',
+  pointHoverBorderColor: 'rgba(79, 70, 229, 1)',
+  pointRadius: 4,
+  pointHoverRadius: 8,
+  pointHoverBorderWidth: 2,
+}]
   },
         options: {
           responsive: true,
