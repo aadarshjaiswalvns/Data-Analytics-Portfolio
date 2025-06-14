@@ -309,23 +309,22 @@
     }
 
     .metric-card {
-      background: var(--metric-bg);
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      transition: var(--transition);
-      min-height: 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .metric-card:hover,
-    .metric-card:active,
-    .metric-card:focus {
-      background: #e0f2fe !important;  /* Light blue */
-      box-shadow: var(--shadow);
-    }
-
+  background: var(--metric-bg);
+  border-radius: 8px;
+  padding: 0.5rem;         /* Reduced padding */
+  text-align: center;
+  transition: var(--transition);
+  min-height: 32px;        /* Reduced min-height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.metric-card:hover,
+.metric-card:active,
+.metric-card:focus {
+  background: #e0f2fe !important;
+  box-shadow: var(--shadow);
+}
     .metric-value {
       font-size: 1.75rem;
       font-weight: 700;
