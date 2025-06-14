@@ -11,7 +11,7 @@
   <meta property="og:image" content="profile-image.jpg">
   <meta property="og:url" content="https://yourwebsite.com">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
   <style>
@@ -252,7 +252,7 @@
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 1.5rem;
-      align-items: stretch;
+      align-items: stretch; /* Ensures cards in the same row have equal height */
     }
 
     .card {
@@ -264,7 +264,7 @@
       border: 1px solid var(--card-border);
       display: flex;
       flex-direction: column;
-      min-height: 300px;
+      min-height: 300px; /* Base min-height for all cards */
     }
 
     .card:hover {
@@ -297,7 +297,7 @@
 
     .card-body {
       color: var(--primary);
-      flex-grow: 1;
+      flex-grow: 1; /* Allows content area to take available space */
     }
 
     .metrics-grid {
@@ -337,9 +337,18 @@
       color: var(--text-secondary);
     }
 
-    .about-card {
-      grid-column: span 8;
-    }
+    /* Desktop Spans (Default for min-width: 1201px) */
+    .metrics-card { grid-column: span 12; }
+    .about-card { grid-column: span 8; }
+    .skills-chart-card { grid-column: span 4; }
+    .projects-chart-card { grid-column: span 8; }
+    .skills-card { grid-column: span 4; } /* Adjusted for better desktop flow */
+    .experience-card { grid-column: span 6; }
+    .projects-card { grid-column: span 6; }
+    .education-card { grid-column: span 4; }
+    .certifications-card { grid-column: span 8; }
+    .testimonials-card { grid-column: span 12; }
+
 
     .about-text {
       line-height: 1.7;
@@ -351,10 +360,6 @@
     .highlight {
       color: var(--accent);
       font-weight: 600;
-    }
-
-    .skills-card {
-      grid-column: span 4;
     }
 
     .skills-grid {
@@ -381,7 +386,6 @@
 
     .skill-item i {
       margin-right: 0.75rem;
-      color: var(--accent);
       width: 20px;
       text-align: center;
       font-size: 1rem;
@@ -391,10 +395,6 @@
       font-size: 0.9rem;
       font-weight: 500;
       color: var(--primary);
-    }
-
-    .experience-card {
-      grid-column: span 6;
     }
 
     .timeline {
@@ -465,10 +465,6 @@
       font-size: 0.9rem;
       color: var(--text-secondary);
       line-height: 1.6;
-    }
-
-    .projects-card {
-      grid-column: span 6;
     }
 
     .projects-grid {
@@ -551,6 +547,7 @@
     .project-links {
       display: flex;
       gap: 0.75rem;
+      margin-top: auto; /* Pushes links to the bottom of the card */
     }
 
     .project-link {
@@ -604,10 +601,6 @@
       overflow-x: auto;
     }
 
-    .education-card {
-      grid-column: span 4;
-    }
-
     .education-item {
       margin-bottom: 1.5rem;
       padding-bottom: 1.5rem;
@@ -640,10 +633,6 @@
       font-size: 0.8rem;
       color: var(--text-secondary);
       font-weight: 500;
-    }
-
-    .certifications-card {
-      grid-column: span 8;
     }
 
     .certifications-list {
@@ -707,13 +696,9 @@
       flex-grow: 1;
     }
 
-    .skills-chart-card {
-      grid-column: span 4;
-    }
-
     .chart-container {
       position: relative;
-      height: 250px;
+      height: 250px; /* Fixed height for charts */
       width: 100%;
     }
 
@@ -740,20 +725,18 @@
       to { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
-    .testimonials-card {
-      grid-column: span 12;
-    }
-
     .testimonials-slider {
       display: flex;
       overflow-x: auto;
       gap: 1.5rem;
       padding-bottom: 1rem;
       scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; /* for smoother scrolling on iOS */
     }
 
     .testimonial-item {
       min-width: 300px;
+      flex-shrink: 0; /* Prevents items from shrinking */
       scroll-snap-align: start;
       background: var(--card-bg);
       border-radius: 8px;
@@ -768,6 +751,7 @@
       height: 40px;
       border-radius: 50%;
       margin-bottom: 0.5rem;
+      object-fit: cover;
     }
 
     .testimonial-text {
@@ -822,10 +806,6 @@
       background: var(--hover-accent);
       outline: 2px solid var(--accent);
       outline-offset: 2px;
-    }
-
-    .projects-chart-card {
-      grid-column: span 8;
     }
 
     .mobile-menu-toggle {
@@ -908,81 +888,70 @@
       outline-offset: 2px;
     }
 
-    @media (min-width: 1201px) {
-      .dashboard-grid {
-        grid-template-columns: repeat(12, 1fr);
-      }
-      .about-card, .certifications-card, .projects-chart-card {
-        grid-column: span 8;
-      }
-      .skills-card, .education-card, .skills-chart-card {
-        grid-column: span 4;
-      }
-      .experience-card, .projects-card {
-        grid-column: span 6;
-      }
-      .metrics-card, .testimonials-card {
-        grid-column: span 12;
-      }
-    }
+    /* Responsive adjustments */
 
+    /* For screens between 993px and 1200px (mid-size desktop/large tablet) */
     @media (max-width: 1200px) {
       .dashboard-grid {
-        grid-template-columns: repeat(6, 1fr);
-      }
-      .about-card, .certifications-card, .projects-chart-card {
-        grid-column: span 6;
-      }
-      .skills-card, .education-card, .skills-chart-card {
-        grid-column: span 3;
-      }
-      .experience-card, .projects-card {
-        grid-column: span 6;
+        grid-template-columns: repeat(6, 1fr); /* Adjust to a 6-column grid */
       }
       .metrics-card, .testimonials-card {
-        grid-column: span 6;
+        grid-column: span 6; /* Full width on 6-column grid */
+      }
+      .about-card, .skills-card, .experience-card,
+      .projects-card, .education-card, .certifications-card,
+      .skills-chart-card, .projects-chart-card {
+        grid-column: span 6; /* All span full width of the 6-column grid */
+      }
+      /* Individual project items within projects-grid revert to single column if needed */
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+      .certifications-list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       }
     }
 
+
+    /* For screens below 992px (tablets and mobile) */
     @media (max-width: 992px) {
       body {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack sidebar and main content */
       }
       .sidebar {
-        transform: translateX(-100%);
+        transform: translateX(-100%); /* Hide sidebar off-screen */
+        position: fixed;
+        height: 100vh;
         width: 280px;
       }
       .sidebar.active {
-        transform: translateX(0);
+        transform: translateX(0); /* Show sidebar */
       }
       .main-content {
-        margin-left: 0;
-        grid-column: 1;
+        margin-left: 0; /* No margin when sidebar is hidden */
+        grid-column: 1; /* Occupy single column */
         padding: 1.5rem;
       }
       .dashboard-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* All cards stack on top of each other */
       }
-      .about-card, .skills-card, .experience-card, 
+      /* All cards span 1 column */
+      .about-card, .skills-card, .experience-card,
       .projects-card, .education-card, .certifications-card,
       .skills-chart-card, .projects-chart-card, .metrics-card,
       .testimonials-card {
         grid-column: span 1;
       }
-      .projects-grid {
+      /* Inner grids also stack */
+      .projects-grid, .certifications-list, .metrics-grid {
         grid-template-columns: 1fr;
-      }
-      .certifications-list {
-        grid-template-columns: 1fr;
-      }
-      .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
       }
       .mobile-menu-toggle {
-        display: flex;
+        display: flex; /* Show mobile menu button */
       }
     }
 
+    /* Further adjustments for small mobile screens */
     @media (max-width: 768px) {
       .dashboard-header {
         flex-direction: column;
@@ -997,7 +966,8 @@
         flex: 1;
         justify-content: center;
       }
-      .metrics-grid {
+      /* If metrics-grid or projects-grid are still 2 columns, make them 1 */
+      .metrics-grid, .projects-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -1165,6 +1135,29 @@
         </div>
       </section>
 
+      <!-- Skills Card (Moved for better desktop alignment with Projects Chart) -->
+      <section id="skills" class="card skills-card" aria-labelledby="skills-title">
+        <div class="card-header">
+          <h2 class="card-title" id="skills-title"><i class="fas fa-code"></i> Skills & Tools</h2>
+        </div>
+        <div class="card-body">
+          <div class="skills-grid">
+            <div class="skill-item"><i class="fab fa-python"></i><span class="skill-name">Python</span></div>
+            <div class="skill-item"><i class="fas fa-table"></i><span class="skill-name">Pandas</span></div>
+            <div class="skill-item"><i class="fas fa-calculator"></i><span class="skill-name">NumPy</span></div>
+            <div class="skill-item"><i class="fas fa-robot"></i><span class="skill-name">Scikit-learn</span></div>
+            <div class="skill-item"><i class="fas fa-database"></i><span class="skill-name">MySQL</span></div>
+            <div class="skill-item"><i class="fas fa-chart-bar"></i><span class="skill-name">Power BI</span></div>
+            <div class="skill-item"><i class="fas fa-chart-pie"></i><span class="skill-name">Tableau</span></div>
+            <div class="skill-item"><i class="fas fa-file-excel"></i><span class="skill-name">Excel</span></div>
+            <div class="skill-item"><i class="fas fa-book"></i><span class="skill-name">Jupyter Notebook</span></div>
+            <div class="skill-item"><i class="fas fa-cloud"></i><span class="skill-name">Google Colab</span></div>
+            <div class="skill-item"><i class="fas fa-tachometer-alt"></i><span class="skill-name">Dashboarding</span></div>
+            <div class="skill-item"><i class="fas fa-chart-line"></i><span class="skill-name">Data Visualization</span></div>
+          </div>
+        </div>
+      </section>
+
       <!-- Experience Card -->
       <section id="experience" class="card experience-card" aria-labelledby="experience-title">
         <div class="card-header">
@@ -1321,29 +1314,6 @@ plt.show()</code></pre>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills Card -->
-      <section id="skills" class="card skills-card" aria-labelledby="skills-title">
-        <div class="card-header">
-          <h2 class="card-title" id="skills-title"><i class="fas fa-code"></i> Skills & Tools</h2>
-        </div>
-        <div class="card-body">
-          <div class="skills-grid">
-            <div class="skill-item"><i class="fab fa-python"></i><span class="skill-name">Python</span></div>
-            <div class="skill-item"><i class="fas fa-table"></i><span class="skill-name">Pandas</span></div>
-            <div class="skill-item"><i class="fas fa-calculator"></i><span class="skill-name">NumPy</span></div>
-            <div class="skill-item"><i class="fas fa-robot"></i><span class="skill-name">Scikit-learn</span></div>
-            <div class="skill-item"><i class="fas fa-database"></i><span class="skill-name">MySQL</span></div>
-            <div class="skill-item"><i class="fas fa-chart-bar"></i><span class="skill-name">Power BI</span></div>
-            <div class="skill-item"><i class="fas fa-chart-pie"></i><span class="skill-name">Tableau</span></div>
-            <div class="skill-item"><i class="fas fa-file-excel"></i><span class="skill-name">Excel</span></div>
-            <div class="skill-item"><i class="fas fa-book"></i><span class="skill-name">Jupyter Notebook</span></div>
-            <div class="skill-item"><i class="fas fa-cloud"></i><span class="skill-name">Google Colab</span></div>
-            <div class="skill-item"><i class="fas fa-tachometer-alt"></i><span class="skill-name">Dashboarding</span></div>
-            <div class="skill-item"><i class="fas fa-chart-line"></i><span class="skill-name">Data Visualization</span></div>
           </div>
         </div>
       </section>
@@ -1607,8 +1577,155 @@ plt.show()</code></pre>
           plugins: {
             legend: { position: 'right' },
             tooltip: {
- Diagnostic Info: {
-  "model": "Grok 3 8b",
-  "prompt_tokens": 11565,
-  "completion_tokens": 2544
-}
+              backgroundColor: 'rgba(79, 70, 229, 0.9)',
+              titleColor: '#fff',
+              bodyColor: '#fff',
+              borderColor: 'rgba(79, 70, 229, 1)',
+              borderWidth: 1
+            }
+          }
+        }
+      }
+    };
+
+    const charts = {}; // To store chart instances
+
+    function renderCharts() {
+      // Destroy existing charts to prevent issues on re-render/theme change
+      for (const chartId in charts) {
+        if (charts[chartId]) {
+          charts[chartId].destroy();
+        }
+      }
+
+      // Render new charts
+      for (const chartId in chartConfigs) {
+        const ctx = document.getElementById(chartId);
+        if (ctx) {
+          ctx.parentNode.classList.remove('loading'); // Hide spinner
+          charts[chartId] = new Chart(ctx, chartConfigs[chartId]);
+        }
+      }
+    }
+
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        body.classList.add('dark');
+        themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+      } else {
+        body.classList.remove('dark');
+        themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+      }
+      localStorage.setItem('theme', theme);
+      // Re-render charts to update colors with new CSS variables
+      renderCharts();
+    }
+
+    // Initialize theme based on localStorage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      if (body.classList.contains('dark')) {
+        setTheme('light');
+      } else {
+        setTheme('dark');
+      }
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    // Close sidebar when a nav link is clicked (for mobile)
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+        }
+      });
+    });
+
+    // Back to Top Button
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('active');
+      } else {
+        backToTopButton.classList.remove('active');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Highlight active navigation link based on scroll position
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+
+    function highlightNavLink() {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjust offset for better accuracy
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', highlightNavLink);
+    // Call on load to set initial active link
+    window.addEventListener('DOMContentLoaded', highlightNavLink);
+
+
+    // Testimonials Slider
+    const slider = document.querySelector('.testimonials-slider');
+    const prevBtn = document.querySelector('.slider-btn.prev');
+    const nextBtn = document.querySelector('.slider-btn.next');
+
+    prevBtn.addEventListener('click', () => {
+      slider.scrollBy({
+        left: -slider.clientWidth, // Scroll by the width of the slider
+        behavior: 'smooth'
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      slider.scrollBy({
+        left: slider.clientWidth, // Scroll by the width of the slider
+        behavior: 'smooth'
+      });
+    });
+
+
+    // Initial chart rendering when DOM is ready
+    document.addEventListener('DOMContentLoaded', renderCharts);
+  </script>
+</body>
+</html>
