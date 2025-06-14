@@ -3,14 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aadarsh Jaiswal - Data Analytics Portfolio</title>
+  <title>Aadarsh Jaiswal - Data Analytics Dashboard Portfolio</title>
   <meta name="description" content="Interactive dashboard portfolio of Aadarsh Jaiswal, Data Analyst skilled in Python, SQL, Power BI, Excel.">
+  <meta name="keywords" content="Aadarsh Jaiswal, Data Analyst, Dashboard Portfolio, Data Visualization, Python, SQL, Power BI">
+  <meta name="author" content="Aadarsh Jaiswal">
+  <!-- Open Graph and Twitter Card Meta Tags -->
+  <meta property="og:title" content="Aadarsh Jaiswal - Data Analytics Dashboard Portfolio">
+  <meta property="og:description" content="Interactive dashboard portfolio of Aadarsh Jaiswal, Data Analyst skilled in Python, SQL, Power BI, Excel.">
+  <meta property="og:image" content="profile-image.webp">
+  <meta property="og:url" content="https://aadarshjaiswalportfolio.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aadarsh Jaiswal - Data Analytics Dashboard Portfolio">
+  <meta name="twitter:description" content="Interactive dashboard portfolio of Aadarsh Jaiswal, Data Analyst skilled in Python, SQL, Power BI, Excel.">
+  <meta name="twitter:image" content="profile-image.webp">
+  <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     :root {
       --primary: #1E2A44;
@@ -18,157 +30,299 @@
       --secondary-accent: #48BB78;
       --hover-accent: #5A86D5;
       --bg: #F8FAFC;
-      --card-bg: #fff;
+      --card-bg: #FFFFFF;
       --card-border: #E4E7EB;
       --sidebar-bg: #182848;
       --sidebar-text: #D1D5DB;
       --sidebar-hover: #2A3A66;
-      --shadow: 0 2px 12px rgba(75, 108, 183, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0;}
     body {
-      font-family: 'Inter', sans-serif; background: var(--bg);
-      color: var(--primary); min-height: 100vh;
-      display: flex; flex-direction: row; overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--primary);
+      line-height: 1.6;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    nav.sidebar {
+    .preloader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2000;
+      transition: opacity 0.5s ease;
+    }
+    .preloader.hidden { opacity: 0; visibility: hidden;}
+    .preloader::before {
+      content: 'AJ';
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem; font-weight: 800; color: var(--accent);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8;}
+      50% { transform: scale(1.2); opacity: 1;}
+    }
+    .sidebar {
       background: var(--sidebar-bg); color: var(--sidebar-text);
-      width: 260px; min-width: 200px; height: 100vh;
-      position: fixed; left: 0; top: 0; z-index: 1001;
-      display: flex; flex-direction: column; justify-content: space-between;
-      padding: 2rem 1rem 1rem 1rem; box-shadow: var(--shadow); transition: var(--transition);
+      padding: 2rem 1.5rem;
+      position: fixed; height: 100vh; width: 280px;
+      overflow-y: auto; z-index: 1000; transition: var(--transition);
+      box-shadow: 0 0 10px rgba(75, 108, 183, 0.1);
     }
+    .profile { text-align: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);}
     .profile-img {
-      width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--accent);
-      object-fit: cover; margin-bottom: 1rem; box-shadow: 0 6px 18px rgba(75,108,183,.12);
+      width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--accent);
+      object-fit: cover; margin-bottom: 1rem; box-shadow: var(--shadow-lg);
     }
-    .profile { text-align: center; margin-bottom: 2rem;}
-    .profile h1 { font-family: 'Montserrat',sans-serif; font-size: 1.4rem; font-weight: 700;}
-    .profile p { font-size: 1rem; opacity: .9;}
-    .nav-menu { list-style: none; margin-top: 1.5rem;}
+    .profile h1 { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;}
+    .profile p { font-size: 0.9rem; opacity: 0.8;}
+    .nav-menu { list-style: none; margin-top: 2rem;}
+    .nav-item { margin-bottom: 0.5rem;}
     .nav-link {
       display: flex; align-items: center; padding: 0.75rem 1rem;
-      border-radius: 6px; color: var(--sidebar-text); text-decoration: none;
-      margin-bottom: .4rem; transition: var(--transition); font-weight: 500;
+      color: var(--sidebar-text); text-decoration: none; border-radius: 6px; transition: var(--transition);
     }
     .nav-link:hover, .nav-link.active {
-      background: var(--sidebar-hover); color: #fff;
-      box-shadow: 0 1px 6px rgba(75,108,183,.15);
+      background: var(--sidebar-hover); color: white;
+      box-shadow: 0 0 8px rgba(75, 108, 183, 0.3);
     }
-    .nav-link i { margin-right: 0.7rem; font-size: 1.05rem;}
-    .social-links { display: flex; justify-content: center; gap: 1.1rem; margin-top: 1.5rem;}
-    .social-link { color: var(--sidebar-text); font-size: 1.3rem; transition: color 0.2s;}
-    .social-link:hover { color: var(--accent);}
-    .main-content {
-      margin-left: 260px; padding: 2.2rem 2vw 3rem 2vw; width: 100%;
-      background: var(--bg); min-height: 100vh; transition: var(--transition);
-    }
+    .nav-link:focus { outline: 2px solid var(--accent); outline-offset: 2px;}
+    .nav-link i { margin-right: 0.75rem; width: 24px; text-align: center;}
+    .social-links { display: flex; justify-content: center; margin-top: 2rem; gap: 1rem;}
+    .social-link { color: var(--sidebar-text); font-size: 1.2rem; transition: var(--transition);}
+    .social-link:hover { color: var(--accent); transform: translateY(-2px);}
+    .social-link:focus { outline: 2px solid var(--accent); outline-offset: 2px;}
+    .main-content { grid-column: 2; padding: 2rem; margin-left: 280px; transition: var(--transition);}
     .dashboard-header {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 2rem; border-bottom: 1px solid var(--card-border); padding-bottom: 1rem; flex-wrap: wrap;
+      margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--card-border);
     }
     .dashboard-title {
-      font-family: 'Montserrat',sans-serif; font-size: 2.1rem;
-      font-weight: 800; display: flex; align-items: center; gap: .5rem;
+      font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800;
+      color: var(--primary); position: relative; overflow: hidden; display: inline-block;
     }
+    .dashboard-title::after { content: '|'; animation: typing 1.5s infinite; margin-left: 0.2rem;}
+    @keyframes typing { 0%,100%{opacity:1;} 50%{opacity:0;}}
     .download-resume {
-      background: var(--accent); color: #fff; padding: 0.68rem 1.6rem; border-radius: 30px;
-      font-weight: 600; display: flex; align-items: center; text-decoration: none;
-      transition: var(--transition); box-shadow: var(--shadow); font-size: 1.04rem;
+      background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 30px;
+      text-decoration: none; font-weight: 600; display: inline-flex; align-items: center;
+      transition: var(--transition); box-shadow: var(--shadow);
     }
     .download-resume i { margin-right: 0.5rem;}
-    .download-resume:hover { background: var(--hover-accent);}
-    .dashboard-grid {
-      display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem;
-    }
+    .download-resume:hover { background: var(--hover-accent); transform: translateY(-2px); box-shadow: var(--shadow-lg);}
+    .download-resume:focus { outline: 2px solid var(--accent); outline-offset: 2px;}
+    .dashboard-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem;}
     .card {
-      background: var(--card-bg); border-radius: 14px; box-shadow: var(--shadow);
-      border: 1px solid var(--card-border); padding: 1.5rem; transition: var(--transition);
+      background: var(--card-bg); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow);
+      transition: var(--transition); border: 1px solid var(--card-border);
     }
-    .card:hover { box-shadow: 0 4px 24px rgba(75,108,183,.11); border-color: var(--accent);}
+    .card:hover {
+      transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(75, 108, 183, 0.2);
+    }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;}
+    .card-title {
+      font-family: 'Montserrat', sans-serif; font-size: 1.25rem; font-weight: 700;
+      color: var(--primary); display: flex; align-items: center;
+    }
+    .card-title i { margin-right: 0.75rem; color: var(--accent);}
+    .card-body { color: var(--primary);}
+    /* Key Metrics Card */
     .metrics-card { grid-column: span 12;}
-    .charts-grid {
-      display: grid; gap: 1.3rem; grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    .charts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;}
+    .chart-container { position: relative; padding: 1rem; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--card-border);}
+    .chart-container canvas { max-width: 100%; height: 200px;}
+    /* About Me Card */
+    .about-card { grid-column: span 8;}
+    .about-text { line-height: 1.7; margin-bottom: 1rem;}
+    .highlight { color: var(--accent); font-weight: 600;}
+    .metrics { display: flex; gap: 1rem; justify-content: space-around;}
+    .metric-item { text-align: center;}
+    .metric-value { display: block; font-size: 1.5rem; font-weight: 700; color: var(--accent);}
+    .metric-label { font-size: 0.9rem; color: #4A5568;}
+    /* Skills Card */
+    .skills-card { grid-column: span 4;}
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;}
+    .skill-item {
+      display: flex; align-items: center; padding: 0.5rem; background: rgba(75, 108, 183, 0.1);
+      border-radius: 6px; transition: var(--transition);
     }
-    .chart-container {
-      background: var(--card-bg); border-radius: 8px; border: 1px solid var(--card-border);
-      padding: 1rem;
+    .skill-item:hover { background: rgba(75, 108, 183, 0.2); transform: scale(1.02);}
+    .skill-item i { margin-right: 0.5rem; color: var(--accent); width: 20px; text-align: center;}
+    /* Experience Card */
+    .experience-card { grid-column: span 6;}
+    .timeline {
+      position: relative; padding-left: 2rem; margin-top: 1rem;
     }
-    .chart-container canvas { width: 100% !important; height: 210px !important;}
-    /* Responsive & Mobile */
+    .timeline::before {
+      content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--accent);
+    }
+    .timeline-item { position: relative; padding-bottom: 1.5rem;}
+    .timeline-item:last-child { padding-bottom: 0;}
+    .timeline-dot {
+      position: absolute; left: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--accent);
+      border: 3px solid white; box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-content { margin-left: 1.5rem;}
+    .timeline-date { font-size: 0.85rem; color: #718096; margin-bottom: 0.25rem;}
+    .timeline-title { font-weight: 700; margin-bottom: 0.5rem;}
+    .timeline-company { color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; display: block;}
+    .timeline-description { font-size: 0.95rem; color: #4A5568;}
+    /* Projects Card */
+    .projects-card { grid-column: span 6;}
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;}
+    .project-item {
+      border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden; transition: var(--transition);
+    }
+    .project-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent);}
+    .project-image { width: 100%; height: 150px; object-fit: cover; border-bottom: 1px solid var(--card-border); transition: var(--transition);}
+    .project-item:hover .project-image { transform: scale(1.02); opacity: 0.9;}
+    .project-content { padding: 1rem;}
+    .project-title { font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center;}
+    .project-title i { margin-right: 0.5rem; color: var(--accent);}
+    .project-description { font-size: 0.9rem; color: #4A5568; margin-bottom: 1rem;}
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;}
+    .tag {
+      background: rgba(75, 108, 183, 0.1); color: var(--accent); padding: 0.25rem 0.75rem;
+      border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    }
+    .project-links { display: flex; gap: 0.5rem;}
+    .project-link {
+      display: inline-flex; align-items: center; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem;
+      font-weight: 600; text-decoration: none; transition: var(--transition);
+    }
+    .project-link.primary { background: var(--accent); color: white;}
+    .project-link.secondary { background: white; color: var(--accent); border: 1px solid var(--accent);}
+    .project-link i { margin-right: 0.25rem;}
+    .project-link:hover { transform: translateY(-2px); box-shadow: var(--shadow);}
+    .project-link.primary:hover { background: var(--hover-accent);}
+    .project-link.secondary:hover { background: rgba(75, 108, 183, 0.1);}
+    .project-link:focus { outline: 2px solid var(--accent); outline-offset: 2px;}
+    /* Education Card */
+    .education-card { grid-column: span 4;}
+    .education-item { margin-bottom: 1.5rem;}
+    .education-item:last-child { margin-bottom: 0;}
+    .education-degree { font-weight: 700; margin-bottom: 0.25rem;}
+    .education-university { color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; display: block;}
+    .education-date { font-size: 0.85rem; color: #718096;}
+    /* Certifications Card */
+    .certifications-card { grid-column: span 8;}
+    .certifications-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;}
+    .certification-item {
+      border: 1px solid var(--card-border); border-radius: 8px; padding: 1rem; transition: var(--transition);
+    }
+    .certification-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent);}
+    .certification-title { font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center;}
+    .certification-title i { margin-right: 0.5rem; color: var(--secondary-accent);}
+    .certification-issuer { color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; display: block;}
+    .certification-date { font-size: 0.85rem; color: #718096; margin-bottom: 0.5rem;}
+    .certification-description { font-size: 0.9rem; color: #4A5568;}
+    /* Testimonials Card */
+    .testimonials-card { grid-column: span 12;}
+    .testimonials-slider { display: flex; overflow-x: auto; gap: 1.5rem; padding-bottom: 1rem; scroll-snap-type: x mandatory; cursor: grab;}
+    .testimonials-slider:active { cursor: grabbing;}
+    .testimonial-item {
+      min-width: 300px; scroll-snap-align: start; background: var(--card-bg); border-radius: 8px; padding: 1.5rem;
+      box-shadow: var(--shadow); border: 1px solid var(--card-border);
+    }
+    .testimonial-text { font-style: italic; margin-bottom: 1rem; position: relative;}
+    .testimonial-text::before { content: '"'; font-size: 3rem; color: rgba(75, 108, 183, 0.1); position: absolute; top: -1rem; left: -1rem; z-index: 0;}
+    .testimonial-author { font-weight: 700; color: var(--accent);}
+    .testimonial-position { font-size: 0.85rem; color: #718096;}
+    /* Responsive Design */
     @media (max-width: 1200px) {
-      .main-content { margin-left: 0;}
-      .dashboard-grid { grid-template-columns: repeat(6,1fr);}
-      .metrics-card { grid-column: span 6;}
+      .dashboard-grid { grid-template-columns: repeat(6, 1fr);}
+      .metrics-card, .about-card, .certifications-card { grid-column: span 6;}
+      .skills-card, .education-card { grid-column: span 3;}
+      .experience-card, .projects-card { grid-column: span 6;}
+      .charts-grid { grid-template-columns: repeat(2, 1fr);}
     }
     @media (max-width: 992px) {
-      nav.sidebar {
-        position: fixed; left: -100%; top: 0; width: 80vw; max-width: 320px;
-        transition: left 0.3s cubic-bezier(0.4,0,0.2,1); z-index: 2001;
-      }
-      nav.sidebar.active { left: 0;}
-      .main-content { margin-left: 0; }
-      .dashboard-grid { grid-template-columns: 1fr;}
-    }
-    .mobile-menu-toggle {
-      display: none;
-      position: fixed; top: 1.1rem; left: 1.1rem; background: var(--accent);
-      color: #fff; width: 48px; height: 48px; border-radius: 50%;
-      align-items: center; justify-content: center; z-index: 2100;
-      box-shadow: var(--shadow); cursor: pointer; transition: var(--transition);
-      font-size: 1.45rem;
-    }
-    @media (max-width: 992px) { .mobile-menu-toggle { display: flex;}}
-    @media (max-width: 700px) {
-      .main-content { padding: 1.2rem 1vw;}
-      .dashboard-header { flex-direction: column; align-items: flex-start; gap: 1.1rem;}
+      body { grid-template-columns: 1fr;}
+      .sidebar { transform: translateX(-100%); width: 280px;}
+      .sidebar.active { transform: translateX(0);}
+      .main-content { margin-left: 0; grid-column: 1;}
+      .dashboard-grid { grid-template-columns: repeat(1, 1fr);}
+      .metrics-card, .about-card, .skills-card, .experience-card, .projects-card, .education-card, .certifications-card { grid-column: span 1;}
+      .projects-grid { grid-template-columns: 1fr;}
+      .certifications-list { grid-template-columns: 1fr;}
       .charts-grid { grid-template-columns: 1fr;}
     }
-    .fade-in { animation: fadeIn 0.7s ease-out;}
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(18px);} to { opacity:1; transform: none;}}
+    @media (max-width: 768px) {
+      .dashboard-header { flex-direction: column; align-items: flex-start; gap: 1rem;}
+    }
+    .mobile-menu-toggle {
+      display: none; position: fixed; top: 1rem; left: 1rem; background: var(--accent); color: white;
+      width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      z-index: 1100; box-shadow: var(--shadow-lg); cursor: pointer; transition: var(--transition);
+    }
+    .mobile-menu-toggle:focus { outline: 2px solid var(--accent); outline-offset: 2px;}
+    @media (max-width: 992px) { .mobile-menu-toggle { display: flex;}}
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);}}
+    .fade-in { animation: fadeIn 0.6s ease-out forwards;}
+    .delay-1 { animation-delay: 0.1s;}
+    .delay-2 { animation-delay: 0.2s;}
+    .delay-3 { animation-delay: 0.3s;}
+    .delay-4 { animation-delay: 0.4s;}
+    .delay-5 { animation-delay: 0.5s;}
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; background: var(--accent); color: white;
+      width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; visibility: hidden; transition: var(--transition); box-shadow: var(--shadow-lg); z-index: 100;
+    }
+    .back-to-top.active { opacity: 1; visibility: visible;}
+    .back-to-top:hover { background: var(--hover-accent); transform: translateY(-3px);}
+    .back-to-top:focus { outline: 2px solid var(--accent); outline-offset: 2px;}
   </style>
 </head>
 <body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader"></div>
+
   <!-- Sidebar Navigation -->
-  <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main">
-    <div>
-      <div class="profile">
-        <img src="profile-image.webp" alt="Aadarsh Jaiswal, Data Analyst" class="profile-img">
-        <h1>Aadarsh Jaiswal</h1>
-        <p>Data Analyst | Python • SQL • Power BI</p>
-      </div>
-      <ul class="nav-menu">
-        <li><a href="#metrics" class="nav-link active" data-section="metrics"><i class="fas fa-chart-bar"></i> Key Metrics</a></li>
-        <li><a href="#about" class="nav-link" data-section="about"><i class="fas fa-user"></i> About Me</a></li>
-        <li><a href="#skills" class="nav-link" data-section="skills"><i class="fas fa-code"></i> Skills</a></li>
-        <li><a href="#experience" class="nav-link" data-section="experience"><i class="fas fa-briefcase"></i> Experience</a></li>
-        <li><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-        <li><a href="#education" class="nav-link" data-section="education"><i class="fas fa-graduation-cap"></i> Education</a></li>
-        <li><a href="#certifications" class="nav-link" data-section="certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
-        <li><a href="#testimonials" class="nav-link" data-section="testimonials"><i class="fas fa-quote-left"></i> Testimonials</a></li>
-      </ul>
+  <aside class="sidebar" id="sidebar" role="navigation">
+    <div class="profile">
+      <img src="profile-image.webp" alt="Aadarsh Jaiswal, Data Analyst" class="profile-img">
+      <h1>Aadarsh Jaiswal</h1>
+      <p>Data Analyst | Python • SQL • Power BI</p>
     </div>
+    <ul class="nav-menu">
+      <li class="nav-item"><a href="#metrics" class="nav-link active" data-section="metrics"><i class="fas fa-chart-bar"></i> Key Metrics</a></li>
+      <li class="nav-item"><a href="#about" class="nav-link" data-section="about"><i class="fas fa-user"></i> About Me</a></li>
+      <li class="nav-item"><a href="#skills" class="nav-link" data-section="skills"><i class="fas fa-code"></i> Skills</a></li>
+      <li class="nav-item"><a href="#experience" class="nav-link" data-section="experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+      <li class="nav-item"><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+      <li class="nav-item"><a href="#education" class="nav-link" data-section="education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+      <li class="nav-item"><a href="#certifications" class="nav-link" data-section="certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
+      <li class="nav-item"><a href="#testimonials" class="nav-link" data-section="testimonials"><i class="fas fa-quote-left"></i> Testimonials</a></li>
+    </ul>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/aadarsh-jaiswal" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
       <a href="https://github.com/aadarshjaiswalvns" class="social-link" target="_blank" rel="noopener" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
       <a href="mailto:aadarshjaiswal.vns@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
     </div>
-  </nav>
+  </aside>
   <!-- Mobile Menu Toggle -->
   <div class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
     <i class="fas fa-bars"></i>
   </div>
   <!-- Main Content -->
   <main class="main-content">
-    <!-- Dashboard Header -->
     <div class="dashboard-header">
       <h1 class="dashboard-title">Data Analytics Dashboard</h1>
       <a href="Aadarsh_Jaiswal_Resume.pdf" class="download-resume" download aria-label="Download Resume">
         <i class="fas fa-file-pdf"></i> Download Resume
       </a>
     </div>
-    <!-- Dashboard Grid -->
     <div class="dashboard-grid">
       <!-- Key Metrics Card -->
       <section id="metrics" class="card metrics-card fade-in">
@@ -177,139 +331,190 @@
         </div>
         <div class="card-body">
           <div class="charts-grid">
-            <div class="chart-container">
-              <canvas id="experienceChart" aria-label="Bar chart of years of experience by role"></canvas>
-            </div>
-            <div class="chart-container">
-              <canvas id="skillsChart" aria-label="Pie chart of skill distribution"></canvas>
-            </div>
-            <div class="chart-container">
-              <canvas id="projectsChart" aria-label="Line chart of projects completed over time"></canvas>
-            </div>
-            <div class="chart-container">
-              <canvas id="certificationsChart" aria-label="Bar chart of certifications over time"></canvas>
-            </div>
-            <div class="chart-container">
-              <canvas id="toolUsageChart" aria-label="Doughnut chart of tool usage"></canvas>
-            </div>
+            <div class="chart-container"><canvas id="experienceChart" aria-label="Bar chart of years of experience by role"></canvas></div>
+            <div class="chart-container"><canvas id="skillsChart" aria-label="Pie chart of skill distribution"></canvas></div>
+            <div class="chart-container"><canvas id="projectsChart" aria-label="Line chart of projects completed over time"></canvas></div>
+            <div class="chart-container"><canvas id="certificationsChart" aria-label="Bar chart of certifications over time"></canvas></div>
+            <div class="chart-container"><canvas id="toolUsageChart" aria-label="Doughnut chart of tool usage"></canvas></div>
           </div>
         </div>
       </section>
       <!-- About Me Card -->
-      <section id="about" class="card about-card fade-in delay-1" style="grid-column: span 8;">
+      <section id="about" class="card about-card fade-in delay-1">
         <div class="card-header">
           <h2 class="card-title"><i class="fas fa-user"></i> About Me</h2>
         </div>
         <div class="card-body">
-          <p>
-            I'm <span style="color:var(--accent);font-weight:600">Aadarsh Jaiswal</span>, a results-driven <span style="color:var(--accent);font-weight:600">Data Analyst</span> skilled in <span style="color:var(--accent);font-weight:600">Python, SQL, Power BI,</span> and <span style="color:var(--accent);font-weight:600">Machine Learning</span>. I specialize in translating complex data into actionable insights for business growth.
+          <p class="about-text">
+            I'm <span class="highlight">Aadarsh Jaiswal</span>, a results-driven <span class="highlight">Data Analyst</span> skilled in <span class="highlight">Python, SQL, Power BI,</span> and <span class="highlight">Machine Learning</span>. I specialize in translating complex data into actionable insights for business growth.
           </p>
-          <p>
+          <p class="about-text">
             I'm passionate about continuous learning, hands-on problem-solving, and collaborating with diverse teams to drive data-informed decisions that create value.
           </p>
+          <div class="metrics">
+            <div class="metric-item">
+              <span class="metric-value">5+</span>
+              <span class="metric-label">Years Experience</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">20+</span>
+              <span class="metric-label">Projects</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">10+</span>
+              <span class="metric-label">Certifications</span>
+            </div>
+          </div>
         </div>
       </section>
       <!-- Skills Card -->
-      <section id="skills" class="card skills-card fade-in delay-2" style="grid-column: span 4;">
+      <section id="skills" class="card skills-card fade-in delay-2">
         <div class="card-header">
           <h2 class="card-title"><i class="fas fa-code"></i> Skills</h2>
         </div>
         <div class="card-body">
-          <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.7rem;">
-            <li><i class="fab fa-python"></i> Python</li>
-            <li><i class="fas fa-database"></i> SQL</li>
-            <li><i class="fas fa-chart-bar"></i> Power BI</li>
-            <li><i class="fas fa-table"></i> Excel</li>
-            <li><i class="fas fa-project-diagram"></i> Data Viz</li>
-            <li><i class="fas fa-robot"></i> ML</li>
-          </ul>
+          <div class="skills-grid">
+            <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+            <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+            <div class="skill-item"><i class="fas fa-chart-bar"></i> Power BI</div>
+            <div class="skill-item"><i class="fas fa-table"></i> Excel</div>
+            <div class="skill-item"><i class="fas fa-project-diagram"></i> Data Visualization</div>
+            <div class="skill-item"><i class="fas fa-robot"></i> Machine Learning</div>
+          </div>
         </div>
       </section>
       <!-- Experience Card -->
-      <section id="experience" class="card experience-card fade-in delay-3" style="grid-column: span 6;">
+      <section id="experience" class="card experience-card fade-in delay-3">
         <div class="card-header">
           <h2 class="card-title"><i class="fas fa-briefcase"></i> Experience</h2>
         </div>
         <div class="card-body">
-          <ul style="list-style:none;">
-            <li>
-              <strong>Data Analyst</strong> – XYZ Corp <span style="color:#888">(2023–Present)</span><br>
-              <span style="color:#4B6CB7;">• Built interactive sales dashboards and automated weekly reports</span>
-            </li>
-            <li style="margin-top:1rem;">
-              <strong>Data Analyst Intern</strong> – ABC Analytics <span style="color:#888">(2022–2023)</span><br>
-              <span style="color:#4B6CB7;">• Supported client analytics projects using SQL/Python</span>
-            </li>
-          </ul>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">2023 – Present</div>
+                <div class="timeline-title">Data Analyst</div>
+                <span class="timeline-company">XYZ Corp</span>
+                <div class="timeline-description">Built interactive sales dashboards and automated weekly reports.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">2022 – 2023</div>
+                <div class="timeline-title">Data Analyst Intern</div>
+                <span class="timeline-company">ABC Analytics</span>
+                <div class="timeline-description">Supported client analytics projects using SQL/Python.</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <!-- Projects Card -->
-      <section id="projects" class="card projects-card fade-in delay-4" style="grid-column: span 6;">
+      <section id="projects" class="card projects-card fade-in delay-4">
         <div class="card-header">
           <h2 class="card-title"><i class="fas fa-project-diagram"></i> Projects</h2>
         </div>
         <div class="card-body">
-          <div>
-            <strong>Sales Dashboard (Power BI)</strong>
-            <p style="color:#4A5568;">End-to-end dashboard for tracking sales KPIs and trends.</p>
-            <a href="#" class="project-link primary" style="background:var(--accent);color:white;padding:.4rem .8rem;border-radius:6px;text-decoration:none;"><i class="fas fa-link"></i>View</a>
-          </div>
-          <div style="margin-top:1rem;">
-            <strong>Churn Prediction Model (Python/ML)</strong>
-            <p style="color:#4A5568;">Predicting customer churn for telecom with classification algorithms.</p>
-            <a href="#" class="project-link primary" style="background:var(--accent);color:white;padding:.4rem .8rem;border-radius:6px;text-decoration:none;"><i class="fas fa-link"></i>View</a>
+          <div class="projects-grid">
+            <div class="project-item">
+              <img src="profile-image.webp" alt="Sales Dashboard Power BI" class="project-image">
+              <div class="project-content">
+                <div class="project-title"><i class="fas fa-chart-bar"></i> Sales Dashboard (Power BI)</div>
+                <div class="project-description">End-to-end dashboard for tracking sales KPIs and trends.</div>
+                <div class="project-tags">
+                  <span class="tag">Power BI</span>
+                  <span class="tag">Data Visualization</span>
+                </div>
+                <div class="project-links">
+                  <a href="#" class="project-link primary"><i class="fas fa-link"></i> View</a>
+                </div>
+              </div>
+            </div>
+            <div class="project-item">
+              <img src="profile-image.webp" alt="Churn Prediction Model" class="project-image">
+              <div class="project-content">
+                <div class="project-title"><i class="fas fa-robot"></i> Churn Prediction Model (Python/ML)</div>
+                <div class="project-description">Predicting customer churn for telecom with classification algorithms.</div>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Machine Learning</span>
+                </div>
+                <div class="project-links">
+                  <a href="#" class="project-link primary"><i class="fas fa-link"></i> View</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
       <!-- Education Card -->
-      <section id="education" class="card education-card fade-in delay-5" style="grid-column: span 4;">
+      <section id="education" class="card education-card fade-in delay-5">
         <div class="card-header">
           <h2 class="card-title"><i class="fas fa-graduation-cap"></i> Education</h2>
         </div>
         <div class="card-body">
-          <strong>B.Sc. in Computer Science</strong><br>
-          University of Data Science<br>
-          <span style="color:#888;">2020–2023</span>
+          <div class="education-item">
+            <div class="education-degree">B.Sc. in Computer Science</div>
+            <span class="education-university">University of Data Science</span>
+            <div class="education-date">2020–2023</div>
+          </div>
         </div>
       </section>
       <!-- Certifications Card -->
-      <section id="certifications" class="card certifications-card fade-in delay-6" style="grid-column: span 8;">
+      <section id="certifications" class="card certifications-card fade-in delay-6">
         <div class="card-header">
           <h2 class="card-title"><i class="fas fa-certificate"></i> Certifications</h2>
         </div>
         <div class="card-body">
-          <ul style="list-style:none;">
-            <li>
-              <strong>Power BI Data Analyst Associate</strong> – Microsoft<br>
-              <span style="color:#888;">2023</span>
-            </li>
-            <li style="margin-top:1rem;">
-              <strong>SQL for Data Science</strong> – Coursera<br>
-              <span style="color:#888;">2022</span>
-            </li>
-          </ul>
+          <div class="certifications-list">
+            <div class="certification-item">
+              <div class="certification-title"><i class="fas fa-certificate"></i> Power BI Data Analyst Associate</div>
+              <span class="certification-issuer">Microsoft</span>
+              <div class="certification-date">2023</div>
+              <div class="certification-description">Demonstrated skills in business analytics and Power BI dashboards.</div>
+            </div>
+            <div class="certification-item">
+              <div class="certification-title"><i class="fas fa-certificate"></i> SQL for Data Science</div>
+              <span class="certification-issuer">Coursera</span>
+              <div class="certification-date">2022</div>
+              <div class="certification-description">Mastered SQL for querying, manipulating, and analyzing data.</div>
+            </div>
+          </div>
         </div>
       </section>
       <!-- Testimonials Card -->
-      <section id="testimonials" class="card testimonials-card fade-in delay-7" style="grid-column: span 12;">
+      <section id="testimonials" class="card testimonials-card fade-in delay-7">
         <div class="card-header">
           <h2 class="card-title"><i class="fas fa-quote-left"></i> Testimonials</h2>
         </div>
         <div class="card-body">
-          <blockquote style="font-style:italic;margin-bottom:1rem;">
-            "Aadarsh's dashboards made our analytics clear and actionable."
-            <br><span style="color:var(--accent);font-weight:600;">– Project Manager, XYZ Corp</span>
-          </blockquote>
-          <blockquote style="font-style:italic;">
-            "He is a quick learner and a reliable team player."
-            <br><span style="color:var(--accent);font-weight:600;">– Mentor, ABC Analytics</span>
-          </blockquote>
+          <div class="testimonials-slider">
+            <div class="testimonial-item">
+              <div class="testimonial-text">
+                "Aadarsh's dashboards made our analytics clear and actionable."
+              </div>
+              <div class="testimonial-author">– Project Manager, XYZ Corp</div>
+              <div class="testimonial-position"></div>
+            </div>
+            <div class="testimonial-item">
+              <div class="testimonial-text">
+                "He is a quick learner and a reliable team player."
+              </div>
+              <div class="testimonial-author">– Mentor, ABC Analytics</div>
+              <div class="testimonial-position"></div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   </main>
-  <!-- JavaScript for sidebar toggle and charts -->
   <script>
+    // Preloader
+    window.addEventListener('load', function() {
+      document.getElementById('preloader').classList.add('hidden');
+    });
     // Sidebar toggle for mobile
     const sidebar = document.getElementById('sidebar');
     const mobileToggle = document.getElementById('mobileMenuToggle');
@@ -321,7 +526,6 @@
         if (window.innerWidth < 992) sidebar.classList.remove('active');
       });
     });
-
     // Chart.js graphs (replace data with your real metrics)
     new Chart(document.getElementById('experienceChart'), {
       type: 'bar',
