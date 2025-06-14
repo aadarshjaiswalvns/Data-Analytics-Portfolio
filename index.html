@@ -295,9 +295,12 @@
       font-size: 1rem;
     }
 
+    /* Make card-body a flex container to manage its children's vertical distribution */
     .card-body {
       color: var(--primary);
-      flex-grow: 1; /* Allows content area to take available space */
+      flex-grow: 1; /* Allows content area to take available space within the card */
+      display: flex;
+      flex-direction: column;
     }
 
     .metrics-grid {
@@ -337,18 +340,17 @@
       color: var(--text-secondary);
     }
 
-    /* Desktop Spans (Default for min-width: 1201px) */
+    /* Desktop Spans (Default for min-width: 1201px) - unchanged from previous version */
     .metrics-card { grid-column: span 12; }
     .about-card { grid-column: span 8; }
     .skills-chart-card { grid-column: span 4; }
     .projects-chart-card { grid-column: span 8; }
-    .skills-card { grid-column: span 4; } /* Adjusted for better desktop flow */
+    .skills-card { grid-column: span 4; }
     .experience-card { grid-column: span 6; }
     .projects-card { grid-column: span 6; }
     .education-card { grid-column: span 4; }
     .certifications-card { grid-column: span 8; }
     .testimonials-card { grid-column: span 12; }
-
 
     .about-text {
       line-height: 1.7;
@@ -647,9 +649,9 @@
       padding: 1.25rem;
       transition: var(--transition);
       background: var(--card-bg);
-      min-height: 300px;
       display: flex;
       flex-direction: column;
+      min-height: 300px;
     }
 
     .certification-item:hover {
@@ -696,10 +698,28 @@
       flex-grow: 1;
     }
 
+    /* Make chart-container flexible to grow within its parent card-body */
     .chart-container {
       position: relative;
-      height: 250px; /* Fixed height for charts */
+      /* Removed fixed height to allow flexibility */
+      /* height: 250px; */
+      min-height: 250px; /* Ensure a minimum height for the chart */
       width: 100%;
+      flex-grow: 1; /* Allows it to take available space */
+      display: flex; /* Make chart-container a flex container for its canvas */
+      align-items: center; /* Center the canvas vertically if space is available */
+      justify-content: center; /* Center the canvas horizontally */
+      margin-top: auto; /* Push chart to bottom if content above it is short */
+      margin-bottom: auto; /* Push chart to top if content below it is short */
+      /* Combining auto margins to center vertically when flex-grow is active */
+    }
+
+    /* Ensure canvas elements fill their flexible chart-container */
+    .chart-container canvas {
+        width: 100% !important; /* Override Chart.js default width */
+        height: 100% !important; /* Override Chart.js default height */
+        max-width: 100%; /* Ensure it doesn't overflow */
+        max-height: 100%; /* Ensure it doesn't overflow */
     }
 
     .chart-container::before {
@@ -1077,11 +1097,11 @@
         <div class="card-body">
           <div class="metrics-grid">
             <div class="metric-card">
-              <div class="metric-value">5+</div>
+              <div class="metric-value">1.5+</div>
               <div class="metric-label">Years Experience</div>
             </div>
             <div class="metric-card">
-              <div class="metric-value">15+</div>
+              <div class="metric-value">5+</div>
               <div class="metric-label">Projects</div>
             </div>
             <div class="metric-card">
