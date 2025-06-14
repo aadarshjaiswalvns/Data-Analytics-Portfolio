@@ -342,10 +342,10 @@
     .metrics-card { grid-column: span 12; }
     .about-card { grid-column: span 8; }
     .skills-chart-card { grid-column: span 4; }
-    .experience-card { grid-column: span 12; } /* Changed to span 12 to force stacking */
-    .projects-card { grid-column: span 12; } /* Changed to span 12 to force stacking */
-    .education-card { grid-column: span 12; } /* Changed to span 12 to force stacking */
-    .certifications-card { grid-column: span 12; } /* Changed to span 12 to force stacking */
+    .experience-card { grid-column: span 12; } 
+    .projects-card { grid-column: span 12; }
+    .education-card { grid-column: span 12; }
+    .certifications-card { grid-column: span 12; }
     .projects-chart-card { grid-column: span 5; }
     .skills-card { grid-column: span 7; }
     .testimonials-card { grid-column: span 12; }
@@ -365,9 +365,8 @@
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjusted for better fitting */
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 0.75rem;
-      /* Ensure it doesn't overflow */
       padding-right: 0;
     }
 
@@ -379,12 +378,22 @@
       border-radius: 6px;
       transition: var(--transition);
       border: 1px solid rgba(79, 70, 229, 0.1);
+      cursor: pointer;
     }
 
     .skill-item:hover {
-      background: rgba(79, 70, 229, 0.1);
-      transform: scale(1.02);
-      border-color: rgba(79, 70, 229, 0.2);
+      background: var(--accent);
+      transform: scale(1.05);
+      border-color: var(--hover-accent);
+    }
+    
+    .skill-item:hover .skill-name,
+    .skill-item:hover i {
+        color: white;
+    }
+    
+    .skill-item:active {
+        transform: scale(0.98);
     }
 
     .skill-item i {
@@ -392,17 +401,19 @@
       width: 20px;
       text-align: center;
       font-size: 1rem;
-      flex-shrink: 0; /* Prevent icon from shrinking */
+      flex-shrink: 0;
+      transition: color 0.3s ease;
     }
 
     .skill-name {
       font-size: 0.9rem;
       font-weight: 500;
       color: var(--primary);
-      white-space: nowrap; /* Prevent text wrapping for skill names */
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      flex-grow: 1; /* Allow text to take remaining space */
+      flex-grow: 1;
+      transition: color 0.3s ease;
     }
 
     .timeline {
@@ -550,12 +561,24 @@
       border-radius: 20px;
       font-size: 0.7rem;
       font-weight: 600;
+      transition: all 0.3s ease;
     }
+    
+    /* ADDED: Hover colors for project tags */
+    .tag-excel:hover { background-color: #1D6F42; color: white; }
+    .tag-powerbi:hover { background-color: #F2C811; color: black; }
+    .tag-dax:hover { background-color: #5E2750; color: white; }
+    .tag-python:hover { background-color: #306998; color: white; }
+    .tag-pandas:hover { background-color: #130654; color: white; }
+    .tag-sklearn:hover { background-color: #F7931E; color: white; }
+    .tag-sql:hover { background-color: #00758F; color: white; }
+    .tag-seaborn:hover { background-color: #3A92A2; color: white; }
+
 
     .project-links {
       display: flex;
       gap: 0.75rem;
-      margin-top: auto; /* Pushes links to the bottom of the card */
+      margin-top: auto;
     }
 
     .project-link {
@@ -600,15 +623,6 @@
       background: var(--accent-rgba-light);
     }
 
-    .code-snippet {
-      background: var(--metric-bg);
-      padding: 1rem;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      font-size: 0.8rem;
-      overflow-x: auto;
-    }
-
     .education-item {
       margin-bottom: 1.5rem;
       padding-bottom: 1.5rem;
@@ -645,7 +659,7 @@
 
     .certifications-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1.25rem;
     }
 
@@ -655,7 +669,7 @@
       padding: 1.25rem;
       transition: var(--transition);
       background: var(--card-bg);
-      min-height: 300px;
+      min-height: 320px;
       display: flex;
       flex-direction: column;
     }
@@ -706,7 +720,7 @@
 
     .chart-container {
       position: relative;
-      height: 250px; /* Fixed height for charts */
+      height: 250px;
       width: 100%;
     }
 
@@ -734,14 +748,13 @@
     }
 
     .chart-labels-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.75rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem 1rem;
         margin-top: 1rem;
         padding: 0.5rem;
         border-radius: 8px;
-        background-color: var(--chart-label-bg); /* Use theme-aware background */
+        background-color: var(--chart-label-bg);
         box-shadow: var(--shadow);
     }
 
@@ -750,6 +763,15 @@
         align-items: center;
         font-size: 0.85rem;
         color: var(--primary);
+        padding: 0.25rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+    }
+
+    .chart-label-item:hover {
+        transform: scale(1.05);
+        background-color: var(--metric-bg);
     }
 
     .chart-label-color {
@@ -757,23 +779,23 @@
         height: 12px;
         border-radius: 3px;
         margin-right: 0.5rem;
-        border: 1px solid rgba(0,0,0,0.1); /* Subtle border for color swatch */
+        border: 1px solid rgba(0,0,0,0.1);
     }
-
 
     .testimonials-slider {
       display: flex;
       overflow-x: auto;
       gap: 1.5rem;
-      padding-bottom: 1rem;
+      padding: 0.5rem 1rem;
       scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch; /* for smoother scrolling on iOS */
+      -webkit-overflow-scrolling: touch;
     }
 
     .testimonial-item {
-      min-width: 300px;
-      flex-shrink: 0; /* Prevents items from shrinking */
-      scroll-snap-align: start;
+      /* FIXED: Set width to ensure it fits mobile screens, and center snapping */
+      min-width: calc(100% - 2rem);
+      scroll-snap-align: center;
+      flex-shrink: 0;
       background: var(--card-bg);
       border-radius: 8px;
       padding: 1.5rem;
@@ -782,9 +804,39 @@
       min-height: 200px;
       display: flex;
       flex-direction: column;
-      justify-content: center; /* Center content vertically */
-      text-align: center; /* Center text horizontally */
+      justify-content: center;
+      text-align: center;
+      /* ADDED: Hover fade effect */
+      opacity: 0.9;
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
+    
+    .testimonial-item:hover {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+    
+    @media (min-width: 768px) {
+      .testimonials-slider {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        overflow-x: hidden;
+        scroll-snap-type: none;
+        padding: 0;
+      }
+      .testimonial-item {
+        min-width: auto;
+        opacity: 1; /* Disable fade effect on desktop grid */
+        transform: none;
+      }
+      .testimonial-item:hover {
+          transform: translateY(-5px); /* Keep a subtle hover effect */
+      }
+      .testimonials-slider-controls {
+        display: none;
+      }
+    }
+
 
     .testimonial-text {
       font-style: italic;
@@ -793,7 +845,7 @@
       color: var(--text-secondary);
       font-size: 0.95rem;
       line-height: 1.7;
-      text-align: center; /* Ensure text is centered */
+      text-align: center;
     }
 
     .testimonial-text::before {
@@ -802,8 +854,8 @@
       color: var(--accent-rgba-light);
       position: absolute;
       top: -1rem;
-      left: 50%; /* Center the quote mark */
-      transform: translateX(-50%); /* Adjust for centering */
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 0;
       line-height: 1;
     }
@@ -812,7 +864,7 @@
       font-weight: 700;
       color: var(--accent);
       font-size: 0.95rem;
-      margin-top: 0.5rem; /* Add some space after text */
+      margin-top: 0.5rem;
     }
 
     .testimonial-position {
@@ -924,22 +976,18 @@
     }
 
     /* Responsive adjustments */
-
-    /* For screens between 993px and 1200px (mid-size desktop/large tablet) */
     @media (max-width: 1200px) {
       .dashboard-grid {
-        grid-template-columns: repeat(6, 1fr); /* Adjust to a 6-column grid */
+        grid-template-columns: repeat(6, 1fr);
       }
       .metrics-card, .testimonials-card {
-        grid-column: span 6; /* Full width on 6-column grid */
+        grid-column: span 6;
       }
-      /* Ensure stacking for these sections on mid-size screens too */
       .about-card, .skills-card, .experience-card,
       .projects-card, .education-card, .certifications-card,
       .skills-chart-card, .projects-chart-card {
-        grid-column: span 6; /* All span full width of the 6-column grid */
+        grid-column: span 6;
       }
-      /* Individual project items within projects-grid revert to single column if needed */
       .projects-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       }
@@ -949,46 +997,42 @@
     }
 
 
-    /* For screens below 992px (tablets and mobile) */
     @media (max-width: 992px) {
       body {
-        grid-template-columns: 1fr; /* Stack sidebar and main content */
+        grid-template-columns: 1fr;
       }
       .sidebar {
-        transform: translateX(-100%); /* Hide sidebar off-screen */
+        transform: translateX(-100%);
         position: fixed;
         height: 100vh;
         width: 280px;
       }
       .sidebar.active {
-        transform: translateX(0); /* Show sidebar */
+        transform: translateX(0);
       }
       .main-content {
-        margin-left: 0; /* No margin when sidebar is hidden */
-        grid-column: 1; /* Occupy single column */
+        margin-left: 0;
+        grid-column: 1;
         padding: 1.5rem;
       }
       .dashboard-grid {
-        grid-template-columns: 1fr; /* All cards stack on top of each other */
+        grid-template-columns: 1fr;
       }
-      /* All cards span 1 column */
       .about-card, .skills-card, .experience-card,
       .projects-card, .education-card, .certifications-card,
       .skills-chart-card, .projects-chart-card, .metrics-card,
       .testimonials-card {
         grid-column: span 1;
       }
-      /* Inner grids also stack */
       .projects-grid, .certifications-list, .metrics-grid {
         grid-template-columns: 1fr;
       }
       .mobile-menu-toggle {
-        display: flex; /* Show mobile menu button */
+        display: flex;
       }
     }
 
-    /* Further adjustments for small mobile screens */
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       .dashboard-header {
         flex-direction: column;
         align-items: flex-start;
@@ -1002,7 +1046,6 @@
         flex: 1;
         justify-content: center;
       }
-      /* If metrics-grid or projects-grid are still 2 columns, make them 1 */
       .metrics-grid, .projects-grid {
         grid-template-columns: 1fr;
       }
@@ -1010,7 +1053,6 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar Navigation -->
   <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
     <div class="profile">
       <img src="profile-image.jpg" alt="Aadarsh Jaiswal, Data Analyst" class="profile-img" width="120" height="120">
@@ -1078,19 +1120,15 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu Toggle -->
   <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
     <i class="fas fa-bars"></i>
   </button>
 
-  <!-- Theme Toggle -->
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
     <i class="fas fa-moon"></i>
   </button>
 
-  <!-- Main Content -->
   <main class="main-content" role="main" aria-label="Main content">
-    <!-- Dashboard Header -->
     <header class="dashboard-header">
       <h1 class="dashboard-title"><i class="fas fa-tachometer-alt"></i> Analytics Dashboard</h1>
       <div class="header-actions">
@@ -1103,9 +1141,7 @@
       </div>
     </header>
 
-    <!-- Dashboard Grid -->
     <div class="dashboard-grid">
-      <!-- Metrics Cards -->
       <section id="dashboard" class="card metrics-card" aria-labelledby="metrics-title">
         <div class="card-header">
           <h2 class="card-title" id="metrics-title"><i class="fas fa-chart-line"></i> Key Metrics</h2>
@@ -1132,7 +1168,6 @@
         </div>
       </section>
 
-      <!-- About Me Card -->
       <section id="about" class="card about-card" aria-labelledby="about-title">
         <div class="card-header">
           <h2 class="card-title" id="about-title"><i class="fas fa-user"></i> About Me</h2>
@@ -1147,7 +1182,6 @@
         </div>
       </section>
 
-      <!-- Skills Chart Card -->
       <section class="card skills-chart-card" aria-labelledby="skills-chart-title">
         <div class="card-header">
           <h2 class="card-title" id="skills-chart-title"><i class="fas fa-star"></i> Skills Proficiency</h2>
@@ -1156,14 +1190,11 @@
           <div class="chart-container loading">
             <canvas id="radarChart" aria-label="Skills Proficiency Radar Chart"></canvas>
           </div>
-          <!-- Labels added clearly below the chart -->
           <div class="chart-labels-container" id="radarChartLabels">
-            <!-- Labels will be dynamically added by JavaScript -->
-          </div>
+            </div>
         </div>
       </section>
 
-      <!-- Projects Chart Card -->
       <section class="card projects-chart-card" aria-labelledby="projects-chart-title">
         <div class="card-header">
           <h2 class="card-title" id="projects-chart-title"><i class="fas fa-project-diagram"></i> Projects Overview</h2>
@@ -1172,14 +1203,11 @@
           <div class="chart-container loading">
             <canvas id="projectsChart" aria-label="Projects Distribution Doughnut Chart"></canvas>
           </div>
-          <!-- Color names added under the donut chart -->
           <div class="chart-labels-container" id="projectsChartLabels">
-            <!-- Labels will be dynamically added by JavaScript -->
-          </div>
+            </div>
         </div>
       </section>
 
-      <!-- Skills Card (Adjusted layout for no overflow and balanced width with Project Overview) -->
       <section id="skills" class="card skills-card" aria-labelledby="skills-title">
         <div class="card-header">
           <h2 class="card-title" id="skills-title"><i class="fas fa-code"></i> Skills & Tools</h2>
@@ -1202,7 +1230,6 @@
         </div>
       </section>
 
-      <!-- Experience Card -->
       <section id="experience" class="card experience-card" aria-labelledby="experience-title">
         <div class="card-header">
           <h2 class="card-title" id="experience-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
@@ -1248,7 +1275,6 @@
         </div>
       </section>
 
-      <!-- Projects Card (Moved below Experience section and now spans full width) -->
       <section id="projects" class="card projects-card" aria-labelledby="projects-title">
         <div class="card-header">
           <h2 class="card-title" id="projects-title"><i class="fas fa-project-diagram"></i> Featured Projects</h2>
@@ -1263,9 +1289,9 @@
                   Helped retailers boost profits by identifying top-performing products. Analyzed 50,000+ retail records to uncover revenue trends, product performance, and actionable insights.
                 </p>
                 <div class="project-tags">
-                  <span class="tag">Excel</span>
-                  <span class="tag">Power BI</span>
-                  <span class="tag">DAX</span>
+                  <span class="tag tag-excel">Excel</span>
+                  <span class="tag tag-powerbi">Power BI</span>
+                  <span class="tag tag-dax">DAX</span>
                 </div>
                 <div class="project-links">
                   <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord" class="project-link primary" target="_blank" rel="noopener noreferrer" aria-label="View Sales Dashboard Project">
@@ -1285,9 +1311,9 @@
                   Improved retention by predicting churn risk. Built a logistic regression model with 82% accuracy using Python and Scikit-learn. Performed feature engineering and model evaluation.
                 </p>
                 <div class="project-tags">
-                  <span class="tag">Python</span>
-                  <span class="tag">Pandas</span>
-                  <span class="tag">Scikit-learn</span>
+                  <span class="tag tag-python">Python</span>
+                  <span class="tag tag-pandas">Pandas</span>
+                  <span class="tag tag-sklearn">Scikit-learn</span>
                 </div>
                 <div class="project-links">
                   <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction" class="project-link primary" target="_blank" rel="noopener noreferrer" aria-label="View Churn Prediction Project">
@@ -1307,8 +1333,8 @@
                   Performed SQL-based retail analytics on a multi-table orders database to drive customer segmentation, product inventory evaluation, logistics efficiency, and pricing strategies using conditional logic, joins, and subqueries.
                 </p>
                 <div class="project-tags">
-                  <span class="tag">MySQL</span>
-                  <span class="tag">Excel</span>
+                  <span class="tag tag-sql">MySQL</span>
+                  <span class="tag tag-excel">Excel</span>
                 </div>
                 <div class="project-links">
                   <a href="https://github.com/aadarshjaiswalvns/Reliant-Retail-Ltd-MySQL-Analytics-Project" class="project-link primary" target="_blank" rel="noopener noreferrer" aria-label="View Retail Analytics Project">
@@ -1328,10 +1354,10 @@
                   Reduced employee turnover by identifying key attrition drivers. Built a predictive model using Python and Scikit-learn, leveraging Random Forests and data visualization.
                 </p>
                 <div class="project-tags">
-                  <span class="tag">Python</span>
-                  <span class="tag">Pandas</span>
-                  <span class="tag">Seaborn</span>
-                  <span class="tag">Scikit-learn</span>
+                  <span class="tag tag-python">Python</span>
+                  <span class="tag tag-pandas">Pandas</span>
+                  <span class="tag tag-seaborn">Seaborn</span>
+                  <span class="tag tag-sklearn">Scikit-learn</span>
                 </div>
                 <div class="project-links">
                   <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction" class="project-link primary" target="_blank" rel="noopener noreferrer" aria-label="View HR Attrition Project">
@@ -1347,7 +1373,6 @@
         </div>
       </section>
 
-      <!-- Education Card -->
       <section id="education" class="card education-card" aria-labelledby="education-title">
         <div class="card-header">
           <h2 class="card-title" id="education-title"><i class="fas fa-graduation-cap"></i> Education</h2>
@@ -1366,7 +1391,6 @@
         </div>
       </section>
 
-      <!-- Certifications Card (Moved below Education and now spans full width) -->
       <section id="certifications" class="card certifications-card" aria-labelledby="certifications-title">
         <div class="card-header">
           <h2 class="card-title" id="certifications-title"><i class="fas fa-certificate"></i> Certifications</h2>
@@ -1380,6 +1404,10 @@
               <p class="certification-description">
                 Covers practical applications of Python, SQL, Power BI, Exploratory Data Analysis (EDA), and Machine Learning, enhancing skills in data-driven decision-making and predictive analytics.
               </p>
+              <div class="project-links">
+                <a href="data-science-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
             </div>
             <div class="certification-item">
               <h3 class="certification-title"><i class="fas fa-trophy"></i> Deloitte Australia Data Analytics Virtual Experience</h3>
@@ -1388,6 +1416,10 @@
               <p class="certification-description">
                 Built an interactive Tableau dashboard to uncover trends and support data-driven decisions. Organized, cleaned, and analyzed financial data using Excel for investigative reporting. Gained experience with forensic technology tools to detect financial anomalies.
               </p>
+              <div class="project-links">
+                <a href="deloitte-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
             </div>
             <div class="certification-item">
               <h3 class="certification-title"><i class="fas fa-chart-line"></i> Data Visualisation: Empowering Business with Effective Insights</h3>
@@ -1396,6 +1428,10 @@
               <p class="certification-description">
                 Framed business scenarios, designed effective data visuals, and communicated key insights to senior leadership through a virtual job simulation with Tata Consultancy Services, enhancing data storytelling and executive reporting skills.
               </p>
+              <div class="project-links">
+                <a href="tata-dataviz-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
             </div>
             <div class="certification-item">
               <h3 class="certification-title"><i class="fas fa-brain"></i> GenAI-Powered Data Analytics Job Simulation</h3>
@@ -1404,6 +1440,10 @@
               <p class="certification-description">
                 Conducted EDA to assess data quality and identify risk indicators. Proposed a no-code predictive modeling framework for customer delinquency risk using GenAI. Designed an AI-driven collections strategy integrating agentic AI, automation, and ethical AI principles.
               </p>
+              <div class="project-links">
+                <a href="tata-genai-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
             </div>
             <div class="certification-item">
               <h3 class="certification-title"><i class="fas fa-laptop-code"></i> Introduction to Technology Apprenticeship</h3>
@@ -1412,6 +1452,22 @@
               <p class="certification-description">
                 Analyzed legacy IT challenges in a client case study and proposed cloud computing solutions. Presented a strategic slide deck to senior stakeholders, gaining exposure to digital transformation and business analysis.
               </p>
+              <div class="project-links">
+                <a href="accenture-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
+            </div>
+             <div class="certification-item">
+              <h3 class="certification-title"><i class="fas fa-database"></i> SQL and Relational Databases 101</h3>
+              <span class="certification-issuer">IBM</span>
+              <span class="certification-date">Issued May 2025</span>
+              <p class="certification-description">
+                Built a solid foundation in SQL and relational database concepts using DB2 on Cognitive Class. Learned to write and optimize SQL queries, use JOINs, filter and group data, and understand database design principles such as normalization, primary and foreign keys.
+              </p>
+              <div class="project-links">
+                <a href="ibm-sql-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
             </div>
             <div class="certification-item">
               <h3 class="certification-title"><i class="fas fa-code"></i> Data Analysis with Python</h3>
@@ -1420,6 +1476,10 @@
               <p class="certification-description">
                 Gained hands-on experience with Pandas, NumPy, and Matplotlib to clean, analyze, and visualize data. Strengthened skills in statistical analysis, data wrangling, and creating insights from datasets.
               </p>
+               <div class="project-links">
+                <a href="ibm-python-analysis-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
             </div>
             <div class="certification-item">
               <h3 class="certification-title"><i class="fas fa-chart-pie"></i> Data Visualisation with Python</h3>
@@ -1428,6 +1488,10 @@
               <p class="certification-description">
                 Developed skills in creating compelling visualizations using Matplotlib, Seaborn, and Plotly. Designed charts, graphs, and dashboards to communicate data insights effectively.
               </p>
+               <div class="project-links">
+                <a href="ibm-python-viz-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
             </div>
             <div class="certification-item">
               <h3 class="certification-title"><i class="fas fa-file-excel"></i> Advanced Data Analysis Using Excel and Power BI</h3>
@@ -1436,6 +1500,10 @@
               <p class="certification-description">
                 Learned advanced techniques in data analysis using Excel and Power BI. Built interactive dashboards, cleaned and transformed data, and derived actionable insights for decision-making.
               </p>
+               <div class="project-links">
+                <a href="letsupgrade-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
             </div>
             <div class="certification-item">
               <h3 class="certification-title"><i class="fas fa-robot"></i> AI Tool Workshop</h3>
@@ -1444,12 +1512,15 @@
               <p class="certification-description">
                 Gained hands-on experience using AI tools to enhance productivity, including creating presentations in under 5 minutes, analyzing data in under 30 minutes, and automating repetitive tasks.
               </p>
+               <div class="project-links">
+                <a href="be10x-ai-cert.png" class="project-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> View Certificate</a>
+                <a href="#" class="project-link secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Verify</a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Testimonials Card -->
       <section id="testimonials" class="card testimonials-card" aria-labelledby="testimonials-title">
         <div class="card-header">
           <h2 class="card-title" id="testimonials-title"><i class="fas fa-quote-left"></i> Testimonials</h2>
@@ -1480,7 +1551,6 @@
     </div>
   </main>
 
-  <!-- Back to Top Button -->
   <button class="back-to-top" id="backToTop" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
   </button>
@@ -1495,38 +1565,31 @@
           datasets: [{
             label: 'Skill Level',
             data: [85, 90, 88, 92, 80, 75, 78, 85],
-            backgroundColor: 'var(--accent-rgba)',
-            borderColor: 'rgba(79, 70, 229, 1)',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)', 'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)', 'rgba(255, 159, 64, 0.7)',
+                'rgba(199, 199, 199, 0.7)', 'rgba(83, 102, 255, 0.7)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)',
+                'rgba(199, 199, 199, 1)', 'rgba(83, 102, 255, 1)'
+            ],
             borderWidth: 1
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100,
-              ticks: {
-                callback: function(value) {
-                  return value + '%';
-                }
-              }
-            }
-          },
+          scales: { y: { beginAtZero: true, max: 100, ticks: { callback: (v) => v + '%' } } },
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: 'rgba(79, 70, 229, 0.9)',
-              titleColor: '#fff',
-              bodyColor: '#fff',
-              borderColor: 'rgba(79, 70, 229, 1)',
-              borderWidth: 1,
-              callbacks: {
-                label: function(context) {
-                  return context.parsed.y + '% proficiency';
-                }
-              }
+              backgroundColor: 'rgba(0, 0, 0, 0.8)', titleColor: '#fff', bodyColor: '#fff',
+              borderColor: 'rgba(0, 0, 0, 1)', borderWidth: 1,
+              callbacks: { label: (c) => c.parsed.y + '% proficiency' }
             }
           }
         }
@@ -1543,28 +1606,36 @@
             pointBackgroundColor: 'rgba(79, 70, 229, 1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(79, 70, 229, 1)'
+            pointHoverBorderColor: 'rgba(79, 70, 229, 1)',
+            pointRadius: 4,
+            pointHoverRadius: 8,
+            pointHoverBorderWidth: 2,
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          scales: {
-            r: {
-              angleLines: { display: true },
-              suggestedMin: 0,
-              suggestedMax: 100,
-              ticks: { stepSize: 20, display: false } /* Hide default ticks on radar chart */
-            }
-          },
+          scales: { r: { angleLines: { display: true }, suggestedMin: 0, suggestedMax: 100, ticks: { display: false } } },
           plugins: {
-            legend: { display: false }, /* Hide default legend */
+            legend: { display: false },
             tooltip: {
-              backgroundColor: 'rgba(79, 70, 229, 0.9)',
+              backgroundColor: 'rgba(0, 0, 0, 0.9)',
               titleColor: '#fff',
               bodyColor: '#fff',
               borderColor: 'rgba(79, 70, 229, 1)',
-              borderWidth: 1
+              borderWidth: 1,
+              padding: 10,
+              cornerRadius: 6,
+            }
+          },
+          onHover: (event, chartElement, chart) => {
+            if (chartElement.length) {
+                const index = chartElement[0].index;
+                const labels = document.querySelectorAll('#radarChartLabels .chart-label-item');
+                labels.forEach((label, i) => {
+                    label.style.backgroundColor = i === index ? 'var(--metric-bg)' : 'transparent';
+                    label.style.transform = i === index ? 'scale(1.05)' : 'scale(1)';
+                });
             }
           }
         }
@@ -1576,16 +1647,12 @@
           datasets: [{
             data: [35, 30, 25, 10],
             backgroundColor: [
-              'var(--accent-rgba)',
-              'rgba(16, 185, 129, 0.8)',
-              'rgba(99, 102, 241, 0.8)',
-              'rgba(139, 92, 246, 0.8)'
+              'rgba(54, 162, 235, 0.8)', 'rgba(75, 192, 192, 0.8)',
+              'rgba(255, 206, 86, 0.8)', 'rgba(255, 99, 132, 0.8)'
             ],
             borderColor: [
-              'rgba(79, 70, 229, 1)',
-              'rgba(16, 185, 129, 1)',
-              'rgba(99, 102, 241, 1)',
-              'rgba(139, 92, 246, 1)'
+              'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)',
+              'rgba(255, 206, 86, 1)', 'rgba(255, 99, 132, 1)'
             ],
             borderWidth: 1
           }]
@@ -1594,202 +1661,121 @@
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: { display: false }, /* Hide default legend */
+            legend: { display: false },
             tooltip: {
-              backgroundColor: 'rgba(79, 70, 229, 0.9)',
-              titleColor: '#fff',
-              bodyColor: '#fff',
-              borderColor: 'rgba(79, 70, 229, 1)',
-              borderWidth: 1
+              backgroundColor: 'rgba(0, 0, 0, 0.8)', titleColor: '#fff', bodyColor: '#fff',
+              borderColor: 'rgba(0, 0, 0, 1)', borderWidth: 1
             }
           }
         }
       }
     };
 
-    const charts = {}; // To store chart instances
+    const charts = {};
 
     function renderCharts() {
-      // Destroy existing charts to prevent issues on re-render/theme change
       for (const chartId in charts) {
-        if (charts[chartId]) {
-          charts[chartId].destroy();
-        }
+        if (charts[chartId]) charts[chartId].destroy();
       }
-
-      // Render new charts
       for (const chartId in chartConfigs) {
         const ctx = document.getElementById(chartId);
         if (ctx) {
-          ctx.parentNode.classList.remove('loading'); // Hide spinner
-          charts[chartId] = new Chart(ctx, chartConfigs[chartId]);
+          ctx.parentNode.classList.remove('loading');
+          const chartInstance = new Chart(ctx, chartConfigs[chartId]);
+          charts[chartId] = chartInstance;
 
-          // Add custom labels for radar chart
           if (chartId === 'radarChart') {
             const labelsContainer = document.getElementById('radarChartLabels');
-            labelsContainer.innerHTML = ''; // Clear previous labels
-            // Safely access the dataset
-            const radarDataset = chartConfigs[chartId].data.datasets && chartConfigs[chartId].data.datasets.length > 0
-                                 ? chartConfigs[chartId].data.datasets[0] : null;
+            labelsContainer.innerHTML = '';
+            const radarDataset = chartConfigs[chartId].data.datasets[0];
+            chartConfigs[chartId].data.labels.forEach((label, index) => {
+              const labelItem = document.createElement('div');
+              labelItem.classList.add('chart-label-item');
+              labelItem.innerHTML = `<div class="chart-label-color" style="background-color: ${radarDataset.borderColor};"></div> ${label}`;
+              
+              labelItem.addEventListener('mouseover', () => {
+                chartInstance.tooltip.setActiveElements([{ datasetIndex: 0, index: index }], {});
+                chartInstance.update();
+                labelItem.style.backgroundColor = 'var(--metric-bg)';
+                labelItem.style.transform = 'scale(1.05)';
+              });
+              labelItem.addEventListener('mouseout', () => {
+                chartInstance.tooltip.setActiveElements([], {});
+                chartInstance.update();
+                labelItem.style.backgroundColor = 'transparent';
+                labelItem.style.transform = 'scale(1)';
+              });
 
-            if (radarDataset) { // Check if dataset exists before proceeding
-                chartConfigs[chartId].data.labels.forEach((label, index) => {
-                    const labelItem = document.createElement('div');
-                    labelItem.classList.add('chart-label-item');
-                    const colorDiv = document.createElement('div');
-                    colorDiv.classList.add('chart-label-color');
-                    // Use a consistent color for the radar chart legend, as individual segment colors are not applicable
-                    colorDiv.style.backgroundColor = radarDataset.borderColor;
-                    labelItem.appendChild(colorDiv);
-                    labelItem.innerHTML += label;
-                    labelsContainer.appendChild(labelItem);
-                });
-            }
+              labelsContainer.appendChild(labelItem);
+            });
           }
 
-          // Add custom labels for projects chart
           if (chartId === 'projectsChart') {
             const labelsContainer = document.getElementById('projectsChartLabels');
-            labelsContainer.innerHTML = ''; // Clear previous labels
-            // Safely access the dataset
-            const projectsDataset = chartConfigs[chartId].data.datasets && chartConfigs[chartId].data.datasets.length > 0
-                                   ? chartConfigs[chartId].data.datasets[0] : null;
-
-            if (projectsDataset) { // Check if dataset exists before proceeding
-                chartConfigs[chartId].data.labels.forEach((label, index) => {
-                    const labelItem = document.createElement('div');
-                    labelItem.classList.add('chart-label-item');
-                    const colorDiv = document.createElement('div');
-                    colorDiv.classList.add('chart-label-color');
-                    // Ensure backgroundColor array exists and has the index
-                    colorDiv.style.backgroundColor = projectsDataset.backgroundColor[index] || 'transparent'; // Fallback
-                    labelItem.appendChild(colorDiv);
-                    labelItem.innerHTML += label;
-                    labelsContainer.appendChild(labelItem);
-                });
-            }
+            labelsContainer.innerHTML = '';
+            const projectsDataset = chartConfigs[chartId].data.datasets[0];
+            chartConfigs[chartId].data.labels.forEach((label, index) => {
+              const labelItem = document.createElement('div');
+              labelItem.classList.add('chart-label-item');
+              labelItem.innerHTML = `<div class="chart-label-color" style="background-color: ${projectsDataset.backgroundColor[index]};"></div> ${label}`;
+              labelsContainer.appendChild(labelItem);
+            });
           }
         }
       }
     }
 
-    // Theme Toggle Functionality
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
-
     function setTheme(theme) {
-      if (theme === 'dark') {
-        body.classList.add('dark');
-        themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-      } else {
-        body.classList.remove('dark');
-        themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
-      }
+      body.classList.toggle('dark', theme === 'dark');
+      themeToggle.querySelector('i').className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
       localStorage.setItem('theme', theme);
-      // Re-render charts to update colors with new CSS variables
       renderCharts();
     }
 
-    // Initialize theme based on localStorage or system preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(savedTheme);
+    themeToggle.addEventListener('click', () => setTheme(body.classList.contains('dark') ? 'light' : 'dark'));
 
-    themeToggle.addEventListener('click', () => {
-      if (body.classList.contains('dark')) {
-        setTheme('light');
-      } else {
-        setTheme('dark');
-      }
-    });
-
-    // Mobile Menu Toggle
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const sidebar = document.getElementById('sidebar');
-
-    mobileMenuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
-    });
-
-    // Close sidebar when a nav link is clicked (for mobile)
+    mobileMenuToggle.addEventListener('click', () => sidebar.classList.toggle('active'));
     document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        if (sidebar.classList.contains('active')) {
-          sidebar.classList.remove('active');
-        }
-      });
+      link.addEventListener('click', () => sidebar.classList.remove('active'));
     });
 
-    // Back to Top Button
     const backToTopButton = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('active');
-      } else {
-        backToTopButton.classList.remove('active');
-      }
+      backToTopButton.classList.toggle('active', window.pageYOffset > 300);
     });
+    backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    backToTopButton.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // Highlight active navigation link based on scroll position
     const sections = document.querySelectorAll('main section[id]');
     const navLinks = document.querySelectorAll('.nav-menu .nav-link');
-
     function highlightNavLink() {
-      let current = '';
+      let currentId = '';
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjust offset for better accuracy
-          current = section.getAttribute('id');
+        if (pageYOffset >= sectionTop - 150) {
+          currentId = section.getAttribute('id');
         }
       });
-
       navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('data-section') === current) {
-          link.classList.add('active');
-        }
+        link.classList.toggle('active', link.getAttribute('data-section') === currentId);
       });
     }
-
     window.addEventListener('scroll', highlightNavLink);
-    // Call on load to set initial active link
     window.addEventListener('DOMContentLoaded', highlightNavLink);
 
-
-    // Testimonials Slider
     const slider = document.querySelector('.testimonials-slider');
     const prevBtn = document.querySelector('.slider-btn.prev');
     const nextBtn = document.querySelector('.slider-btn.next');
+    if(slider) {
+      prevBtn.addEventListener('click', () => slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' }));
+      nextBtn.addEventListener('click', () => slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' }));
+    }
 
-    prevBtn.addEventListener('click', () => {
-      slider.scrollBy({
-        left: -slider.clientWidth, // Scroll by the width of the slider
-        behavior: 'smooth'
-      });
-    });
-
-    nextBtn.addEventListener('click', () => {
-      slider.scrollBy({
-        left: slider.clientWidth, // Scroll by the width of the slider
-        behavior: 'smooth'
-      });
-    });
-
-
-    // Initial chart rendering when DOM is ready
     document.addEventListener('DOMContentLoaded', renderCharts);
   </script>
 </body>
