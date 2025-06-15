@@ -204,6 +204,12 @@
       margin-bottom: 2rem;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--card-border);
+      transition: var(--transition);
+    }
+
+    .dashboard-header:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
     }
 
     .dashboard-title {
@@ -219,6 +225,12 @@
       margin-right: 0.75rem;
       color: var(--accent);
       font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .dashboard-header:hover .dashboard-title i {
+      transform: scale(1.2);
+      color: var(--hover-accent);
     }
 
     .header-actions {
@@ -1047,6 +1059,13 @@
       border-color: #D44638;
     }
     
+    /* New style for resume download button */
+    .contact-button.resume:hover {
+      background: var(--accent) !important;
+      color: white !important;
+      border-color: var(--accent) !important;
+    }
+    
     .contact-button-icon {
       width: 50px;
       height: 50px;
@@ -1072,6 +1091,12 @@
     .email .contact-button-icon {
       background: rgba(212, 70, 56, 0.1);
       color: #D44638;
+    }
+    
+    /* Resume download button icon style */
+    .resume .contact-button-icon {
+      background: rgba(79, 70, 229, 0.1);
+      color: var(--accent);
     }
     
     .contact-button:hover .contact-button-icon {
@@ -1838,7 +1863,7 @@
         </div>
       </section>
 
-      <!-- New enhanced contact buttons section -->
+      <!-- Enhanced Let's Connect card with Download Resume option -->
       <section class="card contact-buttons-card" aria-labelledby="contact-buttons-title">
         <div class="card-header">
           <h2 class="card-title" id="contact-buttons-title"><i class="fas fa-paper-plane"></i> Let's Connect</h2>
@@ -1881,6 +1906,19 @@
   <div class="contact-button-content">
     <h3>Email</h3>
     <p>Get in touch with me</p>
+              </div>
+              <div class="contact-button-arrow">
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </a>
+            <!-- New Download Resume button -->
+            <a href="Aadarsh_Jaiswal_Resume.pdf" class="contact-button resume" download aria-label="Download Resume">
+              <div class="contact-button-icon">
+                <i class="fas fa-file-pdf"></i>
+              </div>
+              <div class="contact-button-content">
+                <h3>Download Resume</h3>
+                <p>Get my full professional profile</p>
               </div>
               <div class="contact-button-arrow">
                 <i class="fas fa-arrow-right"></i>
@@ -2161,6 +2199,37 @@
       });
     } else {
       viewMoreBtn.style.display = 'none';
+    }
+
+    // Dashboard Header Animation
+    const dashboardHeader = document.querySelector('.dashboard-header');
+    if (dashboardHeader) {
+      dashboardHeader.addEventListener('mouseenter', () => {
+        dashboardHeader.style.transform = 'translateY(-3px)';
+        dashboardHeader.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        const icon = dashboardHeader.querySelector('.dashboard-title i');
+        if (icon) {
+          icon.style.transform = 'scale(1.2)';
+          icon.style.color = 'var(--hover-accent)';
+        }
+      });
+      
+      dashboardHeader.addEventListener('mouseleave', () => {
+        dashboardHeader.style.transform = '';
+        dashboardHeader.style.boxShadow = '';
+        const icon = dashboardHeader.querySelector('.dashboard-title i');
+        if (icon) {
+          icon.style.transform = '';
+          icon.style.color = '';
+        }
+      });
+      
+      dashboardHeader.addEventListener('click', () => {
+        dashboardHeader.style.transform = 'translateY(-1px)';
+        setTimeout(() => {
+          dashboardHeader.style.transform = 'translateY(-3px)';
+        }, 100);
+      });
     }
 
     // Initialize everything when DOM is loaded
