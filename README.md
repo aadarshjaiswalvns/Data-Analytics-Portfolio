@@ -13,14 +13,14 @@ This repository showcases projects I've completed using **Python**, **SQL**, **P
 ### 1. 📈 Sales Dashboard (Power BI / Excel)
 Built an interactive dashboard to visualize sales performance, trends, top-performing products, and regional breakdowns.  
 **Tools:** Power BI, Excel, DAX  
-[📂 View Project Folder](#)
+[📂 View Project Folder](https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord)
 
 ---
 
 ### 2. 🔁 Customer Churn Prediction
 Developed a machine learning model to predict customer churn using classification algorithms and customer behavior data.  
 **Tools:** Python, Pandas, Scikit-learn, Matplotlib  
-[📂 View Project Folder](#)
+[📂 View Project Folder]((https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction)
 
 ---
 
@@ -28,14 +28,14 @@ Developed a machine learning model to predict customer churn using classificatio
 Performed SQL-based analysis on a multi-table orders database.  
 Insights included customer segmentation, inventory categorization, shipping performance, and unsold product detection.  
 **Tools:** MySQL, Joins, CASE, Subqueries  
-[📂 View Project Folder](#)
+[📂 View Project Folder](https://github.com/aadarshjaiswalvns/Reliant-Retail-Ltd-MySQL-Analytics-Project)
 
 ---
 
 ### 4. 🧑‍💼 HR Analytics – Employee Attrition Prediction
 Built a Random Forest model to identify key reasons for employee attrition and predicted potential churners.  
 **Tools:** Python, Seaborn, Pandas, Scikit-learn  
-[📂 View Project Folder](#)
+[📂 View Project Folder](https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction)
 
 ---
 
