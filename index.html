@@ -11,6 +11,8 @@
   <meta property="og:image" content="profile-image.jpg">
   <meta property="og:url" content="https://yourwebsite.com">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js" as="script">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
@@ -37,7 +39,7 @@
       --accent-rgba: rgba(79, 70, 229, 0.7);
       --accent-rgba-light: rgba(79, 70, 229, 0.2);
       --text-secondary: #4B5563;
-      --chart-label-bg: rgba(255, 255, 255, 0.9); /* For labels below chart */
+      --chart-label-bg: rgba(255, 255, 255, 0.9);
     }
 
     * {
@@ -62,7 +64,26 @@
       --card-bg: var(--card-bg-dark);
       --primary: #FFFFFF;
       --text-secondary: #D1D5DB;
-      --chart-label-bg: rgba(45, 55, 72, 0.9); /* Dark mode label background */
+      --chart-label-bg: rgba(45, 55, 72, 0.9);
+    }
+
+    .theme-transition * {
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--accent);
+      color: white;
+      padding: 8px;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
     }
 
     .sidebar {
@@ -253,7 +274,7 @@
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 1.5rem;
-      align-items: stretch; /* Ensures cards in the same row have equal height */
+      align-items: stretch;
     }
 
     .card {
@@ -261,16 +282,16 @@
       border-radius: 10px;
       padding: 1.5rem;
       box-shadow: var(--shadow);
-      transition: var(--transition);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       border: 1px solid var(--card-border);
       display: flex;
       flex-direction: column;
-      min-height: 300px; /* Base min-height for all cards */
+      min-height: 300px;
     }
 
     .card:hover {
       transform: translateY(-5px) scale(1.02);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
       border-color: var(--accent);
     }
 
@@ -298,20 +319,20 @@
 
     .card-body {
       color: var(--primary);
-      flex-grow: 1; /* Allows content area to take available space */
+      flex-grow: 1;
     }
 
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem; /* Reduced from 1rem */
-      margin-bottom: 1rem; /* Reduced from 1.5rem */
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
 
     .metric-card {
       background: var(--metric-bg);
       border-radius: 8px;
-      padding: 0.75rem; /* Reduced from 1rem */
+      padding: 0.75rem;
       text-align: center;
       transition: var(--transition);
       min-height: 60px;
@@ -322,12 +343,12 @@
     .metric-card:hover,
     .metric-card:active,
     .metric-card:focus {
-      background: #e0f2fe !important;  /* Light blue */
+      background: #e0f2fe !important;
       box-shadow: var(--shadow);
     }
 
     .metric-value {
-      font-size: 1.5rem; /* Reduced from 1.75rem */
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--accent);
       line-height: 1;
@@ -335,7 +356,7 @@
     }
 
     .metric-label {
-      font-size: 0.8rem; /* Reduced from 0.85rem */
+      font-size: 0.8rem;
       color: var(--text-secondary);
     }
 
@@ -350,7 +371,6 @@
     .projects-chart-card { grid-column: span 5; }
     .skills-card { grid-column: span 7; }
     .testimonials-card { grid-column: span 12; }
-
 
     .about-text {
       line-height: 1.7;
@@ -371,7 +391,6 @@
       padding-right: 0;
     }
 
-    /* Updated skill items with different colors */
     .skill-item {
       display: flex;
       align-items: center;
@@ -454,6 +473,31 @@
       transition: color 0.3s ease;
     }
 
+    /* Skill Progress Bars */
+    .skill-progress {
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--metric-bg);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: width 1s ease-in-out;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+
     .timeline {
       position: relative;
       padding-left: 2rem;
@@ -522,6 +566,35 @@
       font-size: 0.9rem;
       color: var(--text-secondary);
       line-height: 1.6;
+    }
+
+    /* Project Filter Buttons */
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--primary);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.8rem;
+    }
+
+    .filter-btn:hover {
+      background: var(--metric-bg);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
     }
 
     .projects-grid {
@@ -602,7 +675,6 @@
       transition: all 0.3s ease;
     }
     
-    /* ADDED: Hover colors for project tags */
     .tag-excel:hover { background-color: #1D6F42; color: white; }
     .tag-powerbi:hover { background-color: #F2C811; color: black; }
     .tag-dax:hover { background-color: #5E2750; color: white; }
@@ -611,7 +683,6 @@
     .tag-sklearn:hover { background-color: #F7931E; color: white; }
     .tag-sql:hover { background-color: #00758F; color: white; }
     .tag-seaborn:hover { background-color: #3A92A2; color: white; }
-
 
     .project-links {
       display: flex;
@@ -756,6 +827,28 @@
       flex-grow: 1;
     }
 
+    .view-more-btn {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--metric-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .view-more-btn:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
     .chart-container {
       position: relative;
       height: 250px;
@@ -827,12 +920,12 @@
       padding: 0.5rem 1rem;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Hide scrollbar for Firefox */
-      -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
     .testimonials-slider::-webkit-scrollbar {
-      display: none; /* Hide scrollbar for Chrome/Safari */
+      display: none;
     }
 
     .testimonial-item {
@@ -910,12 +1003,6 @@
       color: var(--text-secondary);
     }
 
-    /* Removed testimonial slider controls */
-    .testimonials-slider-controls {
-      display: none;
-    }
-
-    /* Added social links below testimonials */
     .testimonials-social-links {
       display: flex;
       justify-content: center;
@@ -1026,6 +1113,29 @@
       outline-offset: 2px;
     }
 
+    /* Loading Spinner */
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 8px;
+    }
+
+    /* Pulse Animation */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .download-resume {
+      animation: pulse 2s infinite;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 1200px) {
       .dashboard-grid {
@@ -1046,7 +1156,6 @@
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       }
     }
-
 
     @media (max-width: 992px) {
       body {
@@ -1104,56 +1213,58 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
   <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
     <div class="profile">
-      <img src="profile-image.jpg" alt="Aadarsh Jaiswal, Data Analyst" class="profile-img" width="120" height="120">
+      <img src="profile-image.jpg" alt="Aadarsh Jaiswal, Data Analyst" class="profile-img" width="120" height="120" loading="lazy">
       <h1>Aadarsh Jaiswal</h1>
       <p>Data Analyst | Python • SQL • Power BI</p>
       <p>Driving business success through data insights</p>
     </div>
-    <ul class="nav-menu">
-      <li class="nav-item">
-        <a href="#dashboard" class="nav-link active" data-section="dashboard">
+    <ul class="nav-menu" role="menu">
+      <li class="nav-item" role="none">
+        <a href="#dashboard" class="nav-link active" data-section="dashboard" role="menuitem">
           <i class="fas fa-tachometer-alt"></i> Dashboard
         </a>
       </li>
-      <li class="nav-item">
-        <a href="#about" class="nav-link" data-section="about">
+      <li class="nav-item" role="none">
+        <a href="#about" class="nav-link" data-section="about" role="menuitem">
           <i class="fas fa-user"></i> About
         </a>
       </li>
-      <li class="nav-item">
-        <a href="#experience" class="nav-link" data-section="experience">
+      <li class="nav-item" role="none">
+        <a href="#experience" class="nav-link" data-section="experience" role="menuitem">
           <i class="fas fa-briefcase"></i> Experience
         </a>
       </li>
-      <li class="nav-item">
-        <a href="#projects" class="nav-link" data-section="projects">
+      <li class="nav-item" role="none">
+        <a href="#projects" class="nav-link" data-section="projects" role="menuitem">
           <i class="fas fa-project-diagram"></i> Projects
         </a>
       </li>
-      <li class="nav-item">
-        <a href="#skills" class="nav-link" data-section="skills">
+      <li class="nav-item" role="none">
+        <a href="#skills" class="nav-link" data-section="skills" role="menuitem">
           <i class="fas fa-code"></i> Skills
         </a>
       </li>
-      <li class="nav-item">
-        <a href="#education" class="nav-link" data-section="education">
+      <li class="nav-item" role="none">
+        <a href="#education" class="nav-link" data-section="education" role="menuitem">
           <i class="fas fa-graduation-cap"></i> Education
         </a>
       </li>
-      <li class="nav-item">
-        <a href="#certifications" class="nav-link" data-section="certifications">
+      <li class="nav-item" role="none">
+        <a href="#certifications" class="nav-link" data-section="certifications" role="menuitem">
           <i class="fas fa-certificate"></i> Certifications
         </a>
       </li>
-      <li class="nav-item">
-        <a href="#testimonials" class="nav-link" data-section="testimonials">
+      <li class="nav-item" role="none">
+        <a href="#testimonials" class="nav-link" data-section="testimonials" role="menuitem">
           <i class="fas fa-quote-left"></i> Testimonials
         </a>
       </li>
-      <li class="nav-item">
-        <a href="Aadarsh_Jaiswal_Resume.pdf" class="nav-link" download>
+      <li class="nav-item" role="none">
+        <a href="Aadarsh_Jaiswal_Resume.pdf" class="nav-link" download role="menuitem">
           <i class="fas fa-file-pdf"></i> Download Resume
         </a>
       </li>
@@ -1179,7 +1290,7 @@
     <i class="fas fa-moon"></i>
   </button>
 
-  <main class="main-content" role="main" aria-label="Main content">
+  <main class="main-content" id="main-content" role="main" aria-label="Main content">
     <header class="dashboard-header">
       <h1 class="dashboard-title"><i class="fas fa-tachometer-alt"></i> Analytics Dashboard</h1>
       <div class="header-actions">
@@ -1278,6 +1389,44 @@
             <div class="skill-item"><i class="fas fa-tachometer-alt"></i><span class="skill-name">Dashboarding</span></div>
             <div class="skill-item"><i class="fas fa-chart-line"></i><span class="skill-name">Data Visualization</span></div>
           </div>
+          
+          <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Skill Proficiency</h3>
+          <div class="skill-progress">
+            <div class="skill-info">
+              <span class="skill-name">Python</span>
+              <span class="skill-percent">85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-progress">
+            <div class="skill-info">
+              <span class="skill-name">SQL</span>
+              <span class="skill-percent">90%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="skill-progress">
+            <div class="skill-info">
+              <span class="skill-name">Power BI</span>
+              <span class="skill-percent">88%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 88%;"></div>
+            </div>
+          </div>
+          <div class="skill-progress">
+            <div class="skill-info">
+              <span class="skill-name">Excel</span>
+              <span class="skill-percent">92%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 92%;"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1290,9 +1439,9 @@
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="timeline-content">
-                <span class="timeline-company">Ahimsa Tour & Travels Pvt Ltd, Rishikesh, Uttarakhand</span>
-                <h3 class="timeline-title">Business Operation Manager</h3>        
                 <span class="timeline-date">April 2023 – August 2024</span>
+                <h3 class="timeline-title">Business Operation Manager</h3>
+                <span class="timeline-company">Ahimsa Tour & Travels Pvt Ltd, Rishikesh, Uttarakhand</span>
                 <p class="timeline-description">
                   Led a 25-member team to achieve 20% faster operations and 15% productivity gains. Managed ₹33 lakh budget, saving ₹3 lakh through cost optimizations. Built Excel dashboards to monitor KPIs and drive data-driven decisions.
                 </p>
@@ -1301,9 +1450,9 @@
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="timeline-content">
-                <span class="timeline-company">LearnQoch, Remote</span>                
-                <h3 class="timeline-title">Associate Product Manager Intern</h3>
                 <span class="timeline-date">September 2022 – March 2023</span>
+                <h3 class="timeline-title">Associate Product Manager Intern</h3>
+                <span class="timeline-company">LearnQoch, Remote</span>
                 <p class="timeline-description">
                   Streamlined workflows, cutting defects by 20% and boosting satisfaction by 15%. Collaborated with a 12-member team to increase productivity by 25% and reduce turnaround time.
                 </p>
@@ -1312,10 +1461,10 @@
             </div>
             <div class="timeline-item">
               <div class="timeline-dot"></div>
-              <div class="timeline-content">                
-                <span class="timeline-company">Apollo 24x7, Remote</span>
-                <h3 class="timeline-title">Business Development Associate Intern</h3>
+              <div class="timeline-content">
                 <span class="timeline-date">March 2022 – August 2022</span>
+                <h3 class="timeline-title">Business Development Associate Intern</h3>
+                <span class="timeline-company">Apollo 24x7, Remote</span>
                 <p class="timeline-description">
                   Resolved 95% of client issues within 24 hours, improving satisfaction by 20%. Managed 15+ client relationships, enhancing retention by 10%.
                 </p>
@@ -1331,8 +1480,14 @@
           <h2 class="card-title" id="projects-title"><i class="fas fa-project-diagram"></i> Featured Projects</h2>
         </div>
         <div class="card-body">
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="python">Python</button>
+            <button class="filter-btn" data-filter="sql">SQL</button>
+            <button class="filter-btn" data-filter="powerbi">Power BI</button>
+          </div>
           <div class="projects-grid">
-            <div class="project-item">
+            <div class="project-item" data-tags="powerbi excel dax">
               <img src="Sales_Dashboard_image.png" alt="Sales Dashboard Screenshot" class="project-image" width="300" height="140" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/300x140/E5E7EB/4B5563?text=Sales+Dashboard';">
               <div class="project-content">
                 <h3 class="project-title"><i class="fas fa-chart-bar"></i> Sales Dashboard (Power BI)</h3>
@@ -1354,7 +1509,7 @@
                 </div>
               </div>
             </div>
-            <div class="project-item">
+            <div class="project-item" data-tags="python pandas sklearn">
               <img src="Customer_Churn_Prediction.png" alt="Customer Churn Prediction Screenshot" class="project-image" width="300" height="140" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/300x140/E5E7EB/4B5563?text=Churn+Prediction';">
               <div class="project-content">
                 <h3 class="project-title"><i class="fas fa-user-secret"></i> Customer Churn Prediction</h3>
@@ -1376,7 +1531,7 @@
                 </div>
               </div>
             </div>
-            <div class="project-item">
+            <div class="project-item" data-tags="sql excel">
               <img src="SQL.png" alt="MySQL Retail Analytics Screenshot" class="project-image" width="300" height="140" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/300x140/E5E7EB/4B5563?text=MySQL+Analytics';">
               <div class="project-content">
                 <h3 class="project-title"><i class="fas fa-database"></i> MySQL Data Analytics</h3>
@@ -1397,7 +1552,7 @@
                 </div>
               </div>
             </div>
-            <div class="project-item">
+            <div class="project-item" data-tags="python pandas seaborn sklearn">
               <img src="HR_Analytics_Employee_Attrition_Prediction.png" alt="HR Attrition Prediction Screenshot" class="project-image" width="300" height="140" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/300x140/E5E7EB/4B5563?text=HR+Attrition';">
               <div class="project-content">
                 <h3 class="project-title"><i class="fas fa-users"></i> HR Attrition Prediction</h3>
@@ -1559,6 +1714,7 @@
               </div>
             </div>
           </div>
+          <button class="view-more-btn" id="viewMoreCertifications">View More Certifications</button>
         </div>
       </section>
 
@@ -1643,30 +1799,30 @@
         }
       },
       radarChart: {
-  type: 'radar',
-  data: {
-    labels: ['Data Analysis', 'Visualization', 'Machine Learning', 'Database', 'Business Intelligence', 'Statistics'],
-    datasets: [{
-  label: 'Skill Level',
-  data: [90, 85, 75, 88, 82, 80],
-  backgroundColor: 'rgba(100, 180, 255, 0.3)', // translucent light blue fill
-  borderColor: 'rgba(79, 70, 229, 1)',
-  pointBackgroundColor: [
-    'rgba(100, 180, 255, 0.7)',
-    'rgba(100, 180, 255, 0.7)',
-    'rgba(100, 180, 255, 0.7)',
-    'rgba(100, 180, 255, 0.7)',
-    'rgba(100, 180, 255, 0.7)',
-    'rgba(100, 180, 255, 0.7)'
-  ],
-  pointBorderColor: '#fff',
-  pointHoverBackgroundColor: '#fff',
-  pointHoverBorderColor: 'rgba(79, 70, 229, 1)',
-  pointRadius: 4,
-  pointHoverRadius: 8,
-  pointHoverBorderWidth: 2,
-}]
-  },
+        type: 'radar',
+        data: {
+          labels: ['Data Analysis', 'Visualization', 'Machine Learning', 'Database', 'Business Intelligence', 'Statistics'],
+          datasets: [{
+            label: 'Skill Level',
+            data: [90, 85, 75, 88, 82, 80],
+            backgroundColor: 'rgba(100, 180, 255, 0.3)',
+            borderColor: 'rgba(79, 70, 229, 1)',
+            pointBackgroundColor: [
+              'rgba(100, 180, 255, 0.7)',
+              'rgba(100, 180, 255, 0.7)',
+              'rgba(100, 180, 255, 0.7)',
+              'rgba(100, 180, 255, 0.7)',
+              'rgba(100, 180, 255, 0.7)',
+              'rgba(100, 180, 255, 0.7)'
+            ],
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(79, 70, 229, 1)',
+            pointRadius: 4,
+            pointHoverRadius: 8,
+            pointHoverBorderWidth: 2,
+          }]
+        },
         options: {
           responsive: true,
           maintainAspectRatio: false,
@@ -1780,6 +1936,7 @@
       }
     }
 
+    // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     function setTheme(theme) {
@@ -1791,8 +1948,17 @@
 
     const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     setTheme(savedTheme);
-    themeToggle.addEventListener('click', () => setTheme(body.classList.contains('dark') ? 'light' : 'dark'));
+    themeToggle.addEventListener('click', () => {
+      body.classList.add('theme-transition');
+      setTimeout(() => {
+        setTheme(body.classList.contains('dark') ? 'light' : 'dark');
+        setTimeout(() => {
+          body.classList.remove('theme-transition');
+        }, 500);
+      }, 100);
+    });
 
+    // Mobile Menu Toggle
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const sidebar = document.getElementById('sidebar');
     mobileMenuToggle.addEventListener('click', () => sidebar.classList.toggle('active'));
@@ -1800,12 +1966,14 @@
       link.addEventListener('click', () => sidebar.classList.remove('active'));
     });
 
+    // Back to Top Button
     const backToTopButton = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
       backToTopButton.classList.toggle('active', window.pageYOffset > 300);
     });
     backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+    // Section Highlighting
     const sections = document.querySelectorAll('main section[id]');
     const navLinks = document.querySelectorAll('.nav-menu .nav-link');
     function highlightNavLink() {
@@ -1823,7 +1991,45 @@
     window.addEventListener('scroll', highlightNavLink);
     window.addEventListener('DOMContentLoaded', highlightNavLink);
 
-    document.addEventListener('DOMContentLoaded', renderCharts);
+    // Project Filtering
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        
+        document.querySelectorAll('.project-item').forEach(item => {
+          if (filter === 'all' || item.dataset.tags.includes(filter)) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // View More Certifications
+    const certItems = document.querySelectorAll('.certification-item');
+    const viewMoreBtn = document.getElementById('viewMoreCertifications');
+    
+    if (certItems.length > 3) {
+      certItems.forEach((item, index) => {
+        if (index >= 3) item.style.display = 'none';
+      });
+      
+      viewMoreBtn.addEventListener('click', () => {
+        certItems.forEach(item => item.style.display = 'flex');
+        viewMoreBtn.style.display = 'none';
+      });
+    } else {
+      viewMoreBtn.style.display = 'none';
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCharts();
+      highlightNavLink();
+    });
   </script>
 </body>
 </html>
