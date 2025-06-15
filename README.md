@@ -20,7 +20,7 @@ Built an interactive dashboard to visualize sales performance, trends, top-perfo
 ### 2. 🔁 Customer Churn Prediction
 Developed a machine learning model to predict customer churn using classification algorithms and customer behavior data.  
 **Tools:** Python, Pandas, Scikit-learn, Matplotlib  
-[📂 View Project Folder]((https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction)
+[📂 View Project Folder](https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction)
 
 ---
 
