@@ -10,6 +10,12 @@
   <meta property="og:description" content="Explore Aadarsh Jaiswal's interactive data analytics portfolio showcasing Python, SQL, and Power BI projects.">
   <meta property="og:image" content="profile-image.jpg">
   <meta property="og:url" content="https://yourwebsite.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@AadarshAnalytics">
+  <meta name="twitter:creator" content="@AadarshAnalytics">
+  <meta name="twitter:title" content="Aadarsh Jaiswal - Data Analytics Portfolio">
+  <meta name="twitter:description" content="Discover data analytics projects by Aadarsh Jaiswal, featuring Python, SQL, Power BI, and data visualization expertise.">
+  <meta name="twitter:image" content="profile-image.jpg">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js" as="script">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +46,7 @@
       --accent-rgba-light: rgba(79, 70, 229, 0.2);
       --text-secondary: #4B5563;
       --chart-label-bg: rgba(255, 255, 255, 0.9);
+      --border-radius: 10px;
     }
 
     * {
@@ -291,7 +298,7 @@
 
     .card {
       background: var(--card-bg);
-      border-radius: 10px;
+      border-radius: var(--border-radius);
       padding: 1.5rem;
       box-shadow: var(--shadow);
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -866,29 +873,36 @@
       position: relative;
       height: 250px;
       width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
     }
 
-    .chart-container::before {
+    .chart-container.loading::before {
       content: '';
-      display: none;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 40px;
       height: 40px;
-      border: 4px solid var(--accent);
-      border-top-color: transparent;
+      border: 4px solid rgba(0, 123, 255, 0.3);
+      border-top-color: var(--accent);
       border-radius: 50%;
       animation: spin 1s linear infinite;
+      z-index: 10;
     }
 
-    .chart-container.loading::before {
-      display: block;
+    .chart-container.loading canvas {
+      opacity: 0;
     }
 
     @keyframes spin {
-      to { transform: translate(-50%, -50%) rotate(360deg); }
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
     .chart-labels-container {
@@ -1314,6 +1328,128 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Fade-in animations */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      animation: fadeIn 0.3s forwards;
+      overflow: auto;
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      width: 90%;
+      max-width: 800px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: slideInTop 0.3s forwards;
+    }
+
+    .close-button {
+      color: var(--text-secondary);
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .modal-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .modal-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .modal-title i {
+      margin-right: 0.75rem;
+      color: var(--accent);
+    }
+
+    .modal-body h4 {
+      color: var(--accent);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-rgba-light);
+      padding-bottom: 0.3rem;
+    }
+
+    .modal-body p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-image {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      margin: 1rem 0;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    .modal-links {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInTop {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -1443,7 +1579,7 @@
         </div>
       </section>
 
-      <section id="about" class="card about-card" aria-labelledby="about-title">
+      <section id="about" class="card about-card fade-in-section" aria-labelledby="about-title">
         <div class="card-header">
           <h2 class="card-title" id="about-title"><i class="fas fa-user"></i> About Me</h2>
         </div>
@@ -1457,7 +1593,7 @@
         </div>
       </section>
 
-      <section class="card skills-chart-card" aria-labelledby="skills-chart-title">
+      <section class="card skills-chart-card fade-in-section" aria-labelledby="skills-chart-title">
         <div class="card-header">
           <h2 class="card-title" id="skills-chart-title"><i class="fas fa-star"></i> Skills Proficiency</h2>
         </div>
@@ -1470,7 +1606,7 @@
         </div>
       </section>
 
-      <section class="card projects-chart-card" aria-labelledby="projects-chart-title">
+      <section class="card projects-chart-card fade-in-section" aria-labelledby="projects-chart-title">
         <div class="card-header">
           <h2 class="card-title" id="projects-chart-title"><i class="fas fa-project-diagram"></i> Projects Overview</h2>
         </div>
@@ -1483,7 +1619,7 @@
         </div>
       </section>
 
-      <section id="skills" class="card skills-card" aria-labelledby="skills-title">
+      <section id="skills" class="card skills-card fade-in-section" aria-labelledby="skills-title">
         <div class="card-header">
           <h2 class="card-title" id="skills-title"><i class="fas fa-code"></i> Skills & Tools</h2>
         </div>
@@ -1533,7 +1669,7 @@
           </div>
           <div class="skill-progress">
             <div class="skill-info">
-              <span class="skill-name">Communiaction & Story Telling</span>
+              <span class="skill-name">Communication & Story Telling</span>
               <span class="skill-percent">92%</span>
             </div>
             <div class="progress-bar">
@@ -1543,7 +1679,7 @@
         </div>
       </section>
 
-      <section id="experience" class="card experience-card" aria-labelledby="experience-title">
+      <section id="experience" class="card experience-card fade-in-section" aria-labelledby="experience-title">
         <div class="card-header">
           <h2 class="card-title" id="experience-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
         </div>
@@ -1570,7 +1706,7 @@
                 <p class="timeline-description">
                   <br>
                   Streamlined workflows, cutting defects by 20% and boosting satisfaction by 15%. Collaborated with a 12-member team to increase productivity by 25% and reduce turnaround time.
-		</p>
+    </p>
                 <br>
                 <a href="https://github.com/aadarshjaiswalvns/Data-Analytics-Portfolio/blob/main/Learn_Certificate.png" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View Certificate">View Certificate</a>
                </p>
@@ -1586,17 +1722,17 @@
                   <br>
                   Resolved 95% of client issues within 24 hours, improving satisfaction by 20%. Managed 15+ client relationships, enhancing retention by 10%.
                 </p>
-		<br>
+    <br>
                 <a href="https://github.com/aadarshjaiswalvns/Data-Analytics-Portfolio/blob/main/Apollo_Certificate.png" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View Certificate">View Certificate</a>
                </p>
-		<br>
+    <br>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="projects" class="card projects-card" aria-labelledby="projects-title">
+      <section id="projects" class="card projects-card fade-in-section" aria-labelledby="projects-title">
         <div class="card-header">
           <h2 class="card-title" id="projects-title"><i class="fas fa-project-diagram"></i> Featured Projects</h2>
         </div>
@@ -1621,11 +1757,11 @@
                   <span class="tag tag-dax">DAX</span>
                 </div>
                 <div class="project-links">
-                  <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord" class="project-link primary" target="_blank" rel="noopener noreferrer" aria-label="View Sales Dashboard Project">
-                    <i class="fas fa-eye"></i> View Project
+                  <a href="#" class="project-link primary view-project-details" data-project="sales-dashboard">
+                    <i class="fas fa-info-circle"></i> View Details
                   </a>
-                  <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord/blob/main/Superstore%20Sales%20Dashboard2.pbix" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View Sales Dashboard Code">
-                    <i class="fas fa-code"></i> View Code
+                  <a href="https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View Sales Dashboard Project">
+                    <i class="fas fa-eye"></i> View Project
                   </a>
                 </div>
               </div>
@@ -1643,11 +1779,11 @@
                   <span class="tag tag-sklearn">Scikit-learn</span>
                 </div>
                 <div class="project-links">
-                  <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction" class="project-link primary" target="_blank" rel="noopener noreferrer" aria-label="View Churn Prediction Project">
-                    <i class="fas fa-eye"></i> View Project
+                  <a href="#" class="project-link primary view-project-details" data-project="churn-prediction">
+                    <i class="fas fa-info-circle"></i> View Details
                   </a>
-                  <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction/blob/main/Customer-Churn-Prediction.ipynb" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View Churn Prediction Code">
-                    <i class="fas fa-code"></i> View Code
+                  <a href="https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View Churn Prediction Project">
+                    <i class="fas fa-eye"></i> View Project
                   </a>
                 </div>
               </div>
@@ -1664,11 +1800,11 @@
                   <span class="tag tag-excel">Excel</span>
                 </div>
                 <div class="project-links">
-                  <a href="https://github.com/aadarshjaiswalvns/Reliant-Retail-Ltd-MySQL-Analytics-Project" class="project-link primary" target="_blank" rel="noopener noreferrer" aria-label="View Retail Analytics Project">
-                    <i class="fas fa-eye"></i> View Project
+                  <a href="#" class="project-link primary view-project-details" data-project="mysql-analytics">
+                    <i class="fas fa-info-circle"></i> View Details
                   </a>
-                  <a href="https://github.com/aadarshjaiswalvns/Reliant-Retail-Ltd-MySQL-Analytics-Project/blob/main/analysis_queries.sql" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View Retail Analytics Code">
-                    <i class="fas fa-code"></i> View Code
+                  <a href="https://github.com/aadarshjaiswalvns/Reliant-Retail-Ltd-MySQL-Analytics-Project" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View Retail Analytics Project">
+                    <i class="fas fa-eye"></i> View Project
                   </a>
                 </div>
               </div>
@@ -1687,11 +1823,11 @@
                   <span class="tag tag-sklearn">Scikit-learn</span>
                 </div>
                 <div class="project-links">
-                  <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction" class="project-link primary" target="_blank" rel="noopener noreferrer" aria-label="View HR Attrition Project">
-                    <i class="fas fa-eye"></i> View Project
+                  <a href="#" class="project-link primary view-project-details" data-project="hr-attrition">
+                    <i class="fas fa-info-circle"></i> View Details
                   </a>
-                  <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction/blob/main/hr_attrition_project.ipynb" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View HR Attrition Code">
-                    <i class="fas fa-code"></i> View Code
+                  <a href="https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction" class="project-link secondary" target="_blank" rel="noopener noreferrer" aria-label="View HR Attrition Project">
+                    <i class="fas fa-eye"></i> View Project
                   </a>
                 </div>
               </div>
@@ -1700,7 +1836,7 @@
         </div>
       </section>
 
-      <section id="education" class="card education-card" aria-labelledby="education-title">
+      <section id="education" class="card education-card fade-in-section" aria-labelledby="education-title">
         <div class="card-header">
           <h2 class="card-title" id="education-title"><i class="fas fa-graduation-cap"></i> Education</h2>
         </div>
@@ -1718,7 +1854,7 @@
         </div>
       </section>
 
-      <section id="certifications" class="card certifications-card" aria-labelledby="certifications-title">
+      <section id="certifications" class="card certifications-card fade-in-section" aria-labelledby="certifications-title">
         <div class="card-header">
           <h2 class="card-title" id="certifications-title"><i class="fas fa-certificate"></i> Certifications</h2>
         </div>
@@ -1839,7 +1975,7 @@
         </div>
       </section>
 
-      <section id="testimonials" class="card testimonials-card" aria-labelledby="testimonials-title">
+      <section id="testimonials" class="card testimonials-card fade-in-section" aria-labelledby="testimonials-title">
         <div class="card-header">
           <h2 class="card-title" id="testimonials-title"><i class="fas fa-quote-left"></i> Testimonials</h2>
         </div>
@@ -1864,7 +2000,7 @@
       </section>
 
       <!-- Enhanced Let's Connect card with Download Resume option -->
-      <section class="card contact-buttons-card" aria-labelledby="contact-buttons-title">
+      <section class="card contact-buttons-card fade-in-section" aria-labelledby="contact-buttons-title">
         <div class="card-header">
           <h2 class="card-title" id="contact-buttons-title"><i class="fas fa-paper-plane"></i> Let's Connect</h2>
         </div>
@@ -1895,7 +2031,7 @@
                 <i class="fas fa-arrow-right"></i>
               </div>
             </a> 
-	    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aadarshjaiswal.vns@gmail.com" 
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aadarshjaiswal.vns@gmail.com" 
    class="contact-button email" 
    target="_blank" 
    rel="noopener noreferrer" 
@@ -1935,7 +2071,94 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
+  <!-- Project Details Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-project-diagram"></i> <span id="modalProjectTitle">Project Title</span></h3>
+        <p id="modalProjectDescription">Project short description</p>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-image-container">
+          <img id="modalProjectImage" class="modal-image" src="" alt="Project Screenshot">
+        </div>
+        <div class="modal-tags" id="modalProjectTags"></div>
+        
+        <h4>Problem Statement</h4>
+        <p id="modalProblemStatement">Define the business problem addressed.</p>
+
+        <h4>Data & Methodology</h4>
+        <p id="modalDataMethodology">Describe the datasets used, analytical techniques, tools (Python, SQL, Power BI), and models applied.</p>
+        
+        <h4>Key Findings & Impact</h4>
+        <p id="modalKeyFindings">Quantify the results and insights (e.g., "increased sales by X%", "reduced costs by Y%").</p>
+
+        <h4>Challenges & Solutions</h4>
+        <p id="modalChallenges">Discuss obstacles encountered and how you overcame them.</p>
+
+        <div class="modal-links">
+          <a id="modalLiveDemo" href="#" target="_blank" class="project-link primary"><i class="fas fa-play-circle"></i> Live Demo</a>
+          <a id="modalRepoLink" href="#" target="_blank" class="project-link secondary"><i class="fab fa-github"></i> GitHub Repo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // Project data for modals
+    const projectData = {
+      "sales-dashboard": {
+        title: "Sales Dashboard (Power BI)",
+        description: "Helped retailers boost profits by identifying top-performing products.",
+        image: "Sales_Dashboard_image.png",
+        tags: ["Excel", "Power BI", "DAX"],
+        problem: "Retailers struggled to identify top-performing products and understand revenue trends across different regions and categories.",
+        methodology: "Analyzed 50,000+ retail records using Power BI. Created data models, implemented DAX calculations for key metrics, and designed interactive visualizations.",
+        findings: "Identified top 10 products contributing to 45% of revenue. Found that certain regions had 25% higher sales growth compared to others. Recommendations led to a 12% increase in quarterly revenue.",
+        challenges: "Data inconsistencies in product categories required extensive cleaning. Created custom DAX measures to calculate complex KPIs like YoY growth and profit margins.",
+        liveDemo: "#",
+        repoLink: "https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord"
+      },
+      "churn-prediction": {
+        title: "Customer Churn Prediction",
+        description: "Improved retention by predicting churn risk.",
+        image: "Customer_Churn_Prediction.png",
+        tags: ["Python", "Pandas", "Scikit-learn"],
+        problem: "Telecom company faced 25% monthly customer churn, impacting revenue and growth.",
+        methodology: "Used Python with Pandas for data cleaning and feature engineering. Applied Scikit-learn's Logistic Regression and Random Forest classifiers. Evaluated models using accuracy, precision, and recall metrics.",
+        findings: "Identified contract type and internet service as top predictors. Model achieved 82% accuracy. Implementation of retention strategies reduced churn by 15% in the first quarter.",
+        challenges: "Dealt with imbalanced dataset using SMOTE. Optimized hyperparameters through grid search to improve model performance.",
+        liveDemo: "#",
+        repoLink: "https://github.com/aadarshjaiswalvns/Customer-Churn-Prediction"
+      },
+      "mysql-analytics": {
+        title: "MySQL Data Analytics",
+        description: "Performed SQL-based retail analytics on a multi-table orders database.",
+        image: "SQL.png",
+        tags: ["MySQL", "Excel"],
+        problem: "Retail company needed insights on customer behavior, inventory performance, and logistics efficiency.",
+        methodology: "Used complex SQL queries with JOINs, subqueries, and window functions. Created views for recurring reports. Visualized findings in Excel dashboards.",
+        findings: "Identified top 10% customers generating 40% of revenue. Recommended inventory adjustments that reduced stockouts by 30%. Optimized logistics routes reducing delivery times by 18%.",
+        challenges: "Handled large dataset with 500,000+ records. Created efficient queries using proper indexing and query optimization techniques.",
+        liveDemo: "#",
+        repoLink: "https://github.com/aadarshjaiswalvns/Reliant-Retail-Ltd-MySQL-Analytics-Project"
+      },
+      "hr-attrition": {
+        title: "HR Attrition Prediction",
+        description: "Reduced employee turnover by identifying key attrition drivers.",
+        image: "HR_Analytics_Employee_Attrition_Prediction.png",
+        tags: ["Python", "Pandas", "Seaborn", "Scikit-learn"],
+        problem: "Tech company faced 20% annual employee turnover, impacting productivity and recruitment costs.",
+        methodology: "Performed EDA with Seaborn to visualize key factors. Built predictive models using Random Forest and XGBoost. Used SHAP values for model interpretability.",
+        findings: "Identified overtime, job satisfaction, and work-life balance as key drivers. Model achieved 87% precision. Retention initiatives reduced attrition by 18% in six months.",
+        challenges: "Handled missing values using advanced imputation techniques. Addressed class imbalance through resampling methods.",
+        liveDemo: "#",
+        repoLink: "https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction"
+      }
+    };
+
     // Chart Configurations
     const chartConfigs = {
       skillsChart: {
@@ -2231,6 +2454,88 @@
         }, 100);
       });
     }
+
+    // Project Modal Logic
+    const projectModal = document.getElementById('projectModal');
+    const closeButton = document.querySelector('.close-button');
+    const modalProjectTitle = document.getElementById('modalProjectTitle');
+    const modalProjectDescription = document.getElementById('modalProjectDescription');
+    const modalProjectImage = document.getElementById('modalProjectImage');
+    const modalProjectTags = document.getElementById('modalProjectTags');
+    const modalProblemStatement = document.getElementById('modalProblemStatement');
+    const modalDataMethodology = document.getElementById('modalDataMethodology');
+    const modalKeyFindings = document.getElementById('modalKeyFindings');
+    const modalChallenges = document.getElementById('modalChallenges');
+    const modalLiveDemo = document.getElementById('modalLiveDemo');
+    const modalRepoLink = document.getElementById('modalRepoLink');
+
+    document.querySelectorAll('.view-project-details').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const projectId = this.dataset.project;
+        const project = projectData[projectId];
+        
+        if (project) {
+          modalProjectTitle.textContent = project.title;
+          modalProjectDescription.textContent = project.description;
+          modalProjectImage.src = project.image;
+          modalProjectImage.alt = project.title + ' Screenshot';
+          
+          modalProjectTags.innerHTML = '';
+          project.tags.forEach(tag => {
+            const tagEl = document.createElement('span');
+            tagEl.className = 'tag';
+            tagEl.textContent = tag;
+            modalProjectTags.appendChild(tagEl);
+          });
+          
+          modalProblemStatement.textContent = project.problem;
+          modalDataMethodology.textContent = project.methodology;
+          modalKeyFindings.textContent = project.findings;
+          modalChallenges.textContent = project.challenges;
+          
+          modalLiveDemo.href = project.liveDemo;
+          modalRepoLink.href = project.repoLink;
+          
+          projectModal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    closeButton.addEventListener('click', () => {
+      projectModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target == projectModal) {
+        projectModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Scroll-triggered fade-in animation
+    const fadeInSections = document.querySelectorAll('.fade-in-section');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    fadeInSections.forEach(section => {
+      observer.observe(section);
+    });
 
     // Initialize everything when DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
