@@ -518,46 +518,36 @@
       margin-bottom: 0.25rem;
     }
 
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-      margin-top: 1rem;
-    }
+    
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 1rem;
+}
 
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 7px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--accent);
-      opacity: 0.2;
-    }
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
 
-    .timeline-item {
-      position: relative;
-      padding-bottom: 1.75rem;
-    }
+.timeline-dot {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: 6px;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--card-bg);
+  box-shadow: 0 0 0 2px var(--accent);
+}
 
-    .timeline-item:last-child {
-      padding-bottom: 0;
-    }
+.timeline-content {
+  flex: 1;
+}
 
-    .timeline-dot {
-      position: absolute;
-      left: 0;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 3px solid var(--card-bg);
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-
-    .timeline-content {
-      margin-left: 1.5rem;
-    }
 
     .timeline-date {
       font-size: 0.8rem;
@@ -1360,7 +1350,82 @@
       from { transform: translateY(-50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-  </style>
+  
+  .nav-link.active {
+    position: relative;
+    background-color: var(--accent);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: inset 4px 0 0 var(--secondary-accent);
+  }
+  .nav-link[data-tooltip] {
+    position: relative;
+  }
+  .nav-link[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 50%;
+    left: 110%;
+    transform: translateY(-50%);
+    background: var(--accent);
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+  }
+  .nav-link[data-tooltip]:hover::after {
+    opacity: 1;
+  }
+  .nav-link:hover i {
+    color: var(--secondary-accent);
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 5px var(--secondary-accent);
+    }
+    to {
+      text-shadow: 0 0 15px var(--secondary-accent);
+    }
+  }
+  .sidebar-metric {
+    margin-top: 2rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: var(--sidebar-text);
+    font-size: 0.85rem;
+    text-align: center;
+    animation: pulseMetric 2s infinite;
+  }
+  @keyframes pulseMetric {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  .sidebar {
+    animation: slideInSidebar 1s ease forwards;
+  }
+  @keyframes slideInSidebar {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+
+</style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -1430,7 +1495,12 @@
         <i class="fab fa-github"></i>
       </a>
     </div>
-  </nav>
+  
+<div class="sidebar-metric">
+  <i class="fas fa-database"></i> <span id="liveMetric">Loading...</span>
+</div>
+
+</nav>
 
   <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
     <i class="fas fa-bars"></i>
@@ -2424,5 +2494,14 @@
       highlightNavLink();
     });
   </script>
+
+<script>
+  function updateMetric() {
+    const value = (Math.random() * 100).toFixed(2);
+    document.getElementById("liveMetric").innerText = `Live Data Rate: ${value}%`;
+  }
+  setInterval(updateMetric, 3000);
+</script>
+
 </body>
 </html>
