@@ -305,7 +305,7 @@
       border: 1px solid var(--card-border);
       display: flex;
       flex-direction: column;
-      min-height: 300px;
+      min-height: 60px;
     }
 
     .card:hover {
@@ -939,97 +939,7 @@
         margin-right: 0.5rem;
         border: 1px solid rgba(0,0,0,0.1);
     }
-
-    .testimonials-slider {
-      display: flex;
-      overflow-x: auto;
-      gap: 1.5rem;
-      padding: 0.5rem 1rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .testimonials-slider::-webkit-scrollbar {
-      display: none;
-    }
-
-    .testimonial-item {
-      min-width: calc(100% - 2rem);
-      scroll-snap-align: center;
-      flex-shrink: 0;
-      background: var(--card-bg);
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--card-border);
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      opacity: 0.9;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    
-    .testimonial-item:hover {
-        opacity: 1;
-        transform: scale(1.02);
-    }
-    
-    @media (min-width: 768px) {
-      .testimonials-slider {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        overflow-x: hidden;
-        scroll-snap-type: none;
-        padding: 0;
-      }
-      .testimonial-item {
-        min-width: auto;
-        opacity: 1;
-        transform: none;
-      }
-      .testimonial-item:hover {
-          transform: translateY(-5px);
-      }
-    }
-
-    .testimonial-text {
-      font-style: italic;
-      margin-bottom: 1rem;
-      position: relative;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      text-align: center;
-    }
-
-    .testimonial-text::before {
-      content: '"';
-      font-size: 3rem;
-      color: var(--accent-rgba-light);
-      position: absolute;
-      top: -1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 0;
-      line-height: 1;
-    }
-
-    .testimonial-author {
-      font-weight: 700;
-      color: var(--accent);
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
-    }
-
-    .testimonial-position {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
+     
     /* Contact Buttons Section */
     .contact-buttons-grid {
       display: grid;
@@ -1496,11 +1406,6 @@
       <li class="nav-item" role="none">
         <a href="#certifications" class="nav-link" data-section="certifications" role="menuitem">
           <i class="fas fa-certificate"></i> Certifications
-        </a>
-      </li>
-      <li class="nav-item" role="none">
-        <a href="#testimonials" class="nav-link" data-section="testimonials" role="menuitem">
-          <i class="fas fa-quote-left"></i> Testimonials
         </a>
       </li>
       <li class="nav-item" role="none">
@@ -1972,30 +1877,6 @@
             </div>
           </div>
           <button class="view-more-btn" id="viewMoreCertifications">View More Certifications</button>
-        </div>
-      </section>
-
-      <section id="testimonials" class="card testimonials-card fade-in-section" aria-labelledby="testimonials-title">
-        <div class="card-header">
-          <h2 class="card-title" id="testimonials-title"><i class="fas fa-quote-left"></i> Testimonials</h2>
-        </div>
-        <div class="card-body">
-          <div class="testimonials-slider" role="region" aria-label="Testimonials Slider">
-            <div class="testimonial-item">
-              <p class="testimonial-text">
-                Aadarsh's analytical approach to operations brought measurable improvements in both efficiency and cost control.
-              </p>
-              <p class="testimonial-author">Director</p>
-              <p class="testimonial-position">Ahimsa Tour & Travels</p>
-            </div>
-            <div class="testimonial-item">
-              <p class="testimonial-text">
-                Aadarsh handled client relationships with professionalism and a sense of urgency. His efforts directly contributed to higher satisfaction and repeat business.
-              </p>
-              <p class="testimonial-author">Team Leader</p>
-              <p class="testimonial-position">Apollo 24x7</p>
-            </div>
-          </div>
         </div>
       </section>
 
