@@ -1411,9 +1411,8 @@
       transform: scale(1.05);
     }
   }
-  .sidebar {
-    animation: slideInSidebar 1s ease forwards;
-  }
+
+  /* This is the animation that was causing the problem. It has been removed from the .sidebar class below */
   @keyframes slideInSidebar {
     from {
       transform: translateX(-100%);
