@@ -1,6 +1,6 @@
 # 📊 Aadarsh Jaiswal – Data Analytics Portfolio
 
-![Portfolio Dashboard](https://github.com/aadarshjaiswalvns/Data-Analytics-Portfolio/blob/main/Portfolio_image.png)
+![Portfolio Dashboard](https://github.com/aadarshjaiswalvns/Data-Analytics-Portfolio/blob/main/Portfolio_preview.png)
 
 Welcome to my Data Analytics Portfolio!  
 This repository showcases projects I've completed using **Python**, **SQL**, **Power BI**, **Excel**, and **Machine Learning**. Each project demonstrates real-world business problem-solving, strong analytical thinking, and data storytelling skills.
