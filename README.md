@@ -41,6 +41,7 @@ Insights included customer segmentation, inventory categorization, shipping perf
 ### 4. 🧑‍💼 HR Analytics – Employee Attrition Prediction
 Built a Random Forest model to identify key reasons for employee attrition and predicted potential churners.  
 **Tools:** Python, Seaborn, Pandas, Scikit-learn  
+
 [📂 View Project Folder](https://github.com/aadarshjaiswalvns/HR-Analytics-Employee-Attrition-Prediction)
 
 ---
