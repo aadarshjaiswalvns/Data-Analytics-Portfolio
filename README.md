@@ -15,6 +15,7 @@ This repository showcases projects I've completed using **Python**, **SQL**, **P
 ### 1. 📈 Sales Dashboard (Power BI / Excel)
 Built an interactive dashboard to visualize sales performance, trends, top-performing products, and regional breakdowns.  
 **Tools:** Power BI, Excel, DAX  
+
 [📂 View Project Folder](https://github.com/aadarshjaiswalvns/PowerBI-Superstore-Sales-Dashbaord)
 
 ---
