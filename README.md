@@ -32,7 +32,8 @@ Developed a machine learning model to predict customer churn using classificatio
 ### 3. 🛍️ Reliant Retail Ltd. – MySQL Analytics Project
 Performed SQL-based analysis on a multi-table orders database.  
 Insights included customer segmentation, inventory categorization, shipping performance, and unsold product detection.  
-**Tools:** MySQL, Joins, CASE, Subqueries  
+**Tools:** MySQL, Joins, CASE, Subqueries 
+
 [📂 View Project Folder](https://github.com/aadarshjaiswalvns/Reliant-Retail-Ltd-MySQL-Analytics-Project)
 
 ---
